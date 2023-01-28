@@ -1,0 +1,22 @@
+{
+    "name": "nodejs-testing",
+    "version": "1.0.0",
+    "description": "This is a testing app for my test",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "node src/index.js",
+        "error": "error: no test specified"
+    },
+    "keywords": [
+        "testing",
+        "example"
+    ],
+    "author": "Lil Gamer Playz - Erick Tran",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.18.2",
+        "googleapis": "^109.0.1",
+        "import": "^0.0.6",
+        "require": "^0.4.9"
+    }
+}
