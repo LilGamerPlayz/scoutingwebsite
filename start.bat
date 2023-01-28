@@ -1,1 +1,2 @@
-npm run start
+node src/index.js
+PAUSE
