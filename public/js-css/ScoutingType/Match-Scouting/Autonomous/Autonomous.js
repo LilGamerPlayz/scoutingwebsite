@@ -1,3 +1,3 @@
 function TeleOp() {
-    window.location = "/ScoutingType/Match-Scouting/TeleOp-EndGame";
+    window.location = "/ScoutingType/Match-Scouting/Teleop-Endgame";
 }
