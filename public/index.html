@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <!-- Page Title -->
     <meta charset="UTF-8" />
@@ -13,13 +14,10 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="js-css/home.css">
 
     <!-- External JS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js-css/home.js"></script>
-
 </head>
 
 <body>
@@ -46,4 +44,47 @@
             </button>
         </span>
     </center>
+
+    <style>
+        #Scouting1 {
+            margin-top: 5%;
+            font-size: 500%;
+            color: black;
+        }
+
+        #a4079-1 {
+            width: 25%;
+        }
+
+        .buttonchoose {
+            width: 20%;
+            height: 100px;
+            border-radius: 5%;
+        }
+
+        #buttons {
+            padding: 20px;
+        }
+    </style>
+
+    <script>
+        function ScoutingType() {
+            window.location = "ScoutingType";
+            if (!localStorage.getItem("Name")) {
+                let name = prompt("Please enter your name", "Name");
+                localStorage.setItem("Name", name);
+            }
+        }
+
+        function Survey() {
+            window.location = "Survey";
+        }
+
+        function NamePrompt() {
+            if (!localStorage.getItem("Name")) {
+                let name = prompt("Please enter your name", "Name");
+                localStorage.setItem("Name", name);
+            }
+        }
+    </script>
 </body>
