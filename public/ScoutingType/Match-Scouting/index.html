@@ -18,7 +18,6 @@
     <!-- External JS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js-css/ScoutingType/Match-Scouting/MatchScouting.js"></script>
 </head>
 
 <body>
@@ -46,4 +45,27 @@
         </div>
         <button id="StartMatch" onclick="StartMatch()">Start Match</button>
     </center>
+
+    <script>
+        function StartMatch() {
+            let MatchNum = document.getElementById("MatchNumInput").value;
+            let TeamNum = document.getElementById("TeamNumInput").value;
+            let AllianceColor = document.getElementById("AllianceColor").value;
+            let RedAlliance = document.getElementById("RedAllianceCheckbox").value;
+            let BlueAlliance = document.getElementById("BlueAllianceCheckBox").value;
+            let MatchScouting = {
+                MatchNum: MatchNum,
+                TeamNum: TeamNum,
+                AllianceColor: AllianceColor,
+                RedAlliance: RedAlliance,
+                BlueAlliance: BlueAlliance
+            };
+            localStorage.setItem("MatchScouting", JSON.stringify(MatchScouting));
+            location.href = "/ScoutingType/Match-Scouting/Autonomous";
+        }
+    </script>
+
+    <style>
+
+    </style>
 </body>
