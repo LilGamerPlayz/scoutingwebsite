@@ -53,6 +53,15 @@
     </style>
 
     <script>
+        let CommunityLeave = document.getElementById("CommunityLeaveInput");
+        let CubeScoring = document.getElementById("CubeScoring");
+        let ConeScoring = document.getElementById("ConeScoring");
+        let BalanceOption = document.getElementById("BalanceOption");
+        document.cookie = "CommunityLeave=" + CommunityLeave.checked;
+        document.cookie = "CubeScoring=" + CubeScoring.value;
+        document.cookie = "ConeScoring=" + ConeScoring.value;
+        document.cookie = "BalanceOption=" + BalanceOption.value;
+
         function TeleOp() {
             window.location = "/ScoutingType/Match-Scouting/Teleop-Endgame";
         }

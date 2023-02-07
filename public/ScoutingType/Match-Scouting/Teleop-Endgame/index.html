@@ -18,7 +18,6 @@
     <!-- External JS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js-css/ScoutingType/Match-Scouting/Teleop-Endgame/Teleop-Endgame.js"></script>
 
 </head>
 
@@ -36,4 +35,18 @@
             <h1 id="SubmitButton" onclick="Submit()">Submit</h1>
         </button>
     </center>
+
+    <style>
+
+    </style>
+
+    <script>
+        function Submit() {
+            let confirm = window.confirm("Are you sure you want to submit?");
+            if (confirm == true) {
+                console.log("Submitted");
+                //Code here
+            }
+        }
+    </script>
 </body>

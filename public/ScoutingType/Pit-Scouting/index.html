@@ -18,7 +18,6 @@
     <!-- External JS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js-css/ScoutingType/Pit-Scouting/PitScouting.js"></script>
 
 </head>
 
@@ -93,4 +92,32 @@
         </button>
         <br><br><br><br>
     </center>
+
+    <script>
+        let TeamNumber = document.getElementById("TeamNumberInput");
+        let GamePieces = document.getElementById("GamePiecesInput");
+        let DriverExperience = document.getElementById("DriverExperienceInput");
+        let DriveTrain = document.getElementById("DriveTrainInput");
+        let AutoPlan = document.getElementById("AutoPlanInput");
+        let GamePieceLocation = document.getElementById("GamePieceLocationInput");
+        let AverageTime = document.getElementById("AverageTimeInput");
+        let ScoringLocation = document.getElementById("ScoringLocationInput");
+        let DockEngage = document.getElementById("DockEngageInput");
+        let PictureRobot = document.getElementById("PictureRobotInput");
+        let Comments = document.getElementById("CommentsInput");
+
+        document.cookie = "TeamNumber=" + TeamNumber.value;
+        document.cookie = "GamePieces=" + GamePieces.value;
+        document.cookie = "DriverExperience=" + DriverExperience.value;
+        document.cookie = "DriveTrain=" + DriveTrain.value;
+        document.cookie = "AutoPlan=" + AutoPlan.value;
+        document.cookie = "GamePieceLocation=" + GamePieceLocation.value;
+        document.cookie = "AverageTime=" + AverageTime.value;
+        document.cookie = "ScoringLocation=" + ScoringLocation.value;
+        document.cookie = "DockEngage=" + DockEngage.value;
+        document.cookie = "PictureRobot=" + PictureRobot.value;
+        document.cookie = "Comments=" + Comments.value;
+
+        window.location = "Submitted";
+    </script>
 </body>

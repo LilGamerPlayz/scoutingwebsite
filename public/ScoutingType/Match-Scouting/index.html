@@ -53,14 +53,11 @@
             let AllianceColor = document.getElementById("AllianceColor").value;
             let RedAlliance = document.getElementById("RedAllianceCheckbox").value;
             let BlueAlliance = document.getElementById("BlueAllianceCheckBox").value;
-            let MatchScouting = {
-                MatchNum: MatchNum,
-                TeamNum: TeamNum,
-                AllianceColor: AllianceColor,
-                RedAlliance: RedAlliance,
-                BlueAlliance: BlueAlliance
-            };
-            localStorage.setItem("MatchScouting", JSON.stringify(MatchScouting));
+            document.cookie = "MatchNum=" + MatchNum;
+            document.cookie = "TeamNum=" + TeamNum;
+            document.cookie = "AllianceColor=" + AllianceColor;
+            document.cookie = "RedAlliance=" + RedAlliance;
+            document.cookie = "BlueAlliance=" + BlueAlliance;
             location.href = "/ScoutingType/Match-Scouting/Autonomous";
         }
     </script>
