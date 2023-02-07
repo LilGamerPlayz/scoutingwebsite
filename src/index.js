@@ -15,3 +15,21 @@ app.use(express.static('public'));
 
 //Limiting the size of json data (1mb) and parsing JSON data
 app.use(express.json({ limit: '5mb' }));
+
+//Match Fetching
+app.get('/scouting', (req, res) => {
+    let data = req.body;
+
+    //Different types of data scouting types
+    if (data.MatchType == "Pit-Scouting") {
+        console.log("Pit Scouting Data Received");
+    } else if (data.MatchType == "Match-Scouting") {
+        console.log("Match Scouting Data Received");
+    }
+
+    console.log(data);
+
+    if (res.status === 200) {
+        req.send("Data Received");
+    }
+});
