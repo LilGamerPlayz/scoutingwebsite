@@ -26,7 +26,7 @@
         <br>
         <img id="a4079-1" src="items/4079.png">
         <br><br><br>
-        <span id="buttons">
+        <div id="buttons">
             <button class="buttonchoose" id="Scouting" onclick="ScoutingType()">
                 <h1>
                     Scouting
@@ -37,12 +37,7 @@
                     Scouting Survey Results
                 </h1>
             </button>
-            <button class="buttonchoose" id="Notes" onclick="Notes()">
-                <h1>
-                    Notes
-                </h1>
-            </button>
-        </span>
+        </div>
     </center>
 
     <style>
@@ -77,7 +72,7 @@
         }
 
         function Survey() {
-            window.location = "Survey";
+            window.location = "SurveyResults";
         }
 
         function NamePrompt() {

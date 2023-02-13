@@ -32,6 +32,45 @@
             <h1 id="DefenseInputLabel">Yes</h1>
             <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958">
         </div>
+
+        <div id="Cubes">
+            <h1 id="CubesLabel">How many cubes did they score?</h1>
+            <input type="number" id="CubesInput" placeholder="3">
+        </div>
+
+        <div id="Cones">
+            <h1 id="ConesLabel">How many cones did they score?</h1>
+            <input type="number" id="ConesInput" placeholder="2">
+        </div>
+
+        <div id="Cargo">
+            <h1 id="CargoLabel">Where did they pick up cargo from?</h1>
+            <div id="CargoDropdown">
+                <select id="CargoInput">
+                    <option value="Shelf">Shelf</option>
+                    <option value="Floor">Loading Zone Floor</option>
+                    <option value="Field">Mid-Field</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="Balanced">
+            <h1 id="BalancedLabel">Did they balance?</h1>
+            <div id="BalancedDropdown">
+                <select id="BalancedInput">
+                    <option value="Engaged">Docked and Engaged</option>
+                    <option value="Docked">Docked</option>
+                    <option value="Not">Not on charging station</option>
+                </select>
+        </div>
+
+        <div id="Comments">
+            <h1 id="CommentsLabel">Additional Comments</h1>
+            <textarea id="CommentsInput" placeholder="Comments"></textarea>
+        </div>
+
+        <br><br><br>
+
         <button type="submit">
             <h1 id="SubmitButton" onclick="Submit()">Submit</h1>
         </button>
@@ -42,12 +81,13 @@
     </style>
 
     <script>
-        function Submit() {
-            let confirm = window.confirm("Are you sure you want to submit?");
+        let SubmitButton = document.getElementById("SubmitButton");
+            
+        SubmitButton.addEventListener("click", function() {
+        let confirm = window.confirm("Are you sure you want to submit? You cannot edit your responses after submission.");
             if (confirm == true) {
-                console.log("Submitted");
-                //Code here
+                window.location = "/ScoutingType/Match-Scouting/Submitted";
             }
-        }
+        });
     </script>
 </body>
