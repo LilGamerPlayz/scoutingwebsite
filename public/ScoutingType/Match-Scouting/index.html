@@ -25,44 +25,50 @@
         <h1 id="Match">Match Scouting Form</h1>
         <div id="MatchNum">
             <h1 id="MatchNumTitle">What is the match number?</h1>
-            <input type="number" id="MatchNumInput" placeholder="1">
+            <input type="number" id="MatchNumInput" placeholder="1" onchange="Match()">
         </div>
         <div id="TeamNum">
             <h1 id="TeamNumTitle">What is the team number?</h1>
-            <input type="number" id="TeamNumInput" placeholder="4079">
+            <input type="number" id="TeamNumInput" placeholder="4079" onchange="TeamNum()">
         </div>
-        <div id="AllianceColor">
-            <h1 id="AllianceColorTitle">What is the alliance color?</h1>
-            <span id="AllianceRed">
-                <input type="checkbox" id="RedAllianceCheckbox">
-                <h1 id="RedAllianceTitle">Red Alliance</h1>
-            </span>
-            <br>
-            <span id="AllianceBlue">
-                <input type="checkbox" id="BlueAllianceCheckBox">
-                <h1 id="BlueAllianceTitle">Blue Alliance</h1>
-            </span>
+        <div id="TeamColor">
+            <h1 id="TeamColorTitle">What is the team color?</h1>
+            <select id="TeamColorInput" onchange="TeamColor()">
+                <option value="Red">Red</option>
+                <option value="Blue">Blue</option>
+            </select>
         </div>
+
+        <br><br><br>
         <button id="StartMatch" onclick="StartMatch()">Start Match</button>
     </center>
-
-    <script>
-        function StartMatch() {
-            let MatchNum = document.getElementById("MatchNumInput").value;
-            let TeamNum = document.getElementById("TeamNumInput").value;
-            let AllianceColor = document.getElementById("AllianceColor").value;
-            let RedAlliance = document.getElementById("RedAllianceCheckbox").value;
-            let BlueAlliance = document.getElementById("BlueAllianceCheckBox").value;
-            document.cookie = "MatchNum=" + MatchNum;
-            document.cookie = "TeamNum=" + TeamNum;
-            document.cookie = "AllianceColor=" + AllianceColor;
-            document.cookie = "RedAlliance=" + RedAlliance;
-            document.cookie = "BlueAlliance=" + BlueAlliance;
-            location.href = "/ScoutingType/Match-Scouting/Autonomous";
-        }
-    </script>
 
     <style>
 
     </style>
+
+    <script>
+        function Match() {
+            let MatchInput = document.getElementById("MatchNumInput").value;
+            document.cookie = "MatchNum=" + MatchInput;
+        }
+
+        function TeamNum() {
+            let TeamInput = document.getElementById("TeamNumInput").value;
+            document.cookie = "TeamNum=" + TeamInput;
+        }
+
+        function TeamColor() {
+            let TeamColorInput = document.getElementById("TeamColorInput").value;
+            document.cookie = "TeamColor=" + TeamColorInput;
+        }
+
+        function StartMatch() {
+            let MatchNum = document.getElementById("MatchNumInput").value;
+            let TeamNum = document.getElementById("TeamNumInput").value;
+            document.cookie = "MatchNum=" + MatchNum;
+            document.cookie = "TeamNum=" + TeamNum;
+            location.href = "/ScoutingType/Match-Scouting/Autonomous";
+        }
+    </script>
 </body>
