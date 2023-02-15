@@ -1,17 +1,21 @@
-function setUp() {
+var ScoutingData = "";
+var ScoutingType = "All-Scouting";
+
+async function setUp() {
     // Set up the page
     // Get the data from the server
-    fetch("/sendscoutingdata", {
+    let sendscoutingdata = {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-    }).then(res => {
-        if (res.status == 200) {
-            console.log("Sent Data");
-        }
-    }).then(data => {
-        let ScoutingData = data;
-        console.log(ScoutingData);
-    });
+        body: JSON.stringify(ScoutingType)
+    };
+
+    await fetch("/sendscoutingdata", sendscoutingdata)
+        .then(response => response.json())
+        .then(data => {
+            ScoutingData = data;
+            console.log(ScoutingData);
+        });
 }

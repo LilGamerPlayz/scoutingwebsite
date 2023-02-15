@@ -1,7 +1,7 @@
 var data = [];
 let MatchType = "";
 
-function Submit() {
+async function Submit() {
     if (document.getElementById("Title") == "Pit Scouting | Robotics Scouting Site") {
         MatchType = "Pit";
     } else if (document.getElementById("Title") == "Match - Tele-Op/Endgame | Robotics Scouting Site") {
@@ -56,16 +56,17 @@ function Submit() {
         });
     }
 
-    fetch("/scouting", {
+    let scouting = {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(data),
-    }).then(res => {
-        if (res.status == 200) {
-            console.log("Sent Data");
-        }
-    });
-    console.log(data);
+    }
+
+    await fetch("/scouting", scouting)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
 }

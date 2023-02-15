@@ -19,7 +19,7 @@ app.use(express.static('public'));
 //Limiting the size of json data (1mb) and parsing JSON data
 app.use(express.json({ limit: '5mb' }));
 
-var data = ""
+var data = "";
 
 //Match Fetching
 app.post('/scouting', (req, res) => {
@@ -47,12 +47,11 @@ app.post("/sendscoutingdata", (req, res) => {
     let MatchScoutingData = fs.readFileSync("/src/ScoutingData/MatchScoutingData.json");
 
     if (scoutingdata == "Pit-Scouting") {
-        res.sendFile(PitScoutingData);
+        res.send(PitScoutingData);
     } else if (scoutingdata == "Match-Scouting") {
-        res.sendFile(MatchScoutingData);
+        res.send(MatchScoutingData);
     } else if (scoutingdata == "All-Scouting") {
-        res.sendFile(PitScoutingData);
-        res.sendFile(MatchScoutingData);
+        res.send(PitScoutingData, MatchScoutingData);
     } else {
         res.send("Error");
     }

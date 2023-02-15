@@ -18,7 +18,6 @@
     <!-- External JS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js-css/Submit.js"></script>
 
 </head>
 
@@ -62,16 +61,16 @@
                     <option value="Docked">Docked</option>
                     <option value="Not">Not on charging station</option>
                 </select>
-        </div>
+            </div>
 
-        <div id="Comments">
-            <h1 id="CommentsLabel">Additional Comments</h1>
-            <textarea id="CommentsInput" placeholder="Comments"></textarea>
-        </div>
+            <div id="Comments">
+                <h1 id="CommentsLabel">Additional Comments</h1>
+                <textarea id="CommentsInput" placeholder="Comments"></textarea>
+            </div>
 
-        <br><br><br>
+            <br><br><br>
 
-        <button type="submit">
+            <button type="submit">
             <h1 id="SubmitButton" onclick="Submit()">Submit</h1>
         </button>
     </center>
@@ -80,11 +79,11 @@
 
     </style>
 
-    <script>
+    <script src="/js-css/Submit.js">
         let SubmitButton = document.getElementById("SubmitButton");
-            
+
         SubmitButton.addEventListener("click", function() {
-        let confirm = window.confirm("Are you sure you want to submit? You cannot edit your responses after submission.");
+            let confirm = window.confirm("Are you sure you want to submit? You cannot edit your responses after submission.");
             if (confirm == true) {
                 window.location = "/ScoutingType/Match-Scouting/Submitted";
             }
