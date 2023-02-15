@@ -1,5 +1,17 @@
+var data = [];
+let MatchType = "";
 function Submit() {
+        if (document.getElementById("Title") == "Pit Scouting | Robotics Scouting Site") {
+            MatchType = "Pit";
+        } else if (document.getElementById("Title") == "Match - Tele-Op/Endgame | Robotics Scouting Site") {
+            MatchType = "Match";
+        } else {
+            MatchType = "Unknown";
+        }
+
         let confirm = window.confirm("Are you sure you want to submit? You cannot edit your responses after submission.");
+
+
         if (confirm == true) {
             let TeamNumber = document.getElementById("TeamNumberInput");
             let GamePieces = document.getElementById("GamePiecesInput");
@@ -26,6 +38,21 @@ function Submit() {
             document.cookie = "Comments=" + Comments.value;
 
             window.location = "Submitted";
+
+            data.push({
+                TeamNumber: TeamNumber.value,
+                GamePieces: GamePieces.value,
+                DriverExperience: DriverExperience.value,
+                DriveTrain: DriveTrain.value,
+                AutoPlan: AutoPlan.value,
+                GamePieceLocation: GamePieceLocation.value,
+                AverageTime: AverageTime.value,
+                ScoringLocation: ScoringLocation.value,
+                DockEngage: DockEngage.value,
+                PictureRobot: PictureRobot.value,
+                Comments: Comments.value,
+                MatchType: MatchType
+            });
         }
 
         fetch("/scouting", {
