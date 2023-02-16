@@ -27,10 +27,10 @@ app.post('/scouting', (req, res) => {
 
     //Different types of data scouting types
     if (data.MatchType == "Pit-Scouting") {
-        fs.writeFileSync("/src/ScoutingData/PitScoutingData.json", JSON.stringify(data, null, 2))
+        fs.writeFileSync("/src/ScoutingData/PitScoutingData.json", JSON.stringify(data))
         console.log("Pit Scouting Data Received");
     } else if (data.MatchType == "Match-Scouting") {
-        fs.writeFileSync("/src/ScoutingData/MatchScoutingData.json", JSON.stringify(data, null, 2))
+        fs.writeFileSync("/src/ScoutingData/MatchScoutingData.json", JSON.stringify(data))
         console.log("Match Scouting Data Received");
     }
 

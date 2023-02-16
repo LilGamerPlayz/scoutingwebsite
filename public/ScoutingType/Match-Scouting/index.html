@@ -64,10 +64,10 @@
         }
 
         function StartMatch() {
-            let MatchNum = document.getElementById("MatchNumInput").value;
-            let TeamNum = document.getElementById("TeamNumInput").value;
-            document.cookie = "MatchNum=" + MatchNum;
-            document.cookie = "TeamNum=" + TeamNum;
+            document.cookie = "MatchNum=" + document.getElementById("MatchNumInput").value;
+            document.cookie = "TeamNum=" + document.getElementById("TeamNumInput").value;
+            document.cookie = "TeamColor=" + document.getElementById("TeamColorInput").value;
+
             location.href = "/ScoutingType/Match-Scouting/Autonomous";
         }
     </script>
