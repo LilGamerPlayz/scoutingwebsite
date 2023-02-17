@@ -35,12 +35,12 @@
 
         <div id="CubeScoring" onchange="CubeScoring()">
             <h1 id="CubeScoringLabel">How many cubes did they score?</h1>
-            <input type="number" id="CubeScoringInput">
+            <input type="number" id="CubeScoringInput" placeholder="0">
         </div>
 
         <div id="ConeScoring">
             <h1 id="ConeScoringLabel" onchange="ConeScoring()">How many cones did they score?</h1>
-            <input type="number" id="ConeScoringInput">
+            <input type="number" id="ConeScoringInput" placeholder="0">
         </div>
 
         <div id="BalanceOption">
@@ -99,6 +99,12 @@
         }
 
         function TeleOp() {
+            document.cookie = "CommunityLeave=" + document.getElementById("CommunityLeaveInput").checked;
+            document.cookie = "CubeScoring=" + document.getElementById("CubeScoringInput").value;
+            document.cookie = "ConeScoring=" + document.getElementById("ConeScoringInput").value;
+            document.cookie = "BalanceOption=" + document.getElementById("BalanceOptionInput").value;
+            document.cookie = "ScoutingType=Match-Scouting";
+
             window.location = "/ScoutingType/Match-Scouting/Teleop-Endgame";
         }
     </script>
