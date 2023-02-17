@@ -72,15 +72,16 @@
         <h1 id="Match">Match Scouting Form</h1>
         <div id="MatchNum">
             <h1 id="MatchNumTitle">What is the match number?</h1>
-            <input type="number" id="MatchNumInput" placeholder="1" onchange="Match()">
+            <input type="number" id="MatchNumInput" pattern="[0-9]*" placeholder="1" onchange="Match()">
         </div>
         <div id="TeamNum">
             <h1 id="TeamNumTitle">What is the team number?</h1>
-            <input type="number" id="TeamNumInput" placeholder="4079" onchange="TeamNum()">
+            <input type="number" id="TeamNumInput" pattern="[0-9]*" placeholder="4079" onchange="TeamNum()">
         </div>
         <div id="TeamColor">
             <h1 id="TeamColorTitle">What is the team color?</h1>
             <select id="TeamColorInput" onchange="TeamColor()">
+                <option value="None">Choose One</option>
                 <option value="Red">Red</option>
                 <option value="Blue">Blue</option>
             </select>
