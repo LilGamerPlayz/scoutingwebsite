@@ -20,6 +20,81 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js-css/Submit.js"></script>
 
+    <style>
+        #PictureRobotInput {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #Image {
+            width: 50%;
+            height: 50%;
+            border-radius: 10px;
+        }
+    </style>
+
+    <script>
+        let submit = document.getElementById("Submit");
+
+        function TeamNumber() {
+            let TeamNumber = document.getElementById("TeamNumberInput");
+            document.cookie = "TeamNumber=" + TeamNumber.value;
+        }
+
+        function GamePieces() {
+            let GamePieces = document.getElementById("GamePiecesInput");
+            document.cookie = "GamePieces=" + GamePieces.value;
+        }
+
+        function DriverExperience() {
+            let DriverExperience = document.getElementById("DriverExperienceInput");
+            document.cookie = "DriverExperience=" + DriverExperience.value;
+        }
+
+        function DriveTrain() {
+            let DriveTrain = document.getElementById("DriveTrainInput");
+            document.cookie = "DriveTrain=" + DriveTrain.value;
+        }
+
+        function AutoPlan() {
+            let AutoPlan = document.getElementById("AutoPlanInput");
+            document.cookie = "AutoPlan=" + AutoPlan.value;
+        }
+
+        function GamePieceLocation() {
+            let GamePieceLocation = document.getElementById("GamePieceLocationInput");
+            document.cookie = "GamePieceLocation=" + GamePieceLocation.value;
+        }
+
+        function AverageTime() {
+            let AverageTime = document.getElementById("AverageTimeInput");
+            document.cookie = "AverageTime=" + AverageTime.value;
+        }
+
+        function ScoringLocation() {
+            let ScoringLocation = document.getElementById("ScoringLocationInput");
+            document.cookie = "ScoringLocation=" + ScoringLocation.value;
+        }
+
+        function DockEngage() {
+            let DockEngage = document.getElementById("DockEngageInput");
+            document.cookie = "DockEngage=" + DockEngage.value;
+        }
+
+        function PictureRobot() {
+            let PictureRobot = document.getElementById("PictureRobotInput");
+            document.cookie = "PictureRobot=" + PictureRobot.value;
+        }
+
+        function Comments() {
+            let Comments = document.getElementById("CommentsInput");
+            document.cookie = "Comments=" + Comments.value;
+        }
+    </script>
 </head>
 
 <body>
@@ -96,74 +171,4 @@
         </button>
         <br><br><br><br>
     </center>
-
-    <style>
-        #PictureRobotInput {
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-    </style>
-
-    <script>
-        let submit = document.getElementById("Submit");
-
-        function TeamNumber() {
-            let TeamNumber = document.getElementById("TeamNumberInput");
-            document.cookie = "TeamNumber=" + TeamNumber.value;
-        }
-
-        function GamePieces() {
-            let GamePieces = document.getElementById("GamePiecesInput");
-            document.cookie = "GamePieces=" + GamePieces.value;
-        }
-
-        function DriverExperience() {
-            let DriverExperience = document.getElementById("DriverExperienceInput");
-            document.cookie = "DriverExperience=" + DriverExperience.value;
-        }
-
-        function DriveTrain() {
-            let DriveTrain = document.getElementById("DriveTrainInput");
-            document.cookie = "DriveTrain=" + DriveTrain.value;
-        }
-
-        function AutoPlan() {
-            let AutoPlan = document.getElementById("AutoPlanInput");
-            document.cookie = "AutoPlan=" + AutoPlan.value;
-        }
-
-        function GamePieceLocation() {
-            let GamePieceLocation = document.getElementById("GamePieceLocationInput");
-            document.cookie = "GamePieceLocation=" + GamePieceLocation.value;
-        }
-
-        function AverageTime() {
-            let AverageTime = document.getElementById("AverageTimeInput");
-            document.cookie = "AverageTime=" + AverageTime.value;
-        }
-
-        function ScoringLocation() {
-            let ScoringLocation = document.getElementById("ScoringLocationInput");
-            document.cookie = "ScoringLocation=" + ScoringLocation.value;
-        }
-
-        function DockEngage() {
-            let DockEngage = document.getElementById("DockEngageInput");
-            document.cookie = "DockEngage=" + DockEngage.value;
-        }
-
-        function PictureRobot() {
-            let PictureRobot = document.getElementById("PictureRobotInput");
-            document.cookie = "PictureRobot=" + PictureRobot.value;
-        }
-
-        function Comments() {
-            let Comments = document.getElementById("CommentsInput");
-            document.cookie = "Comments=" + Comments.value;
-        }
-    </script>
 </body>
