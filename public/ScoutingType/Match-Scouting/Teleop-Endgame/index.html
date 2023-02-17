@@ -28,8 +28,10 @@
 
         <div id="Defense">
             <h1 id="DefenseLabel">Did they play defense? On who?</h1>
-            <input type="checkbox" id="DefenseInput">
-            <h1 id="DefenseInputLabel">Yes</h1>
+            <select id="DefenseInput">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
             <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958">
         </div>
 
@@ -45,46 +47,65 @@
 
         <div id="Cargo">
             <h1 id="CargoLabel">Where did they pick up cargo from?</h1>
-            <div id="CargoDropdown">
-                <select id="CargoInput">
-                    <option value="Shelf">Shelf</option>
-                    <option value="Floor">Loading Zone Floor</option>
-                    <option value="Field">Mid-Field</option>
-                </select>
-            </div>
+            <select id="CargoInput">
+                <option value="Shelf">Shelf</option>
+                <option value="Floor">Loading Zone Floor</option>
+                <option value="Field">Mid-Field</option>
+            </select>
         </div>
 
         <div id="Balanced">
             <h1 id="BalancedLabel">Did they balance?</h1>
-            <div id="BalancedDropdown">
-                <select id="BalancedInput">
-                    <option value="Engaged">Docked and Engaged</option>
-                    <option value="Docked">Docked</option>
-                    <option value="Not">Not on charging station</option>
-                </select>
-        </div>
+            <select id="BalancedInput">
+                <option value="Engaged">Docked and Engaged</option>
+                <option value="Docked">Docked</option>
+                <option value="Not">Not on charging station</option>
+            </select>
 
-        <div id="Comments">
-            <h1 id="CommentsLabel">Additional Comments</h1>
-            <textarea id="CommentsInput" placeholder="Comments"></textarea>
-        </div>
+            <div id="Comments">
+                <h1 id="CommentsLabel">Additional Comments</h1>
+                <textarea id="CommentsInput" placeholder="Comments"></textarea>
+            </div>
 
-        <br><br><br>
+            <br><br><br>
 
-        <button type="submit">
-            <h1 id="SubmitButton" onclick="Submit()">Submit</h1>
-        </button>
+            <button type="submit">
+                <h1 id="SubmitButton" onclick="Submit()">Submit</h1>
+            </button>
     </center>
 
     <style>
+        #CargoInput,
+        #BalancedInput,
+        #DefenseInput {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
 
+        
+        #SubmitButton {
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 30px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 
     <script>
         let SubmitButton = document.getElementById("SubmitButton");
-            
-        SubmitButton.addEventListener("click", function() {
-        let confirm = window.confirm("Are you sure you want to submit? You cannot edit your responses after submission.");
+
+        SubmitButton.addEventListener("click", function () {
+            let confirm = window.confirm("Are you sure you want to submit? You cannot edit your responses after submission.");
             if (confirm == true) {
                 window.location = "/ScoutingType/Match-Scouting/Submitted";
             }

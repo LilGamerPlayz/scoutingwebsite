@@ -77,8 +77,10 @@
 
         <span id="PictureRobot" class="Question">
             <h1 id="PictureRobotLabel">Can we take a picture of the robot?</h1>
-            <input type="checkbox" id="PictureRobotInput" onchange="PictureRobot()">
-            <h1 id="PictureRobotInputYes">Yes</h1>
+            <select id="PictureRobotInput" onchange="PictureRobot()">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
         </span>
 
         <div id="Comments" class="Question">
@@ -94,6 +96,17 @@
         </button>
         <br><br><br><br>
     </center>
+
+    <style>
+        #PictureRobotInput {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
 
     <script>
         let submit = document.getElementById("Submit");
