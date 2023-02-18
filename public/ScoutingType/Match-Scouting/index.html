@@ -18,30 +18,6 @@
     <!-- External JS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-    <center>
-        <h1 id="Match">Match Scouting Form</h1>
-        <div id="MatchNum">
-            <h1 id="MatchNumTitle">What is the match number?</h1>
-            <input type="number" id="MatchNumInput" placeholder="1" onchange="Match()">
-        </div>
-        <div id="TeamNum">
-            <h1 id="TeamNumTitle">What is the team number?</h1>
-            <input type="number" id="TeamNumInput" placeholder="4079" onchange="TeamNum()">
-        </div>
-        <div id="TeamColor">
-            <h1 id="TeamColorTitle">What is the team color?</h1>
-            <select id="TeamColorInput" onchange="TeamColor()">
-                <option value="Red">Red</option>
-                <option value="Blue">Blue</option>
-            </select>
-        </div>
-
-        <br><br><br>
-        <button id="StartMatch" onclick="StartMatch()">Start Match</button>
-    </center>
 
     <style>
         #TeamColorInput {
@@ -89,4 +65,29 @@
             location.href = "/ScoutingType/Match-Scouting/Autonomous";
         }
     </script>
+</head>
+
+<body>
+    <center>
+        <h1 id="Match">Match Scouting Form</h1>
+        <div id="MatchNum">
+            <h1 id="MatchNumTitle">What is the match number?</h1>
+            <input type="number" id="MatchNumInput" pattern="[0-9]*" placeholder="1" onchange="Match()">
+        </div>
+        <div id="TeamNum">
+            <h1 id="TeamNumTitle">What is the team number?</h1>
+            <input type="number" id="TeamNumInput" pattern="[0-9]*" placeholder="4079" onchange="TeamNum()">
+        </div>
+        <div id="TeamColor">
+            <h1 id="TeamColorTitle">What is the team color?</h1>
+            <select id="TeamColorInput" onchange="TeamColor()">
+                <option value="None">Choose One</option>
+                <option value="Red">Red</option>
+                <option value="Blue">Blue</option>
+            </select>
+        </div>
+
+        <br><br><br>
+        <button id="StartMatch" onclick="StartMatch()">Start Match</button>
+    </center>
 </body>

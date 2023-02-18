@@ -3,7 +3,7 @@
 <head>
     <!-- Page Title -->
     <meta charset="UTF-8" />
-    <title id="Title">Match - Before Match | Robotics Scouting Site</title>
+    <title id="Title">Survey Results | Robotics Scouting Site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Page Icon -->
     <link rel="shortcut icon" href="/items/4079-transparent.png" type="image/x-icon">
@@ -20,19 +20,121 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js-css/ScoutingData.js"></script>
 
+    <style>
+        #search {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #searchType,
+        #searchButton {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+        }
+
+        .box {
+            width: 100%;
+            margin: 10px 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            display: inline-block;
+        }
+    </style>
+
+    <script>
+        var searchArray = [[4079, 4414, 1905, 1859], [3309, 2023, 2022, 1053]];
+
+        // Get the search input element
+        const searchInput = document.getElementById("searchInput");
+
+        // Add an event listener to the search input field to listen for changes to its value
+        searchInput.addEventListener("input", () => {
+            const query = searchInput.value;
+            const results = search(query);
+            updateResultsUI(results);
+        });
+
+        // Define a function to perform the search
+        function search(query) {
+            // Filter the array by checking if each sub-array includes the search query
+            const results = searchArray.filter(arr => {
+                return arr.some(str => str.includes(query));
+            });
+            return results;
+        }
+
+        // Define a function to update the search results UI
+        function updateResultsUI(results) {
+            // Loop through each div tag in the container and check if its text content matches the search query
+            container.childNodes.forEach(node => {
+                if (node.textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                    node.style.display = "block";
+                } else {
+                    node.style.display = "none";
+                }
+            });
+        }
+
+        function goBack() {
+            window.location = "/";
+        }
+    </script>
 </head>
 
 <body onload="setUp()">
+    <button onclick="goBack()" class="btn btn-primary">Go Back</button>
+
     <center>
 
         <div id="search">
             <label for="searchInput">Find Teams</label>
             <input id="searchInput" type="text" placeholder="4079">
+
+            <button id="searchButton" onclick="search()">Search</button>
+
+            <select id="searchType">
+                <option value="All">All Teams</option>
+                <option value="Pit">Pit Scouting</option>
+                <option value="Match">Match Scouting</option>
+            </select>
         </div>
 
-        <ul id="Teams">
-
-        </ul>
+        <div class="container">
+            <div class="box">
+                <h1>Team 4079</h1>
+                <h2>Match Scouting at 3:04 PM, Match 5, OCR</h2>
+                <button>
+                    <a>View Survey Results</a>
+                </button>
+            </div>
+            <div class="box">
+                <h1>Team Example 4414</h1>
+                <h2>Match Scouting at 11:43 AM, Match 2, AVR</h2>
+                <button>
+                    <a>View Survey Results</a>
+                </button>
+            </div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
     </center>
-
 </body>

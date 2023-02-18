@@ -19,31 +19,14 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-</head>
-
-<body>
-    <center>
-        <h1>Choose your scouting type</h1>
-        <div id="ScoutingButtons">
-            <button id="Match-Scouting" onclick="MatchScouting()">
-               <h1>
-                    Match Scouting
-               </h1> 
-            </button>
-            <button id="Pit-Scouting" onclick="PitScouting()">
-                <h1>
-                    Pit Scouting
-                </h1>
-            </button>
-        </div>
-    </center>
-
     <style>
         #ScoutingButtons {
-            margin-top:15%;
-            
+            margin-top: 15%;
+
         }
-        #Match-Scouting, #Pit-Scouting {
+
+        #Match-Scouting,
+        #Pit-Scouting {
             padding: 15px 32px;
             text-align: center;
             display: inline-block;
@@ -60,7 +43,7 @@
         function MatchScouting() {
             document.cookie = "ScoutingType=Match-Scouting";
             window.location = "Match-Scouting";
-            
+
         }
 
         function PitScouting() {
@@ -68,4 +51,22 @@
             window.location = "Pit-Scouting"
         }
     </script>
+</head>
+
+<body>
+    <center>
+        <h1>Choose your scouting type</h1>
+        <div id="ScoutingButtons">
+            <button id="Match-Scouting" onclick="MatchScouting()">
+                <h1>
+                    Match Scouting
+                </h1>
+            </button>
+            <button id="Pit-Scouting" onclick="PitScouting()">
+                <h1>
+                    Pit Scouting
+                </h1>
+            </button>
+        </div>
+    </center>
 </body>
