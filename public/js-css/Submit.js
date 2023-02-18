@@ -3,9 +3,9 @@ let MatchType = "";
 
 async function Submit() {
     if (document.getElementById("Title") == "Pit Scouting | Robotics Scouting Site") {
-        MatchType = "Pit";
+        MatchType = "Pit-Scouting";
     } else if (document.getElementById("Title") == "Match - Tele-Op/Endgame | Robotics Scouting Site") {
-        MatchType = "Match";
+        MatchType = "Match-Scouting";
     } else {
         MatchType = "Unknown";
     }
@@ -44,9 +44,11 @@ async function Submit() {
         document.cookie = "Comments=" + Comments.value;
 */
 
-if (localStorage.getItem("ScoutingType") == "Pit") {
+let Title = document.getElementById("Title").textContent;
+
+if (Title.includes("Pit")) {
     window.location = "Submitted";
-} else if (localStorage.getItem("ScoutingType") == "Match") {
+} else if (Title.includes("Match")) {
     window.location = "../Submitted";
 }
 
