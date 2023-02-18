@@ -18,7 +18,80 @@
     <!-- External JS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="/js-css/Submit.js"></script>
 
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+		.submitbox {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+			text-align: center;
+			width: 50%;
+			height: 50%;
+			background-color: #f1f1f1;
+			border: 2px solid #ccc;
+			border-radius: 5px;
+		}
+
+        #SubmitCheck {
+            color: black;
+        }
+
+        .selection {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+
+        .input {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+
+        #SubmitYes,#SubmitNo {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            border-color: black;
+            border-width: 10px;
+            box-sizing: border-box;
+            font-size: 1000%;
+        }
+
+        #SubmitButton {
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 30px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #SubmitBox {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -65,85 +138,26 @@
         <br><br>
 
         <div id="Comments" class="input">
-                <h1 id="CommentsLabel">Additional Comments</h1>
-        <textarea id="CommentsInput" placeholder="Comments"></textarea>
-            </div>
+            <h1 id="CommentsLabel">Additional Comments</h1>
+            <textarea id="CommentsInput" placeholder="Comments"></textarea>
+        </div>
 
-            <br><br><br>
-            <br><br><br>
-
-            <button type="submit">
-                <h1 id="SubmitButton" onclick="Submit()">Submit</h1>
-            </button>
-
+        <div class="submitbox" id="SubmitBox">
+            <h1>Are you sure you want to submit?</h1>
             <br>
-
-            <div class="input" id="SubmitBox">
-                <h1 id="SubmitCheckBox">Are you sure you want to submit?</h1>
-                <br>
-                <div id="SubmitCheck">
-                    <button id="Yes">Yes</button>
-                    <button id="No">No</button>
-                </div>
+            <div id="SubmitCheck">
+                <button id="SubmitYes">Yes</button>
+                <button id="SubmitNo">No</button>
             </div>
+        </div>
+
+        <br><br><br>
+        <br><br><br>
+
+        <button type="submit">
+            <h1 id="SubmitButton" onclick="Submit()">Submit</h1>
+        </button>
+
+        <br>
     </center>
-
-    <style>
-        #SubmitBox {
-            position: sticky; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%);
-            z-index: 9;
-            background-color: black;
-            color: white;
-        }
-
-        #SubmitCheck {
-            color:black;
-        }
-
-        .selection {
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 20px;
-        }
-
-        .input {
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 20px;
-        }
-        
-        #SubmitButton {
-            color: black;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 30px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
-
-    <script src="/js-css/Submit.js">
-        let SubmitButton = document.getElementById("SubmitButton");
-
-        SubmitButton.addEventListener("click", function () {
-            let confirm = window.confirm("Are you sure you want to submit? You cannot edit your responses after submission.");
-            if (confirm == true) {
-                window.location = "/ScoutingType/Match-Scouting/Submitted";
-            }
-        });
-    </script>
 </body>

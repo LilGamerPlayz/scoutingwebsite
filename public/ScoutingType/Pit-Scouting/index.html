@@ -35,6 +35,32 @@
             height: 50%;
             border-radius: 10px;
         }
+
+        #SubmitYes,#SubmitNo {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            border-color: black;
+            border-width: 10px;
+            box-sizing: border-box;
+            font-size: 1000%;
+        }
+
+        .submitbox {
+			text-align: center;
+			width: 50%;
+			height: 50%;
+			background-color: #f1f1f1;
+			border: 2px solid #ccc;
+			border-radius: 5px;
+            display: none;
+		}
+
+        #SubmitCheck {
+            color: black;
+        }
     </style>
 
     <script>
@@ -166,9 +192,19 @@
 
         <br><br>
 
-        <button type="submit" id="Submit" class="Submit" onclick="Submit()">
-            <h1 id="SubmitLabel">Submit</h1>
+        <div class="submitbox" id="SubmitBox">
+            <h1>Are you sure you want to submit?</h1>
+            <br>
+            <div id="SubmitCheck">
+                <button id="SubmitYes">Yes</button>
+                <button id="SubmitNo">No</button>
+            </div>
+        </div>
+
+        <button type="submit">
+            <h1 id="SubmitButton" onclick="Submit()">Submit</h1>
         </button>
+
         <br><br><br><br>
     </center>
 </body>

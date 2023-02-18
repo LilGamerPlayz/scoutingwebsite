@@ -32,19 +32,6 @@
             margin-right: 25px;
         }
     </style>
-
-    <script>
-        document.getElementById("Yes").onclick = function () {
-            location.href = "/ScoutingType/Match-Scouting/";
-        };
-        document.getElementById("No").onclick = function () {
-            location.href = "/";
-        };
-        document.getElementById("PitScouting").onclick = function () {
-            location.href = "/ScoutingType/Pit-Scouting/";
-            localStorage.setItem("ScoutingType", "Pit");
-        };
-    </script>
 </head>
 
 <body>
@@ -62,3 +49,16 @@
         </button>
     </center>
 </body>
+
+<script>
+    document.getElementById("Yes").onclick = function() {
+        location.href = "/ScoutingType/Match-Scouting/";
+    };
+    document.getElementById("No").onclick = function() {
+        location.href = "/";
+    };
+    document.getElementById("PitScouting").onclick = function() {
+        location.href = "/ScoutingType/Pit-Scouting/";
+        localStorage.setItem("ScoutingType", "Pit");
+    };
+</script>

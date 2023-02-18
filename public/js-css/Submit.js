@@ -10,10 +10,15 @@ async function Submit() {
         MatchType = "Unknown";
     }
 
-    let confirm = window.confirm("Are you sure you want to submit? You cannot edit your responses after submission.");
+    if (document.getElementById("SubmitBox")) {
+        document.getElementById("SubmitBox").style.display = "block";
+    }
 
+    let Yes = document.getElementById("SubmitYes");
+    let No = document.getElementById("SubmitNo");
 
-    if (confirm == true) {
+    Yes.addEventListener("click", function () {
+        /*
         let TeamNumber = document.getElementById("TeamNumberInput");
         let GamePieces = document.getElementById("GamePiecesInput");
         let DriverExperience = document.getElementById("DriverExperienceInput");
@@ -37,9 +42,15 @@ async function Submit() {
         document.cookie = "DockEngage=" + DockEngage.value;
         document.cookie = "PictureRobot=" + PictureRobot.value;
         document.cookie = "Comments=" + Comments.value;
+*/
 
-        window.location = "Submitted";
+if (localStorage.getItem("ScoutingType") == "Pit") {
+    window.location = "Submitted";
+} else if (localStorage.getItem("ScoutingType") == "Match") {
+    window.location = "../Submitted";
+}
 
+/*
         data.push({
             MatchType: MatchType,
             TeamNumber: TeamNumber.value,
@@ -54,8 +65,13 @@ async function Submit() {
             PictureRobot: PictureRobot.value,
             Comments: Comments.value
         });
+        */
     }
+    );
 
+    No.addEventListener("click", function () {
+        document.getElementById("SubmitBox").style.display = "none";
+    });
     let scouting = {
         method: "POST",
         headers: {
@@ -65,8 +81,9 @@ async function Submit() {
     }
 
     await fetch("/scouting", scouting)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        });
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
+
 }
