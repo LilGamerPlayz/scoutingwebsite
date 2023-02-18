@@ -27,25 +27,25 @@
         <br><br><br>
         <div id="CommunityLeave">
             <h1 id="CommuniyLeaveLabel">Did they leave the community?</h1>
-            <select id="CommunityLeaveInput">
+            <select id="CommunityLeaveInput" class="selection">
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
             </select>
         </div>
 
-        <div id="CubeScoring" onchange="CubeScoring()">
+        <div id="CubeScoring" onchange="CubeScoring()" >
             <h1 id="CubeScoringLabel">How many cubes did they score?</h1>
-            <input type="number" id="CubeScoringInput" placeholder="0">
+            <input type="number" id="CubeScoringInput" placeholder="0" class="input">
         </div>
 
         <div id="ConeScoring">
             <h1 id="ConeScoringLabel" onchange="ConeScoring()">How many cones did they score?</h1>
-            <input type="number" id="ConeScoringInput" placeholder="0">
+            <input type="number" id="ConeScoringInput" placeholder="0" class="input">
         </div>
 
         <div id="BalanceOption">
             <h1 id="BalanceOptionLabel" onchange="BalanceOption()">Did they balance?</h1>
-            <select id="BalanceOptionInput">
+            <select id="BalanceOptionInput" class="selection">
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
             </select>
@@ -59,14 +59,6 @@
     </center>
 
     <style>
-        #BalanceOptionInput,#CommunityLeaveInput {
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
 
         #NewScreen {
             color: black;
@@ -78,6 +70,26 @@
             margin: 4px 2px;
             cursor: pointer;
             border-radius: 5px;
+        }
+
+        .selection {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+
+        .input {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 20px;
         }
     </style>
 

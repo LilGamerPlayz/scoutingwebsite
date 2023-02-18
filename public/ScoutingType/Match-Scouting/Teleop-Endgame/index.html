@@ -27,26 +27,26 @@
 
         <div id="Defense">
             <h1 id="DefenseLabel">Did they play defense? On who?</h1>
-            <select id="DefenseInput">
+            <select id="DefenseInput" class="selection">
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
             </select>
-            <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958">
+            <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958" class="input">
         </div>
 
         <div id="Cubes">
             <h1 id="CubesLabel">How many cubes did they score?</h1>
-            <input type="number" id="CubesInput" placeholder="3">
+            <input type="number" id="CubesInput" placeholder="3" class="input">
         </div>
 
         <div id="Cones">
             <h1 id="ConesLabel">How many cones did they score?</h1>
-            <input type="number" id="ConesInput" placeholder="2">
+            <input type="number" id="ConesInput" placeholder="2" class="input">
         </div>
 
         <div id="Cargo">
             <h1 id="CargoLabel">Where did they pick up cargo from?</h1>
-            <select id="CargoInput">
+            <select id="CargoInput" class="selection">
                 <option value="Shelf">Shelf</option>
                 <option value="Floor">Loading Zone Floor</option>
                 <option value="Field">Mid-Field</option>
@@ -55,19 +55,18 @@
 
         <div id="Balanced">
             <h1 id="BalancedLabel">Did they balance?</h1>
-            <select id="BalancedInput">
+            <select id="BalancedInput" class="selection">
                 <option value="Engaged">Docked and Engaged</option>
                 <option value="Docked">Docked</option>
                 <option value="Not">Not on charging station</option>
             </select>
+        </div>
 
-            <div id="Comments">
+        <br><br>
+
+        <div id="Comments" class="input">
                 <h1 id="CommentsLabel">Additional Comments</h1>
-                <textarea id="CommentsInput" placeholder="Comments"></textarea>
-            </div>
-            <div id="Comments">
-                <h1 id="CommentsLabel">Additional Comments</h1>
-                <textarea id="CommentsInput" placeholder="Comments"></textarea>
+        <textarea id="CommentsInput" placeholder="Comments"></textarea>
             </div>
 
             <br><br><br>
@@ -76,12 +75,35 @@
             <button type="submit">
                 <h1 id="SubmitButton" onclick="Submit()">Submit</h1>
             </button>
+
+            <br>
+
+            <div class="input" id="SubmitBox">
+                <h1 id="SubmitCheckBox">Are you sure you want to submit?</h1>
+                <br>
+                <div id="SubmitCheck">
+                    <button id="Yes">Yes</button>
+                    <button id="No">No</button>
+                </div>
+            </div>
     </center>
 
     <style>
-        #CargoInput,
-        #BalancedInput,
-        #DefenseInput {
+        #SubmitBox {
+            position: sticky; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            z-index: 9;
+            background-color: black;
+            color: white;
+        }
+
+        #SubmitCheck {
+            color:black;
+        }
+
+        .selection {
             padding: 12px 20px;
             margin: 8px 0;
             display: inline-block;
@@ -91,6 +113,15 @@
             font-size: 20px;
         }
 
+        .input {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
         
         #SubmitButton {
             color: black;
