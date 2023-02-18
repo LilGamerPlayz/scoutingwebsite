@@ -24,3 +24,15 @@ body {
 #buttons {
     padding: 20px;
 }
+
+.submitbox {
+    text-align: center;
+    width: 50%;
+    height: 50%;
+    background-color: #f1f1f1;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 0 auto;
+    display: none;
+}
