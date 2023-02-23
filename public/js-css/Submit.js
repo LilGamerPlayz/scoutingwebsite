@@ -17,8 +17,12 @@ async function Submit() {
     let Yes = document.getElementById("SubmitYes");
     let No = document.getElementById("SubmitNo");
 
-    Yes.addEventListener("click", function () {
-        /*
+    if (MatchType == "Pit-Scouting") {
+        let TeamNumber = document.getElementById("TeamNumberInput");
+        let GamePieces = document.getElementById("GamePiecesInput");
+    }
+
+    Yes.addEventListener("click", function() {
         let TeamNumber = document.getElementById("TeamNumberInput");
         let GamePieces = document.getElementById("GamePiecesInput");
         let DriverExperience = document.getElementById("DriverExperienceInput");
@@ -42,17 +46,16 @@ async function Submit() {
         document.cookie = "DockEngage=" + DockEngage.value;
         document.cookie = "PictureRobot=" + PictureRobot.value;
         document.cookie = "Comments=" + Comments.value;
-*/
 
-let Title = document.getElementById("Title").textContent;
+        let Title = document.getElementById("Title").textContent;
 
-if (Title.includes("Pit")) {
-    window.location = "Submitted";
-} else if (Title.includes("Match")) {
-    window.location = "../Submitted";
-}
+        if (Title.includes("Pit")) {
+            window.location = "Submitted";
+        } else if (Title.includes("Match")) {
+            window.location = "../Submitted";
+        }
 
-/*
+
         data.push({
             MatchType: MatchType,
             TeamNumber: TeamNumber.value,
@@ -67,11 +70,10 @@ if (Title.includes("Pit")) {
             PictureRobot: PictureRobot.value,
             Comments: Comments.value
         });
-        */
-    }
-    );
 
-    No.addEventListener("click", function () {
+    });
+
+    No.addEventListener("click", function() {
         document.getElementById("SubmitBox").style.display = "none";
     });
     let scouting = {
@@ -83,9 +85,9 @@ if (Title.includes("Pit")) {
     }
 
     await fetch("/scouting", scouting)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            });
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
 
 }

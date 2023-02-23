@@ -29,13 +29,13 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-
+        
         #Image {
             width: 50%;
             height: 50%;
             border-radius: 10px;
         }
-
+        
         #SubmitYes,
         #SubmitNo {
             padding: 12px 20px;
@@ -48,7 +48,7 @@
             box-sizing: border-box;
             font-size: 1000%;
         }
-
+        
         .submitbox {
             text-align: center;
             width: 50%;
@@ -58,7 +58,7 @@
             border-radius: 5px;
             display: none;
         }
-
+        
         #SubmitCheck {
             color: black;
         }
@@ -75,7 +75,7 @@
 
         <div id="TeamNumber" class="Question">
             <h1 id="TeamNumberLabel">What is the team number?</h1>
-            <input type="number" id="TeamNumberInput" placeholder="4079" onchange="TeamNumber()">
+            <input type="number" id="TeamNumberInput" placeholder="4079" onchange="TeamNumber()" min="1" max="99999">
         </div>
 
         <div id="GamePieces" class="Question">
@@ -85,9 +85,8 @@
 
         <div id="DriverExperience" class="Question">
             <h1 id="DriverExperienceLabel">How experienced are your driver(s)? (# competitions)</h1>
-            <input type="number" id="DriverExperienceInput" placeholder="3" onchange="DriverExperience()">
+            <input type="number" id="DriverExperienceInput" placeholder="3" onchange="DriverExperience()" min="0" max="100">
         </div>
-
         <div id="DriveTrain" class="Question">
             <h1 id="DriveTrainLabel">What type of drivetrain do you have?</h1>
             <input type="text" id="DriveTrainInput" placeholder="WCD/Tank, Swerve" onchange="DriveTrain()">
@@ -127,9 +126,8 @@
         </span>
 
         <div id="Comments" class="Question">
-            <h1 id="CommentsLabel">Any additional comments about your robot (does it have good defense?) Any coll
-                theming or subsystems? etc.)</h1>
-            <textarea id="CommentsInput" rows="8" cols="50" onchange="Comments()"></textarea>
+            <h1 id="CommentsLabel">Any additional comments about your robot (does it have good defense?) Any coll theming or subsystems? etc.)</h1>
+            <textarea id="CommentsInput" rows="100" cols="100" onchange="Comments()"></textarea>
         </div>
 
         <br><br>

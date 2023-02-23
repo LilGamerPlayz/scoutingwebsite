@@ -25,6 +25,8 @@ var data = "";
 app.post('/scouting', (req, res) => {
     data = req.body;
 
+    console.log(data);
+
     //Different types of data scouting types
     if (data.MatchType == "Pit-Scouting") {
         fs.writeFileSync("/src/ScoutingData/PitScoutingData.json", JSON.stringify(data))
