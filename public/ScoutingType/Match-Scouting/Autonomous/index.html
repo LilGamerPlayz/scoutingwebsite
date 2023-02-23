@@ -21,7 +21,7 @@
 
 </head>
 
-<body>
+<body onload="OnLoad()">
     <center>
         <h1 id="AutonomousTitle">Autonomous</h1>
         <br><br><br>
@@ -94,6 +94,12 @@
     </style>
 
     <script>
+
+        function OnLoad() {
+            document.cookie = "CommunityLeave=" + document.getElementById("CommunityLeaveInput").value;
+            document.cookie = "BalanceOption=" + document.getElementById("BalanceOptionInput").value;
+        }
+
         function CommunityLeave() {
             document.cookie = "CommunityLeave=" + document.getElementById("CommunityLeaveInput").checked;
         }

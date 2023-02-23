@@ -94,17 +94,17 @@
     </style>
 </head>
 
-<body>
+<body onload="OnLoad()">
     <center>
         <h1 id="TeleOpTitle">Tele-Op/End Game</h1>
 
         <div id="Defense">
             <h1 id="DefenseLabel">Did they play defense? On who?</h1>
-            <select id="DefenseInput" class="selection">
-                <option value="Yes">Yes</option>
+            <select id="DefenseInput" class="selection" onchange="DefenseTeams()">
                 <option value="No">No</option>
+                <option value="Yes">Yes</option>
             </select>
-            <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958" class="input">
+            <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958" class="input" style="display: none;">
         </div>
 
         <div id="Cubes">
@@ -146,7 +146,7 @@
             <h1>Are you sure you want to submit?</h1>
             <br>
             <div id="SubmitCheck">
-                <button id="SubmitYes">Yes</button>
+                <button id="SubmitYes" onclick="SaveMatchType()">Yes</button>
                 <button id="SubmitNo">No</button>
             </div>
         </div>
@@ -160,4 +160,31 @@
 
         <br><br><br><br><br>
     </center>
+
+    <script>
+        function SaveMatchType() {
+            document.cookie = "ScoutingType=Pit-Scouting";
+        }
+
+        function DefenseTeams() {
+            if (document.getElementById("DefenseInput").value == "Yes") {
+                document.getElementById("DefenseInputNumber").style.display = "block";
+            } else {
+                document.getElementById("DefenseInputNumber").style.display = "none";
+            }
+        }
+
+        function OnLoad() {
+            Balanced();
+            Cargo();
+        }
+
+        function Cargo() {
+            document.cookie = "Cargo=" + document.getElementById("CargoInput").value;
+        }
+
+        function Balanced() {
+            document.cookie = "Balanced=" + document.getElementById("BalancedInput").value;
+        }
+    </script>
 </body>

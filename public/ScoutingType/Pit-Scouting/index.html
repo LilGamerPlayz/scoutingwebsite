@@ -36,7 +36,8 @@
             border-radius: 10px;
         }
 
-        #SubmitYes,#SubmitNo {
+        #SubmitYes,
+        #SubmitNo {
             padding: 12px 20px;
             margin: 8px 0;
             display: inline-block;
@@ -49,81 +50,22 @@
         }
 
         .submitbox {
-			text-align: center;
-			width: 50%;
-			height: 50%;
-			background-color: #f1f1f1;
-			border: 2px solid #ccc;
-			border-radius: 5px;
+            text-align: center;
+            width: 50%;
+            height: 50%;
+            background-color: #f1f1f1;
+            border: 2px solid #ccc;
+            border-radius: 5px;
             display: none;
-		}
+        }
 
         #SubmitCheck {
             color: black;
         }
     </style>
-
-    <script>
-        let submit = document.getElementById("Submit");
-
-        function TeamNumber() {
-            let TeamNumber = document.getElementById("TeamNumberInput");
-            document.cookie = "TeamNumber=" + TeamNumber.value;
-        }
-
-        function GamePieces() {
-            let GamePieces = document.getElementById("GamePiecesInput");
-            document.cookie = "GamePieces=" + GamePieces.value;
-        }
-
-        function DriverExperience() {
-            let DriverExperience = document.getElementById("DriverExperienceInput");
-            document.cookie = "DriverExperience=" + DriverExperience.value;
-        }
-
-        function DriveTrain() {
-            let DriveTrain = document.getElementById("DriveTrainInput");
-            document.cookie = "DriveTrain=" + DriveTrain.value;
-        }
-
-        function AutoPlan() {
-            let AutoPlan = document.getElementById("AutoPlanInput");
-            document.cookie = "AutoPlan=" + AutoPlan.value;
-        }
-
-        function GamePieceLocation() {
-            let GamePieceLocation = document.getElementById("GamePieceLocationInput");
-            document.cookie = "GamePieceLocation=" + GamePieceLocation.value;
-        }
-
-        function AverageTime() {
-            let AverageTime = document.getElementById("AverageTimeInput");
-            document.cookie = "AverageTime=" + AverageTime.value;
-        }
-
-        function ScoringLocation() {
-            let ScoringLocation = document.getElementById("ScoringLocationInput");
-            document.cookie = "ScoringLocation=" + ScoringLocation.value;
-        }
-
-        function DockEngage() {
-            let DockEngage = document.getElementById("DockEngageInput");
-            document.cookie = "DockEngage=" + DockEngage.value;
-        }
-
-        function PictureRobot() {
-            let PictureRobot = document.getElementById("PictureRobotInput");
-            document.cookie = "PictureRobot=" + PictureRobot.value;
-        }
-
-        function Comments() {
-            let Comments = document.getElementById("CommentsInput");
-            document.cookie = "Comments=" + Comments.value;
-        }
-    </script>
 </head>
 
-<body>
+<body onload="PictureRobot()">
     <center>
         <br><br><br><br>
         <h1 id="Title">FRC 4079 Scouting Website | Pit Scouting/Before Match</h1>
@@ -196,7 +138,7 @@
             <h1>Are you sure you want to submit?</h1>
             <br>
             <div id="SubmitCheck">
-                <button id="SubmitYes">Yes</button>
+                <button id="SubmitYes" onclick="SaveMatchType()">Yes</button>
                 <button id="SubmitNo">No</button>
             </div>
         </div>
@@ -207,4 +149,67 @@
 
         <br><br><br><br>
     </center>
+
+    <script>
+        function SaveMatchType() {
+            document.cookie = "ScoutingType=Pit-Scouting";
+        }
+
+        let submit = document.getElementById("Submit");
+
+        function TeamNumber() {
+            let TeamNumber = document.getElementById("TeamNumberInput");
+            document.cookie = "TeamNumber=" + TeamNumber.value;
+        }
+
+        function GamePieces() {
+            let GamePieces = document.getElementById("GamePiecesInput");
+            document.cookie = "GamePieces=" + GamePieces.value;
+        }
+
+        function DriverExperience() {
+            let DriverExperience = document.getElementById("DriverExperienceInput");
+            document.cookie = "DriverExperience=" + DriverExperience.value;
+        }
+
+        function DriveTrain() {
+            let DriveTrain = document.getElementById("DriveTrainInput");
+            document.cookie = "DriveTrain=" + DriveTrain.value;
+        }
+
+        function AutoPlan() {
+            let AutoPlan = document.getElementById("AutoPlanInput");
+            document.cookie = "AutoPlan=" + AutoPlan.value;
+        }
+
+        function GamePieceLocation() {
+            let GamePieceLocation = document.getElementById("GamePieceLocationInput");
+            document.cookie = "GamePieceLocation=" + GamePieceLocation.value;
+        }
+
+        function AverageTime() {
+            let AverageTime = document.getElementById("AverageTimeInput");
+            document.cookie = "AverageTime=" + AverageTime.value;
+        }
+
+        function ScoringLocation() {
+            let ScoringLocation = document.getElementById("ScoringLocationInput");
+            document.cookie = "ScoringLocation=" + ScoringLocation.value;
+        }
+
+        function DockEngage() {
+            let DockEngage = document.getElementById("DockEngageInput");
+            document.cookie = "DockEngage=" + DockEngage.value;
+        }
+
+        function PictureRobot() {
+            let PictureRobot = document.getElementById("PictureRobotInput");
+            document.cookie = "PictureRobot=" + PictureRobot.value;
+        }
+
+        function Comments() {
+            let Comments = document.getElementById("CommentsInput");
+            document.cookie = "Comments=" + Comments.value;
+        }
+    </script>
 </body>
