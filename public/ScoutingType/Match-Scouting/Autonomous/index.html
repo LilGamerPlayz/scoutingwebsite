@@ -22,6 +22,7 @@
 </head>
 
 <body onload="OnLoad()">
+    <button onclick="window.location='..'" class="btn btn-primary">Go Back</button>
     <center>
         <h1 id="AutonomousTitle">Autonomous</h1>
         <br><br><br>
@@ -35,12 +36,17 @@
 
         <div id="CubeScoring" onchange="CubeScoring()" >
             <h1 id="CubeScoringLabel">How many cubes did they score?</h1>
-            <input type="number" id="CubeScoringInput" placeholder="0" class="input">
+            <input type="number" id="CubeScoringInput" placeholder="0" class="input" value="0" min="0" max="999" readonly>
+            <button type="button" id="CubeScoringButton" class="input" onclick="if(document.getElementById('CubeScoringInput').value < 999) {document.getElementById('CubeScoringInput').value = parseInt(document.getElementById('CubeScoringInput').value) + 1}">Add 1 </button>
+            <button type="button" id="CubeScoringButton" class="input" onclick="if(document.getElementById('CubeScoringInput').value > 0) {document.getElementById('CubeScoringInput').value = parseInt(document.getElementById('CubeScoringInput').value) - 1}">Remove 1</button>
         </div>
 
         <div id="ConeScoring">
             <h1 id="ConeScoringLabel" onchange="ConeScoring()">How many cones did they score?</h1>
-            <input type="number" id="ConeScoringInput" placeholder="0" class="input">
+            <input type="number" id="ConeScoringInput" placeholder="0" class="input" value="0" min="0" max="999" readonly>
+            <button type="button" id="ConeScoringButton" class="input" onclick="if(document.getElementById('ConeScoringInput').value < 999) {document.getElementById('ConeScoringInput').value = parseInt(document.getElementById('ConeScoringInput').value) + 1}">Add 1 </button>
+            <button type="button" id="ConeScoringButton" class="input" onclick="if(document.getElementById('ConeScoringInput').value > 0) {document.getElementById('ConeScoringInput').value = parseInt(document.getElementById('ConeScoringInput').value) - 1}">Remove 1</button>
+
         </div>
 
         <div id="BalanceOption">

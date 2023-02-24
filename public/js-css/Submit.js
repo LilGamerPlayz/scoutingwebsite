@@ -1,14 +1,15 @@
 var data = [];
 let MatchType = "";
+if (document.getElementById("Title").textContent.includes("Pit")) {
+    MatchType = "Pit-Scouting";
+} else if (document.getElementById("Title").textContent.includes("Match")) {
+    MatchType = "Match-Scouting";
+} else {
+    MatchType = "Unknown";
+}
 
 async function Submit() {
-    if (document.getElementById("Title") == "Pit Scouting | Robotics Scouting Site") {
-        MatchType = "Pit-Scouting";
-    } else if (document.getElementById("Title") == "Match - Tele-Op/Endgame | Robotics Scouting Site") {
-        MatchType = "Match-Scouting";
-    } else {
-        MatchType = "Unknown";
-    }
+
 
     if (document.getElementById("SubmitBox")) {
         document.getElementById("SubmitBox").style.display = "block";
@@ -17,12 +18,14 @@ async function Submit() {
     let Yes = document.getElementById("SubmitYes");
     let No = document.getElementById("SubmitNo");
 
+    console.log(MatchType)
+
     if (MatchType == "Pit-Scouting") {
         let TeamNumber = document.getElementById("TeamNumberInput");
         let GamePieces = document.getElementById("GamePiecesInput");
     }
 
-    Yes.addEventListener("click", function() {
+    Yes.addEventListener("click", function () {
         let TeamNumber = document.getElementById("TeamNumberInput");
         let GamePieces = document.getElementById("GamePiecesInput");
         let DriverExperience = document.getElementById("DriverExperienceInput");
@@ -73,7 +76,7 @@ async function Submit() {
 
     });
 
-    No.addEventListener("click", function() {
+    No.addEventListener("click", function () {
         document.getElementById("SubmitBox").style.display = "none";
     });
     let scouting = {
