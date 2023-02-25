@@ -110,12 +110,16 @@
 
         <div id="Cubes">
             <h1 id="CubesLabel">How many cubes did they score?</h1>
-            <input type="number" id="CubesInput" placeholder="3" class="input">
+            <input type="number" id="CubesInput" placeholder="0" class="input" value="0" min="0" max="999" readonly>
+            <button type="button" id="CubesAddOne" class="input" onclick="if(document.getElementById('CubesInput').value < 999) {document.getElementById('CubesInput').value = parseInt(document.getElementById('CubesInput').value) + 1}">Add 1 </button>
+            <button type="button" id="CubesRemoveOne" class="input" onclick="if(document.getElementById('CubesInput').value > 0) {document.getElementById('CubesInput').value = parseInt(document.getElementById('CubesInput').value) - 1}">Remove 1</button>
         </div>
 
         <div id="Cones">
             <h1 id="ConesLabel">How many cones did they score?</h1>
-            <input type="number" id="ConesInput" placeholder="2" class="input">
+            <input type="number" id="ConesInput" placeholder="0" class="input" value="0" min="0" max="999" readonly>
+            <button type="button" id="ConesAddOne" class="input" onclick="if(document.getElementById('ConesInput').value < 999) {document.getElementById('ConesInput').value = parseInt(document.getElementById('ConesInput').value) + 1}">Add 1 </button>
+            <button type="button" id="ConesRemoveOne" class="input" onclick="if(document.getElementById('ConesInput').value > 0) {document.getElementById('ConesInput').value = parseInt(document.getElementById('ConesInput').value) - 1}">Remove 1</button>
         </div>
 
         <div id="Cargo">
