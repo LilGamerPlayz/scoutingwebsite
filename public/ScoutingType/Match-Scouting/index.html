@@ -45,24 +45,28 @@
     <script>
         function Match() {
             let MatchInput = document.getElementById("MatchNumInput").value;
-            document.cookie = "MatchNum=" + MatchInput;
+            localStorage.setItem("MatchNum", MatchInput);
         }
 
         function TeamNum() {
             let TeamInput = document.getElementById("TeamNumInput").value;
-            document.cookie = "TeamNum=" + TeamInput;
+            localStorage.setItem("TeamNum", TeamInput);
         }
 
         function TeamColor() {
             let TeamColorInput = document.getElementById("TeamColorInput").value;
-            document.cookie = "TeamColor=" + TeamColorInput;
+            localStorage.setItem("TeamColor", TeamColorInput);
         }
 
         function StartMatch() {
-            document.cookie = "MatchNum=" + document.getElementById("MatchNumInput").value;
-            document.cookie = "TeamNum=" + document.getElementById("TeamNumInput").value;
-            document.cookie = "TeamColor=" + document.getElementById("TeamColorInput").value;
+            let MatchInput = document.getElementById("MatchNumInput").value;
+            let TeamInput = document.getElementById("TeamNumInput").value;
+            let TeamColorInput = document.getElementById("TeamColorInput").value;
 
+            localStorage.setItem("MatchNum", MatchInput);
+            localStorage.setItem("TeamNum", TeamInput);
+            localStorage.setItem("TeamColor", TeamColorInput);
+            
             location.href = "/ScoutingType/Match-Scouting/Autonomous";
         }
     </script>

@@ -43,6 +43,14 @@ app.post('/scouting', (req, res) => {
     }
 });
 
+app.get("/scouting", (req, res), function() {
+    try {
+        res.send(data);
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 app.post("/sendscoutingdata", (req, res) => {
     let scoutingdata = req.body;
     let PitScoutingData = fs.readFileSync("/src/ScoutingData/PitScoutingData.json");
@@ -57,6 +65,8 @@ app.post("/sendscoutingdata", (req, res) => {
     } else {
         res.send("Error");
     }
+
+    console.log(scoutingdata);
 });
 
 //The authentication for the google API

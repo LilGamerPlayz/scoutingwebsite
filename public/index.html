@@ -50,11 +50,11 @@
 
 <script>
     function ScoutingType() {
-        if (!localStorage.getItem("Name") || localStorage.getItem("Name") == null) {
+        if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "null") {
             document.getElementById("SubmitBox").style.display = "block";
             let Submit = document.getElementById("Submit");
             Submit.onclick = function () {
-                if (document.getElementById("Name").value == "") {
+                if (document.getElementById("Name").value == "" || document.getElementById("Name").value == "null") {
                     alert("Please enter a name");
                     return;
                 } else {
@@ -64,7 +64,7 @@
                 }
             }
 
-        } else if (localStorage.getItem("Name") != null && localStorage.getItem("Name") != "") {
+        } else if (localStorage.getItem("Name") != "null" && localStorage.getItem("Name") != "") {
             window.location = "ScoutingType";
         }
 

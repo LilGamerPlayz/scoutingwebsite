@@ -18,38 +18,8 @@ async function Submit() {
     let Yes = document.getElementById("SubmitYes");
     let No = document.getElementById("SubmitNo");
 
-    console.log(MatchType)
-
-    if (MatchType == "Pit-Scouting") {
-        let TeamNumber = document.getElementById("TeamNumberInput");
-        let GamePieces = document.getElementById("GamePiecesInput");
-    }
 
     Yes.addEventListener("click", function () {
-        let TeamNumber = document.getElementById("TeamNumberInput");
-        let GamePieces = document.getElementById("GamePiecesInput");
-        let DriverExperience = document.getElementById("DriverExperienceInput");
-        let DriveTrain = document.getElementById("DriveTrainInput");
-        let AutoPlan = document.getElementById("AutoPlanInput");
-        let GamePieceLocation = document.getElementById("GamePieceLocationInput");
-        let AverageTime = document.getElementById("AverageTimeInput");
-        let ScoringLocation = document.getElementById("ScoringLocationInput");
-        let DockEngage = document.getElementById("DockEngageInput");
-        let PictureRobot = document.getElementById("PictureRobotInput");
-        let Comments = document.getElementById("CommentsInput");
-
-        document.cookie = "TeamNumber=" + TeamNumber.value;
-        document.cookie = "GamePieces=" + GamePieces.value;
-        document.cookie = "DriverExperience=" + DriverExperience.value;
-        document.cookie = "DriveTrain=" + DriveTrain.value;
-        document.cookie = "AutoPlan=" + AutoPlan.value;
-        document.cookie = "GamePieceLocation=" + GamePieceLocation.value;
-        document.cookie = "AverageTime=" + AverageTime.value;
-        document.cookie = "ScoringLocation=" + ScoringLocation.value;
-        document.cookie = "DockEngage=" + DockEngage.value;
-        document.cookie = "PictureRobot=" + PictureRobot.value;
-        document.cookie = "Comments=" + Comments.value;
-
         let Title = document.getElementById("Title").textContent;
 
         if (Title.includes("Pit")) {
@@ -60,18 +30,18 @@ async function Submit() {
 
 
         data.push({
-            MatchType: MatchType,
-            TeamNumber: TeamNumber.value,
-            GamePieces: GamePieces.value,
-            DriverExperience: DriverExperience.value,
-            DriveTrain: DriveTrain.value,
-            AutoPlan: AutoPlan.value,
-            GamePieceLocation: GamePieceLocation.value,
-            AverageTime: AverageTime.value,
-            ScoringLocation: ScoringLocation.value,
-            DockEngage: DockEngage.value,
-            PictureRobot: PictureRobot.value,
-            Comments: Comments.value
+            MatchType: localStorage.getItem("MatchType"),
+            TeamNumber: localStorage.getItem("TeamNumber"),
+            GamePieces: localStorage.getItem("GamePieces"),
+            DriverExperience: localStorage.getItem("DriverExperience"),
+            DriveTrain: localStorage.getItem("DriveTrain"),
+            AutoPlan: localStorage.getItem("AutoPlan"),
+            GamePieceLocation: localStorage.getItem("GamePieceLocation"),
+            AverageTime: localStorage.getItem("AverageTime"),
+            ScoringLocation: localStorage.getItem("ScoringLocation"),
+            DockEngage: localStorage.getItem("DockEngage"),
+            PictureRobot: localStorage.getItem("PictureRobot"),
+            Comments: localStorage.getItem("Comments")
         });
 
     });

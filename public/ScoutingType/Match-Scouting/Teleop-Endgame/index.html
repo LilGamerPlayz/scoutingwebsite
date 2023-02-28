@@ -168,7 +168,8 @@
 
     <script>
         function SaveMatchType() {
-            document.cookie = "ScoutingType=Pit-Scouting";
+            localStorage.setItem("ScoutingType", "Match-Scouting");
+            window.location = "../Submitted";
         }
 
         function DefenseTeams() {
@@ -185,11 +186,21 @@
         }
 
         function Cargo() {
-            document.cookie = "Cargo=" + document.getElementById("CargoInput").value;
+            localStorage.setItem("Cargo", document.getElementById("CargoInput").value);
         }
 
         function Balanced() {
-            document.cookie = "Balanced=" + document.getElementById("BalancedInput").value;
+            localStorage.setItem("Balanced", document.getElementById("BalancedInput").value);
+        }
+
+        function Submit() {
+            localStorage.setItem("Defense", document.getElementById("DefenseInput").value);
+            localStorage.setItem("DefenseTeams", document.getElementById("DefenseInputNumber").value);
+            localStorage.setItem("Cubes", document.getElementById("CubesInput").value);
+            localStorage.setItem("Cones", document.getElementById("ConesInput").value);
+            localStorage.setItem("Comments", document.getElementById("CommentsInput").value);
+
+            document.getElementById("SubmitBox").style.display = "block";
         }
     </script>
 </body>
