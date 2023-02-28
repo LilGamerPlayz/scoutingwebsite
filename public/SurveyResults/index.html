@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 
 <head>
     <!-- Page Title -->
@@ -29,7 +30,7 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-
+        
         #searchType,
         #searchButton {
             padding: 12px 20px;
@@ -40,7 +41,7 @@
             box-sizing: border-box;
             font-size: 20px;
         }
-
+        
         .container {
             width: 800px;
             margin: 0 auto;
@@ -48,7 +49,7 @@
             background-color: #f2f2f2;
             border: 1px solid #ccc;
         }
-
+        
         .box {
             width: 100%;
             margin: 10px 0;
@@ -57,41 +58,6 @@
             display: inline-block;
         }
     </style>
-
-    <script>
-        var searchArray = [[4079, 4414, 1905, 1859], [3309, 2023, 2022, 1053]];
-
-        // Get the search input element
-        const searchInput = document.getElementById("searchInput");
-
-        // Add an event listener to the search input field to listen for changes to its value
-        searchInput.addEventListener("input", () => {
-            const query = searchInput.value;
-            const results = search(query);
-            updateResultsUI(results);
-        });
-
-        // Define a function to perform the search
-        function search(query) {
-            // Filter the array by checking if each sub-array includes the search query
-            const results = searchArray.filter(arr => {
-                return arr.some(str => str.includes(query));
-            });
-            return results;
-        }
-
-        // Define a function to update the search results UI
-        function updateResultsUI(results) {
-            // Loop through each div tag in the container and check if its text content matches the search query
-            container.childNodes.forEach(node => {
-                if (node.textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
-                    node.style.display = "block";
-                } else {
-                    node.style.display = "none";
-                }
-            });
-        }
-    </script>
 </head>
 
 <body onload="setUp()">
@@ -158,3 +124,43 @@
         </div>
     </center>
 </body>
+
+<script>
+    var searchArray = [
+        [4079, 4414, 1905, 1859],
+        [3309, 2023, 2022, 1053]
+    ];
+
+    // Get the search input element
+    const searchInput = document.getElementById("searchInput");
+
+    // Add an event listener to the search input field to listen for changes to its value
+    searchInput.addEventListener("input", () => {
+        const query = searchInput.value;
+        const results = search(query);
+        updateResultsUI(results);
+    });
+
+    // Define a function to perform the search
+    function search(query) {
+        // Filter the array by checking if each sub-array includes the search query
+        const results = searchArray.filter(arr => {
+            return arr.some(str => str.includes(query));
+        });
+        return results;
+    }
+
+    // Define a function to update the search results UI
+    function updateResultsUI(results) {
+        // Loop through each div tag in the container and check if its text content matches the search query
+        container.childNodes.forEach(node => {
+            if (node.textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                node.style.display = "block";
+            } else {
+                node.style.display = "none";
+            }
+        });
+    }
+</script>
+
+</html>

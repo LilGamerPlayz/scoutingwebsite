@@ -66,6 +66,8 @@
 </head>
 
 <body onload="PictureRobot()">
+    <button onclick="window.location='..'" class="btn btn-primary">Go Back</button>
+
     <center>
         <br><br><br><br>
         <h1 id="Title">FRC 4079 Scouting Website | Pit Scouting/Before Match</h1>
@@ -127,7 +129,7 @@
 
         <div id="Comments" class="Question">
             <h1 id="CommentsLabel">Any additional comments about your robot (does it have good defense?) Any coll theming or subsystems? etc.)</h1>
-            <textarea id="CommentsInput" rows="100" cols="100" onchange="Comments()"></textarea>
+            <textarea id="CommentsInput" rows="10" cols="50" onchange="Comments()"></textarea>
         </div>
 
         <br><br>
@@ -157,57 +159,57 @@
 
         function TeamNumber() {
             let TeamNumber = document.getElementById("TeamNumberInput");
-            document.cookie = "TeamNumber=" + TeamNumber.value;
+            localStorage.setItem("TeamNumber", TeamNumber.value);
         }
 
         function GamePieces() {
             let GamePieces = document.getElementById("GamePiecesInput");
-            document.cookie = "GamePieces=" + GamePieces.value;
+            localStorage.setItem("GamePieces", GamePieces.value);
         }
 
         function DriverExperience() {
             let DriverExperience = document.getElementById("DriverExperienceInput");
-            document.cookie = "DriverExperience=" + DriverExperience.value;
+            localStorage.setItem("DriverExperience", DriverExperience.value);
         }
 
         function DriveTrain() {
             let DriveTrain = document.getElementById("DriveTrainInput");
-            document.cookie = "DriveTrain=" + DriveTrain.value;
+            localStorage.setItem("DriveTrain", DriveTrain.value);
         }
 
         function AutoPlan() {
             let AutoPlan = document.getElementById("AutoPlanInput");
-            document.cookie = "AutoPlan=" + AutoPlan.value;
+            localStorage.setItem("AutoPlan", AutoPlan.value);
         }
 
         function GamePieceLocation() {
             let GamePieceLocation = document.getElementById("GamePieceLocationInput");
-            document.cookie = "GamePieceLocation=" + GamePieceLocation.value;
+            localStorage.setItem("GamePieceLocation", GamePieceLocation.value);
         }
 
         function AverageTime() {
             let AverageTime = document.getElementById("AverageTimeInput");
-            document.cookie = "AverageTime=" + AverageTime.value;
+            localStorage.setItem("AverageTime", AverageTime.value);
         }
 
         function ScoringLocation() {
             let ScoringLocation = document.getElementById("ScoringLocationInput");
-            document.cookie = "ScoringLocation=" + ScoringLocation.value;
+            localStorage.setItem("ScoringLocation", ScoringLocation.value);
         }
 
         function DockEngage() {
             let DockEngage = document.getElementById("DockEngageInput");
-            document.cookie = "DockEngage=" + DockEngage.value;
+            localStorage.setItem("DockEngage", DockEngage.value);
         }
 
         function PictureRobot() {
             let PictureRobot = document.getElementById("PictureRobotInput");
-            document.cookie = "PictureRobot=" + PictureRobot.value;
+            localStorage.setItem("PictureRobot", PictureRobot.value);
         }
 
         function Comments() {
             let Comments = document.getElementById("CommentsInput");
-            document.cookie = "Comments=" + Comments.value;
+            localStorage.setItem("Comments", Comments.value);
         }
     </script>
 </body>

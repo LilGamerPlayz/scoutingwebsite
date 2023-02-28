@@ -43,13 +43,9 @@ app.post('/scouting', (req, res) => {
     }
 });
 
-app.get("/scouting", (req, res), function() {
-    try {
-        res.send(data);
-    } catch (error) {
-        console.log(error);
-    }
-})
+app.get('/scouting', (req, res) => {
+    res.send(data);
+});
 
 app.post("/sendscoutingdata", (req, res) => {
     let scoutingdata = req.body;
