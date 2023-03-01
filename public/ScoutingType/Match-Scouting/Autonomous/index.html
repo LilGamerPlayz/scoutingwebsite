@@ -102,33 +102,22 @@
     <script>
 
         function OnLoad() {
-            document.cookie = "CommunityLeave=" + document.getElementById("CommunityLeaveInput").value;
-            document.cookie = "BalanceOption=" + document.getElementById("BalanceOptionInput").value;
-
             localStorage.setItem("CommunityLeave", document.getElementById("CommunityLeaveInput").value);
         }
 
         function CommunityLeave() {
-            document.cookie = "CommunityLeave=" + document.getElementById("CommunityLeaveInput").checked;
-
             localStorage.setItem("CommunityLeave", document.getElementById("CommunityLeaveInput").checked);
         }
 
         function CubeScoring() {
-            document.cookie = "CubeScoring=" + document.getElementById("CubeScoringInput").value;
-
             localStorage.setItem("CubeScoring", document.getElementById("CubeScoringInput").value);
         }
 
         function ConeScoring() {
-            document.cookie = "ConeScoring=" + document.getElementById("ConeScoringInput").value;
-
             localStorage.setItem("ConeScoring", document.getElementById("ConeScoringInput").value);
         }
 
         function BalanceOption() {
-            document.cookie = "BalanceOption=" + document.getElementById("BalanceOptionInput").value;
-
             localStorage.setItem("BalanceOption", document.getElementById("BalanceOptionInput").value);
         }
 

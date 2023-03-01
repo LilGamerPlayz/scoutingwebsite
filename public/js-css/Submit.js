@@ -1,12 +1,4 @@
 var data = [];
-let MatchType = "";
-if (document.getElementById("Title").textContent.includes("Pit")) {
-    MatchType = "Pit-Scouting";
-} else if (document.getElementById("Title").textContent.includes("Match")) {
-    MatchType = "Match-Scouting";
-} else {
-    MatchType = "Unknown";
-}
 
 async function Submit() {
 
@@ -19,15 +11,12 @@ async function Submit() {
     let No = document.getElementById("SubmitNo");
 
 
-    Yes.addEventListener("click", function () {
+    Yes.addEventListener("click", async function () {
         let Title = document.getElementById("Title").textContent;
 
-        if (Title.includes("Pit")) {
-            window.location = "Submitted";
-        } else if (Title.includes("Match")) {
-            window.location = "../Submitted";
+        if (localStorage.getItem("MatchType") == "Pit-Scouting") {
+            
         }
-
 
         data.push({
             MatchType: localStorage.getItem("MatchType"),
@@ -44,23 +33,22 @@ async function Submit() {
             Comments: localStorage.getItem("Comments")
         });
 
+        let scouting = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+        }
+    
+        await fetch("/scouting", scouting)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
     });
 
     No.addEventListener("click", function () {
         document.getElementById("SubmitBox").style.display = "none";
     });
-    let scouting = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data),
-    }
-
-    await fetch("/scouting", scouting)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        });
-
 }
