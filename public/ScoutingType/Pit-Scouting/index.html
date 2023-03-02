@@ -151,11 +151,11 @@
     </center>
 
     <script>
-        function SaveMatchType() {
-            document.cookie = "ScoutingType=Pit-Scouting";
-        }
-
         let submit = document.getElementById("Submit");
+
+        function SaveMatchType() {
+            localStorage.setItem("ScoutingType", "Pit-Scouting");
+        }
 
         function TeamNumber() {
             let TeamNumber = document.getElementById("TeamNumberInput");
