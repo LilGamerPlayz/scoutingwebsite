@@ -66,13 +66,13 @@ app.post("/sendscoutingdata", (req, res) => {
 });
 
 //The authentication for the google API
-const authentication = async() => {
+const authentication = async () => {
     //The credentials for the google API
     const auth = new google.auth.GoogleAuth({
-            keyFile: "src/credentials.json",
-            scopes: "https://www.googleapis.com/auth/spreadsheets"
-        })
-        //The client for the google API, waiting for the authentication to get the credentials
+        keyFile: "src/credentials.json",
+        scopes: "https://www.googleapis.com/auth/spreadsheets"
+    })
+    //The client for the google API, waiting for the authentication to get the credentials
     const client = await auth.getClient();
     //The google API
     const googleAPI = google.sheets({
@@ -87,7 +87,7 @@ const authentication = async() => {
 const id = "1ep0FhzY4HWUXlWaoLAAE543cOTlCwb2iunyHC0DmnVQ";
 
 //The function that will be called to add the data to the google sheet
-app.get("/api", async(request, res1) => {
+app.get("/api", async (request, res1) => {
     try {
         //Waiting for the authentication to get the credentials
         const { googleAPI } = await authentication();
@@ -107,7 +107,7 @@ app.get("/api", async(request, res1) => {
 
 
 //Sending data to the sheet
-app.post("/api", async(request, response1) => {
+app.post("/api", async (request, response1) => {
     try {
         //destructure 'newName' and 'newValue' from request.body
         const { Name, Team, Category, Pass, Score, Type, Abbreviated } = request.body;
@@ -115,23 +115,37 @@ app.post("/api", async(request, response1) => {
         let UnStrTime = new Date();
         let Time = UnStrTime.toLocaleString("en-US", {
             timeZone: "America/Los_Angeles"
-        })
-
-        const { googleAPI } = await authentication();
-        //add the new name and value to the sheet
-        const response = await googleAPI.spreadsheets.values.append({
-            spreadsheetId: id,
-            range: "Sheet1!A1:F1",
-            valueInputOption: "USER_ENTERED",
-            resource: {
-                values: [
-                    [Name, Team, Category, Pass, Score, Type, Abbreviated, Time]
-                ]
-            }
         });
 
-        response1.send({ status: response.status });
+        const { googleAPI } = await authentication();
 
+        if (Type == "Pit-Scouting") {
+            //add the new name and value to the sheet
+            const response = await googleAPI.spreadsheets.values.append({
+                spreadsheetId: id,
+                range: "Pit-Scouting!A1:J1",
+                valueInputOption: "USER_ENTERED",
+                resource: {
+                    values: [
+                        [Name, Team, Category, Pass, Score, Type, Abbreviated, Time]
+                    ]
+                }
+            });
+
+            response1.send({ status: response.status });
+        } else if (Type == "Match-Scouting") {
+            //add the new name and value to the sheet
+            const response = await googleAPI.spreadsheets.values.append({
+                spreadsheetId: id,
+                range: "Match-Scouting!A1:J1",
+                valueInputOption: "USER_ENTERED",
+                resource: {
+                    values: [
+                        [Name, Team, Category, Pass, Score, Type, Abbreviated, Time]
+                    ]
+                }
+            });
+        }
     } catch (error) {
         console.log(error, "There was an error updating the spreadsheet", error.message);
         response1.status(500).send();
