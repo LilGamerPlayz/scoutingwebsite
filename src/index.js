@@ -110,7 +110,7 @@ app.get("/api", async (request, res1) => {
 app.post("/api", async (request, response1) => {
     try {
         //destructure 'newName' and 'newValue' from request.body
-        const { Name, Team, Category, Pass, Score, Type, Abbreviated } = request.body;
+        const body = request.body;
 
         let UnStrTime = new Date();
         let Time = UnStrTime.toLocaleString("en-US", {
@@ -127,7 +127,19 @@ app.post("/api", async (request, response1) => {
                 valueInputOption: "USER_ENTERED",
                 resource: {
                     values: [
-                        [Name, Team, Category, Pass, Score, Type, Abbreviated, Time]
+                        [
+                            body.MatchType, 
+                            body.TeamNumber, 
+                            body.DriverExperience, 
+                            body.DriveTrain, 
+                            body.AutoPlan, 
+                            body.GamePieceLocation, 
+                            body.AverageTime, 
+                            body.ScoringLocation,
+                            body.DockEngage,
+                            body.PictureRobot,
+                            body.Comments
+                        ]
                     ]
                 }
             });

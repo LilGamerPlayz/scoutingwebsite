@@ -12,7 +12,7 @@ async function Submit() {
 
 
     Yes.addEventListener("click", async function () {
-        if (localStorage.getItem("MatchType") == "Pit-Scouting") {
+        if (localStorage.getItem("ScoutingType") == "Pit-Scouting") {
             data.push({
                 MatchType: localStorage.getItem("MatchType"),
                 TeamNumber: localStorage.getItem("TeamNum"),
@@ -41,8 +41,8 @@ async function Submit() {
                     console.log(data);
                 });
 
-        window.location = "Submitted";
-        } else if (localStorage.getItem("MatchType") == "Match-Scouting") {
+            window.location = "Submitted";
+        } else if (localStorage.getItem("ScoutingType") == "Match-Scouting") {
             data.push({
                 MatchType: localStorage.getItem("MatchType"),
                 TeamNumber: localStorage.getItem("TeamNumber"),
@@ -72,9 +72,9 @@ async function Submit() {
                     console.log(data);
                 });
         }
+    });
 
-        No.addEventListener("click", function () {
-            document.getElementById("SubmitBox").style.display = "none";
-        });
+    No.addEventListener("click", function () {
+        document.getElementById("SubmitBox").style.display = "none";
     });
 };
