@@ -101,12 +101,11 @@ app.get("/api", async (request, res1) => {
     }
 });
 
-
 //Sending data to the sheet
 app.post("/api", async (request, response1) => {
     try {
         //destructure 'newName' and 'newValue' from request.body
-        const body = request.body;
+        const {Type, ...body} = request.body;
 
         let UnStrTime = new Date();
         let Time = UnStrTime.toLocaleString("en-US", {
@@ -119,18 +118,19 @@ app.post("/api", async (request, response1) => {
             //add the new name and value to the sheet
             const response = await googleAPI.spreadsheets.values.append({
                 spreadsheetId: id,
-                range: "Pit-Scouting!A1:J1",
+                range: "Pit-Scouting!A1:K1",
                 valueInputOption: "USER_ENTERED",
                 resource: {
                     values: [
                         [
-                            body.MatchType, 
-                            body.TeamNumber, 
-                            body.DriverExperience, 
-                            body.DriveTrain, 
-                            body.AutoPlan, 
-                            body.GamePieceLocation, 
-                            body.AverageTime, 
+                            body.ScoutingType,
+                            body.TeamNumber,
+                            body.GamePieces,
+                            body.DriverExperience,
+                            body.DriveTrain,
+                            body.AutoPlan,
+                            body.GamePieceLocation,
+                            body.AverageTime,
                             body.ScoringLocation,
                             body.DockEngage,
                             body.PictureRobot,
@@ -145,14 +145,31 @@ app.post("/api", async (request, response1) => {
             //add the new name and value to the sheet
             const response = await googleAPI.spreadsheets.values.append({
                 spreadsheetId: id,
-                range: "Match-Scouting!A1:J1",
+                range: "Match-Scouting!A1:H1",
                 valueInputOption: "USER_ENTERED",
                 resource: {
                     values: [
-                        [Name, Team, Category, Pass, Score, Type, Abbreviated, Time]
+                        [
+                            body.ScoutingType,
+                            body.MatchNumber,
+                            body.TeamNumber,
+                            body.AllianceColor,
+                            body.CommunityLeave,
+                            body.AutoCubeScoring,
+                            body.AutoConeScoring,
+                            body.AutoBalanceOption,
+                            body.Defense,
+                            body.TeleCubeScoring,
+                            body.TeleConeScoring,
+                            body.Cargo,
+                            body.TeleEndBalance,
+                            body.Comments
+                        ]
                     ]
                 }
             });
+
+            response1.send({ status: response.status });
         }
     } catch (error) {
         console.log(error, "There was an error updating the spreadsheet", error.message);
