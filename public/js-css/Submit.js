@@ -40,7 +40,6 @@ async function Submit() {
                 },
                 body: JSON.stringify(data),
             }
-
             window.location = "Submitted";
 
             await fetch("/scouting", scouting)
@@ -48,7 +47,6 @@ async function Submit() {
                 .then(data => {
                     console.log(data);
                 });
-
 
         } else if (Title.includes("Match")) {
             data.push({

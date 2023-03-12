@@ -37,10 +37,6 @@ app.post('/scouting', (req, res) => {
     }
 
     console.log(data);
-
-    if (res.status === 200) {
-        req.send("Data Received");
-    }
 });
 
 app.get('/scouting', (req, res) => {
