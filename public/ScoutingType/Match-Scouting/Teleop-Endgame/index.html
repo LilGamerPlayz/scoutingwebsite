@@ -101,7 +101,7 @@
 
         <div id="Defense">
             <h1 id="DefenseLabel">Did they play defense? On who?</h1>
-            <select id="DefenseInput" class="selection" onchange="DefenseTeams()">
+            <select id="DefenseInput" class="selection" onchange="PlayedDefense()">
                 <option value="No">No</option>
                 <option value="Yes">Yes</option>
             </select>
@@ -110,14 +110,14 @@
 
         <div id="Cubes">
             <h1 id="CubesLabel">How many cubes did they score?</h1>
-            <input type="number" id="CubesInput" placeholder="0" class="input" value="0" min="0" max="999" readonly>
+            <input type="number" id="CubesInput" placeholder="0" class="input" value="0" min="0" max="999" onchange="Cubes()" readonly>
             <button type="button" id="CubesAddOne" class="input" onclick="if(document.getElementById('CubesInput').value < 999) {document.getElementById('CubesInput').value = parseInt(document.getElementById('CubesInput').value) + 1}">Add 1 </button>
             <button type="button" id="CubesRemoveOne" class="input" onclick="if(document.getElementById('CubesInput').value > 0) {document.getElementById('CubesInput').value = parseInt(document.getElementById('CubesInput').value) - 1}">Remove 1</button>
         </div>
 
         <div id="Cones">
             <h1 id="ConesLabel">How many cones did they score?</h1>
-            <input type="number" id="ConesInput" placeholder="0" class="input" value="0" min="0" max="999" readonly>
+            <input type="number" id="ConesInput" placeholder="0" class="input" value="0" min="0" max="999" onchange="Cones()" readonly>
             <button type="button" id="ConesAddOne" class="input" onclick="if(document.getElementById('ConesInput').value < 999) {document.getElementById('ConesInput').value = parseInt(document.getElementById('ConesInput').value) + 1}">Add 1 </button>
             <button type="button" id="ConesRemoveOne" class="input" onclick="if(document.getElementById('ConesInput').value > 0) {document.getElementById('ConesInput').value = parseInt(document.getElementById('ConesInput').value) - 1}">Remove 1</button>
         </div>
@@ -172,12 +172,22 @@
             window.location = "../Submitted";
         }
 
-        function DefenseTeams() {
-            if (document.getElementById("DefenseInput").value == "Yes") {
+        function PlayedDefense() {
+            let DefenseInput = document.getElementById("DefenseInput").value;
+
+            if (DefenseInput == "Yes") {
+                localStorage.setItem("Defense", "Yes");
+
                 document.getElementById("DefenseInputNumber").style.display = "block";
-            } else {
+            } else if (DefenseInput == "No") {
+                localStorage.setItem("Defense", "No");
+                
                 document.getElementById("DefenseInputNumber").style.display = "none";
             }
+        }
+
+        function DefenseWho() {
+            localStorage.setItem("DefenseTeams", document.getElementById("DefenseInputNumber").value);
         }
 
         function OnLoad() {
@@ -191,6 +201,14 @@
 
         function Balanced() {
             localStorage.setItem("Balanced", document.getElementById("BalancedInput").value);
+        }
+
+        function Cubes() {
+            localStorage.setItem("TeleCubeScoring", document.getElementById("CubesInput").value);
+        }
+
+        function Cones() {
+            localStorage.setItem("TeleConeScoring", document.getElementById("ConesInput").value);
         }
 
         function Submit() {

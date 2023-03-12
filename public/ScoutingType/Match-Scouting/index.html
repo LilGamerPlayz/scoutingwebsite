@@ -20,7 +20,7 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <style>
-        #TeamColorInput {
+        #AllianceColorInput {
             padding: 12px 20px;
             margin: 8px 0;
             display: inline-block;
@@ -45,23 +45,23 @@
     <script>
         function Match() {
             let MatchInput = document.getElementById("MatchNumInput").value;
-            localStorage.setItem("MatchNum", MatchInput);
+            localStorage.setItem("MatchNumber", MatchInput);
         }
 
-        function TeamNum() {
+        function TeamNumber() {
             let TeamInput = document.getElementById("TeamNumInput").value;
-            localStorage.setItem("TeamNum", TeamInput);
+            localStorage.setItem("TeamNumber", TeamInput);
         }
 
-        function TeamColor() {
-            let TeamColorInput = document.getElementById("TeamColorInput").value;
-            localStorage.setItem("TeamColor", TeamColorInput);
+        function AllianceColor() {
+            let AllianceColorInput = document.getElementById("AllianceColorInput").value;
+            localStorage.setItem("AllianceColor", AllianceColorInput);
         }
 
         function StartMatch() {
             let MatchInput = document.getElementById("MatchNumInput").value;
             let TeamInput = document.getElementById("TeamNumInput").value;
-            let TeamColorInput = document.getElementById("TeamColorInput").value;
+            let TeamColorInput = document.getElementById("AllianceColorInput").value;
 
             localStorage.setItem("MatchNum", MatchInput);
             localStorage.setItem("TeamNum", TeamInput);
@@ -82,11 +82,11 @@
         </div>
         <div id="TeamNum">
             <h1 id="TeamNumTitle">What is the team number?</h1>
-            <input type="number" id="TeamNumInput" pattern="[0-9]*" placeholder="4079" onchange="TeamNum()" min="1" max="99999">
+            <input type="number" id="TeamNumInput" pattern="[0-9]*" placeholder="4079" onchange="TeamNumber()" min="1" max="99999">
         </div>
-        <div id="TeamColor">
-            <h1 id="TeamColorTitle">What is the team color?</h1>
-            <select id="TeamColorInput" onchange="TeamColor()">
+        <div id="AllianceColor">
+            <h1 id="AllianceColorTitle">What is their alliance color?</h1>
+            <select id="AllianceColorInput" onchange="AllianceColor()">
                 <option value="None">Choose One</option>
                 <option value="Red">Red</option>
                 <option value="Blue">Blue</option>
