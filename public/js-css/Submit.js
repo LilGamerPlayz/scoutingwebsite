@@ -16,6 +16,48 @@ async function Submit() {
     Yes.addEventListener("click", async function () {
         var data = [];
 
+        console.log("Submit Button Clicked");
+
+        if (Title.includes("Match")) {
+            data.push({
+                ScoutingType: localStorage.getItem("ScoutingType"),
+                MatchNumber: localStorage.getItem("MatchNumber"),
+                TeamNumber: localStorage.getItem("TeamNumber"),
+                AllianceColor: localStorage.getItem("AllianceColor"),
+                CommunityLeave: localStorage.getItem("CommunityLeave"),
+                AutoCubeScoring: localStorage.getItem("CubeScoring"),
+                AutoConeScoring: localStorage.getItem("ConeScoring"),
+                AutoBalanceOption: localStorage.getItem("BalanceOption"),
+                Defense: localStorage.getItem("Defense") + "; Teams: " + localStorage.getItem("DefenseTeams"),
+                TeleCubeScoring: localStorage.getItem("TeleCubeScoring"),
+                TeleConeScoring: localStorage.getItem("TeleConeScoring"),
+                Cargo: localStorage.getItem("CargoInput"),
+                TeleEndBalance: localStorage.getItem("BalanceInput"),
+                Comments: localStorage.getItem("Comments")
+            });
+
+            console.log("Match Scouting Data Before Sent");
+
+            let scouting = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }
+
+            console.log("Match Scouting Data Sent");
+
+            await fetch("/matchscouting", scouting)
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    window.location = "..Submitted";
+                });
+
+        }
+  
+
         if (Title.includes("Pit")) {
             data.push({
                 ScoutingType: localStorage.getItem("ScoutingType"),
@@ -40,48 +82,12 @@ async function Submit() {
                 body: JSON.stringify(data)
             }
 
-            await fetch("/scouting", scouting)
+            await fetch("/pitscouting", scouting)
                 .then(response => response.text())
                 .then(data => {
                     console.log(data);
                     window.location = "Submitted";
                 });
-                
-
-        } else if (Title.includes("Match")) {
-            data.push({
-                ScoutingType: localStorage.getItem("ScoutingType"),
-                MatchNumber: localStorage.getItem("MatchNumber"),
-                TeamNumber: localStorage.getItem("TeamNumber"),
-                AllianceColor: localStorage.getItem("AllianceColor"),
-                CommunityLeave: localStorage.getItem("CommunityLeave"),
-                AutoCubeScoring: localStorage.getItem("CubeScoring"),
-                AutoConeScoring: localStorage.getItem("ConeScoring"),
-                AutoBalanceOption: localStorage.getItem("BalanceOption"),
-                Defense: localStorage.getItem("Defense") + "; Teams: " + localStorage.getItem("DefenseTeams"),
-                TeleCubeScoring: localStorage.getItem("TeleCubeScoring"),
-                TeleConeScoring: localStorage.getItem("TeleConeScoring"),
-                Cargo: localStorage.getItem("CargoInput"),
-                TeleEndBalance: localStorage.getItem("BalanceInput"),
-                Comments: localStorage.getItem("Comments")
-            });
-
-            let scouting = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data),
-            }
-
-
-            fetch("/scouting", scouting)
-                .then(response => response.json())
-                .then(data => {
-                    //console.log(data);
-                    window.location = "..Submitted";
-                });
-
         }
     });
 };

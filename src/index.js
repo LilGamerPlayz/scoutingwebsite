@@ -28,7 +28,7 @@ var data = "";
 
 let nextLine = "\n";
 
-app.post('/scouting', (req, res) => {
+app.post('/pitscouting', (req, res) => {
     try {
         data = req.body;
 
@@ -40,6 +40,11 @@ app.post('/scouting', (req, res) => {
             key.private_key,
             ['https://www.googleapis.com/auth/spreadsheets']
         );
+
+        var UnStrTime = new Date();
+        var Time = UnStrTime.toLocaleString("en-US", {
+            timeZone: "America/Los_Angeles"
+        });
 
         //Different types of data scouting types
         if (data[0].ScoutingType == "Pit-Scouting") {
@@ -54,7 +59,6 @@ app.post('/scouting', (req, res) => {
                     resource: {
                         values: [
                             [
-                                data[0].ScoutingType,
                                 data[0].TeamNumber,
                                 data[0].GamePieces,
                                 data[0].DriverExperience,
@@ -66,7 +70,7 @@ app.post('/scouting', (req, res) => {
                                 data[0].DockEngage,
                                 data[0].PictureRobot,
                                 data[0].Comments,
-                                data[0].Time
+                                Time
                             ]
                         ],
                     },
@@ -84,9 +88,74 @@ app.post('/scouting', (req, res) => {
             writeToSheet(auth);
 
             res.status(200).send("Pit Scouting Data Received");
-        } else if (data[0].ScoutingType == "Match-Scouting") {
+        }
+    } catch (err) {
+        console.log(error);
+        res.status(500).send(error.message);
+    }
+});
+
+app.post('/matchscouting', (req, res) => {
+    try {
+        data = req.body;
+
+        console.log(data);
+
+        const auth = new google.auth.JWT(
+            key.client_email,
+            null,
+            key.private_key,
+            ['https://www.googleapis.com/auth/spreadsheets']
+        );
+
+        var UnStrTime = new Date();
+        var Time = UnStrTime.toLocaleString("en-US", {
+            timeZone: "America/Los_Angeles"
+        });
+
+        if (data[0].ScoutingType == "Match-Scouting") {
             fs.appendFileSync("src/ScoutingData/MatchScoutingData.json", JSON.stringify(data) + nextLine);
             console.log("Match Scouting Data Received");
+
+            async function writeToSheet(auth) {
+                const request = {
+                    spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
+                    range: 'Match-Scouting!A1:L1',
+                    valueInputOption: 'RAW',
+                    resource: {
+                        values: [
+                            [
+                                data[0].MatchNumber,
+                                data[0].TeamNumber,
+                                data[0].AllianceColor,
+                                data[0].CommunityLeave,
+                                data[0].AutoCubeScoring,
+                                data[0].AutoConeScoring,
+                                data[0].AutoBalanceOption,
+                                data[0].Defense,
+                                data[0].TeleCubeScoring,
+                                data[0].TeleConeScoring,
+                                data[0].Cargo,
+                                data[0].TeleEndBalance,
+                                data[0].Comments,
+                                Time
+                            ]
+                        ]
+                    },
+                    auth: auth,
+                };
+
+                try {
+                    const response = (await sheets.spreadsheets.values.append(request)).data;
+                    console.log(JSON.stringify(response, null, 2));
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+
+            writeToSheet(auth);
+
+
             res.status(200).send("Match Scouting Data Received");
         } else {
             res.send("Unknown Match Type");
@@ -95,54 +164,4 @@ app.post('/scouting', (req, res) => {
         console.log(error);
         res.status(500).send(error.message);
     }
-});
-
-//Sheets ID
-const id = "1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso";
-
-app.post("/api", async (request, response1) => {
-    const auth = await authorize();
-    const spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
-    let sheetName;
-    let range;
-    let values;
-
-    if (request.body.Title.includes('Pit')) {
-        sheetName = 'Pit-Scouting';
-        range = 'A1:L1';
-        values = [
-            [
-
-                Time
-            ]
-        ];
-    } else if (request.body.Title.includes('Match')) {
-        sheetName = 'Match-Scouting';
-        range = 'A1:N1';
-        values = [
-            [
-                data,
-                Time
-            ]
-        ];
-    }
-
-    const resource = {
-        values
-    };
-
-    sheets.spreadsheets.values.append({
-        auth: auth,
-        spreadsheetId: spreadsheetId,
-        range: `${sheetName}!${range}`,
-        valueInputOption: 'RAW',
-        resource: resource
-    }, (err, result) => {
-        if (err) {
-            console.log(err);
-            response1.status(500).send('An error occurred');
-        } else {
-            response1.status(200).send('Data added successfully');
-        }
-    });
 });
