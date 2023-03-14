@@ -11,9 +11,7 @@ async function Submit() {
         document.getElementById("SubmitBox").style.display = "none";
     });
 
-    const Title = document.getElementById("Title").textContent;
-
-    Yes.addEventListener("click", async function () {
+    Yes.addEventListener("click", async() => {
         var data = [];
 
         console.log("Submit Button Clicked");

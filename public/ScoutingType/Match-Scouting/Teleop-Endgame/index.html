@@ -18,7 +18,7 @@
     <!-- External JS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="/js-css/SubmitMatch.js"></script>
+    <script type="text/javascript" src="/js-css/SubmitMatch.js"></script>
 
     <!-- Internal CSS -->
     <link rel="stylesheet" href="/js-css/teleop.css">
@@ -35,8 +35,7 @@
                 <option value="No">No</option>
                 <option value="Yes">Yes</option>
             </select>
-            <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958" class="input"
-                style="display: none;">
+            <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958" class="input" style="display: none;">
         </div>
 
         <div id="Cubes">
@@ -91,8 +90,8 @@
         <br><br><br>
         <br><br><br>
 
-        <button type="submit">
-            <h1 id="SubmitButton" onclick="Submit();">Submit</h1>
+        <button type="submit" onclick="Submit();">
+            <h1 id="SubmitButton">Submit</h1>
         </button>
 
         <div class="submitbox" id="SubmitBox">
@@ -146,16 +145,6 @@
 
         function Cones() {
             localStorage.setItem("TeleConeScoring", document.getElementById("ConesInput").value);
-        }
-
-        function Submit() {
-            localStorage.setItem("Defense", document.getElementById("DefenseInput").value);
-            localStorage.setItem("DefenseTeams", document.getElementById("DefenseInputNumber").value);
-            localStorage.setItem("Cubes", document.getElementById("CubesInput").value);
-            localStorage.setItem("Cones", document.getElementById("ConesInput").value);
-            localStorage.setItem("Comments", document.getElementById("CommentsInput").value);
-
-            document.getElementById("SubmitBox").style.display = "block";
         }
     </script>
 </body>
