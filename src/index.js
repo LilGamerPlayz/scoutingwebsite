@@ -7,6 +7,11 @@ const app = express();
 //FS File System
 const fs = require('fs');
 
+//Google Sheets API
+const { google } = require('googleapis');
+const sheets = google.sheets({ version: 'v4' });
+const key = require("./credentials.json");
+
 //Server
 const port = process.env.PORT || 3000;
 
@@ -21,158 +26,123 @@ app.use(express.json({ limit: '5mb' }));
 
 var data = "";
 
-//Match Fetching
+let nextLine = "\n";
+
 app.post('/scouting', (req, res) => {
-    data = req.body;
-
-    console.log(data);
-
-    //Different types of data scouting types
-    if (data.MatchType == "Pit-Scouting") {
-        fs.writeFileSync("/src/ScoutingData/PitScoutingData.json", JSON.stringify(data))
-        console.log("Pit Scouting Data Received");
-    } else if (data.MatchType == "Match-Scouting") {
-        fs.writeFileSync("/src/ScoutingData/MatchScoutingData.json", JSON.stringify(data))
-        console.log("Match Scouting Data Received");
-    }
-
-    console.log(data);
-});
-
-app.get('/scouting', (req, res) => {
-    res.send(data);
-});
-
-app.post("/sendscoutingdata", (req, res) => {
-    let scoutingdata = req.body;
-    let PitScoutingData = fs.readFileSync("/src/ScoutingData/PitScoutingData.json");
-    let MatchScoutingData = fs.readFileSync("/src/ScoutingData/MatchScoutingData.json");
-
-    if (scoutingdata == "Pit-Scouting") {
-        res.send(PitScoutingData);
-    } else if (scoutingdata == "Match-Scouting") {
-        res.send(MatchScoutingData);
-    } else if (scoutingdata == "All-Scouting") {
-        res.send(PitScoutingData, MatchScoutingData);
-    } else {
-        res.send("Error");
-    }
-
-    console.log(scoutingdata);
-});
-
-//The authentication for the google API
-const authentication = async () => {
-    //The credentials for the google API
-    const auth = new google.auth.GoogleAuth({
-        keyFile: "src/credentials.json",
-        scopes: "https://www.googleapis.com/auth/spreadsheets"
-    })
-    //The client for the google API, waiting for the authentication to get the credentials
-    const client = await auth.getClient();
-    //The google API
-    const googleAPI = google.sheets({
-        version: "v4",
-        auth: client
-    });
-    //Returning the google API
-    return { googleAPI };
-}
-
-//Sheets ID
-const id = "1ep0FhzY4HWUXlWaoLAAE543cOTlCwb2iunyHC0DmnVQ";
-
-//The function that will be called to add the data to the google sheet
-app.get("/api", async (request, res1) => {
     try {
-        //Waiting for the authentication to get the credentials
-        const { googleAPI } = await authentication();
+        data = req.body;
 
-        //The data that will be added to the google sheet
-        const response = await googleAPI.spreadsheets.values.append({
-            spreadsheetId: id,
-            range: "Sheet1!A1:F1",
-        });
-        res1.send({ status: "ok" });
-        //If there is an error, it will be logged in the console
-    } catch (error) {
-        console.log(error);
-        res1.status(500).send(error.message);
-    }
-});
+        console.log(data);
 
-//Sending data to the sheet
-app.post("/api", async (request, response1) => {
-    try {
-        //destructure 'newName' and 'newValue' from request.body
-        const {Type, ...body} = request.body;
+        const auth = new google.auth.JWT(
+            key.client_email,
+            null,
+            key.private_key,
+            ['https://www.googleapis.com/auth/spreadsheets']
+        );
 
-        let UnStrTime = new Date();
-        let Time = UnStrTime.toLocaleString("en-US", {
-            timeZone: "America/Los_Angeles"
-        });
+        //Different types of data scouting types
+        if (data[0].ScoutingType == "Pit-Scouting") {
+            fs.appendFileSync("src/ScoutingData/PitScoutingData.json", JSON.stringify(data) + nextLine);
+            console.log("Pit Scouting Data Received");
 
-        const { googleAPI } = await authentication();
+            async function writeToSheet(auth) {
+                const request = {
+                    spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
+                    range: 'Pit-Scouting!A1:L1',
+                    valueInputOption: 'RAW',
+                    resource: {
+                        values: [
+                            [
+                                data[0].ScoutingType,
+                                data[0].TeamNumber,
+                                data[0].GamePieces,
+                                data[0].DriverExperience,
+                                data[0].DriveTrain,
+                                data[0].AutoPlan,
+                                data[0].GamePieceLocation,
+                                data[0].AverageTime,
+                                data[0].ScoringLocation,
+                                data[0].DockEngage,
+                                data[0].PictureRobot,
+                                data[0].Comments,
+                                data[0].Time
+                            ]
+                        ],
+                    },
+                    auth: auth,
+                };
 
-        if (Type == "Pit-Scouting") {
-            //add the new name and value to the sheet
-            const response = await googleAPI.spreadsheets.values.append({
-                spreadsheetId: id,
-                range: "Pit-Scouting!A1:K1",
-                valueInputOption: "USER_ENTERED",
-                resource: {
-                    values: [
-                        [
-                            body.ScoutingType,
-                            body.TeamNumber,
-                            body.GamePieces,
-                            body.DriverExperience,
-                            body.DriveTrain,
-                            body.AutoPlan,
-                            body.GamePieceLocation,
-                            body.AverageTime,
-                            body.ScoringLocation,
-                            body.DockEngage,
-                            body.PictureRobot,
-                            body.Comments
-                        ]
-                    ]
+                try {
+                    const response = (await sheets.spreadsheets.values.append(request)).data;
+                    console.log(JSON.stringify(response, null, 2));
+                } catch (err) {
+                    console.error(err);
                 }
-            });
+            }
 
-            response1.send({ status: response.status });
-        } else if (Type == "Match-Scouting") {
-            //add the new name and value to the sheet
-            const response = await googleAPI.spreadsheets.values.append({
-                spreadsheetId: id,
-                range: "Match-Scouting!A1:H1",
-                valueInputOption: "USER_ENTERED",
-                resource: {
-                    values: [
-                        [
-                            body.ScoutingType,
-                            body.MatchNumber,
-                            body.TeamNumber,
-                            body.AllianceColor,
-                            body.CommunityLeave,
-                            body.AutoCubeScoring,
-                            body.AutoConeScoring,
-                            body.AutoBalanceOption,
-                            body.Defense,
-                            body.TeleCubeScoring,
-                            body.TeleConeScoring,
-                            body.Cargo,
-                            body.TeleEndBalance,
-                            body.Comments
-                        ]
-                    ]
-                }
-            });
+            writeToSheet(auth);
 
-            response1.send({ status: response.status });
+            res.status(200).send("Pit Scouting Data Received");
+        } else if (data[0].ScoutingType == "Match-Scouting") {
+            fs.appendFileSync("src/ScoutingData/MatchScoutingData.json", JSON.stringify(data) + nextLine);
+            console.log("Match Scouting Data Received");
+            res.status(200).send("Match Scouting Data Received");
+        } else {
+            res.send("Unknown Match Type");
         }
     } catch (error) {
-        console.log(error, "There was an error updating the spreadsheet", error.message);
-        response1.status(500).send();
+        console.log(error);
+        res.status(500).send(error.message);
     }
+});
+
+//Sheets ID
+const id = "1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso";
+
+app.post("/api", async (request, response1) => {
+    const auth = await authorize();
+    const spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
+    let sheetName;
+    let range;
+    let values;
+
+    if (request.body.Title.includes('Pit')) {
+        sheetName = 'Pit-Scouting';
+        range = 'A1:L1';
+        values = [
+            [
+
+                Time
+            ]
+        ];
+    } else if (request.body.Title.includes('Match')) {
+        sheetName = 'Match-Scouting';
+        range = 'A1:N1';
+        values = [
+            [
+                data,
+                Time
+            ]
+        ];
+    }
+
+    const resource = {
+        values
+    };
+
+    sheets.spreadsheets.values.append({
+        auth: auth,
+        spreadsheetId: spreadsheetId,
+        range: `${sheetName}!${range}`,
+        valueInputOption: 'RAW',
+        resource: resource
+    }, (err, result) => {
+        if (err) {
+            console.log(err);
+            response1.status(500).send('An error occurred');
+        } else {
+            response1.status(200).send('Data added successfully');
+        }
+    });
 });

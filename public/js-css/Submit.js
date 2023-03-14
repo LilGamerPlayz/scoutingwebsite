@@ -1,7 +1,4 @@
-var data = [];
-
 async function Submit() {
-
 
     if (document.getElementById("SubmitBox")) {
         document.getElementById("SubmitBox").style.display = "block";
@@ -17,6 +14,8 @@ async function Submit() {
     const Title = document.getElementById("Title").textContent;
 
     Yes.addEventListener("click", async function () {
+        var data = [];
+
         if (Title.includes("Pit")) {
             data.push({
                 ScoutingType: localStorage.getItem("ScoutingType"),
@@ -38,15 +37,16 @@ async function Submit() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(data)
             }
-            window.location = "Submitted";
 
             await fetch("/scouting", scouting)
-                .then(response => response.json())
+                .then(response => response.text())
                 .then(data => {
                     console.log(data);
+                    window.location = "Submitted";
                 });
+                
 
         } else if (Title.includes("Match")) {
             data.push({
@@ -74,11 +74,14 @@ async function Submit() {
                 body: JSON.stringify(data),
             }
 
-            await fetch("/scouting", scouting)
+
+            fetch("/scouting", scouting)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    //console.log(data);
+                    window.location = "..Submitted";
                 });
+
         }
     });
 };
