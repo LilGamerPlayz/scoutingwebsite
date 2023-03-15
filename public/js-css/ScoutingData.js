@@ -12,8 +12,8 @@ async function setUp() {
         body: JSON.stringify(ScoutingType)
     };
 
-    await fetch("/sendscoutingdata", sendscoutingdata)
-        .then(response => response.json())
+    await fetch("/request", sendscoutingdata)
+        .then(response => response.text())
         .then(data => {
             ScoutingData = data;
             console.log(ScoutingData);
