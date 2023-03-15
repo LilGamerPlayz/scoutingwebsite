@@ -82,8 +82,19 @@ app.post('/pitscouting', (req, res) => {
 
             //Writes data to the google sheet
             try {
+                //console.log("Sending to google sheets");
                 const response = (await sheets.spreadsheets.values.append(request)).data;
-                console.log(JSON.stringify(response, null, 2));
+                //console.log("Data Sent to google sheets");
+
+                //console.log(JSON.stringify(response, null, 2));
+
+                if (response.status == "200") {
+                    res.send("Data Sent");
+                    //console.log("Data Sent");
+                } else {
+                    res.send("Data Not Sent");
+                    //console.log("Data Not Sent");
+                }
             } catch (err) {
                 console.error(err);
             }
@@ -92,7 +103,6 @@ app.post('/pitscouting', (req, res) => {
         //Calls the function to write to the google sheet
         writeToSheet(auth);
 
-        res.status(200).send("Pit Scouting Data Received");
     } catch (err) {
         console.log(error);
         res.status(500).send(error.message);
@@ -215,6 +225,7 @@ app.post("/request", (req, res) => {
                     res.status(200).send(responseM);
                 } catch (err) {
                     console.error(err);
+
                 }
 
 
