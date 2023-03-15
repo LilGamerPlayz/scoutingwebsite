@@ -60,7 +60,7 @@
     </style>
 </head>
 
-<body onload="setUp()">
+<body onload="setUp(document.getElementById('searchType').value)">
     <button onclick="window.location='/'" class="btn btn-primary">Go Back</button>
 
     <center>
@@ -71,10 +71,10 @@
 
             <button id="searchButton" onclick="search()">Search</button>
 
-            <select id="searchType">
-                <option value="All">All Teams</option>
-                <option value="Pit">Pit Scouting</option>
-                <option value="Match">Match Scouting</option>
+            <select id="searchType" onchange="setUp(document.getElementById('searchType').value);">
+                <option value="All-Scouting">All Teams</option>
+                <option value="Pit-Scouting">Pit Scouting</option>
+                <option value="Match-Scouting">Match Scouting</option>
             </select>
         </div>
 

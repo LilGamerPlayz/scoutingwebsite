@@ -51,7 +51,7 @@ app.post('/pitscouting', (req, res) => {
         });
 
         //Different types of data scouting types
-        fs.appendFileSync("src/ScoutingData/PitScoutingData.json", JSON.stringify(data) + nextLine);
+
         console.log("Pit Scouting Data Received");
 
         async function writeToSheet(auth) {
@@ -103,6 +103,8 @@ app.post('/pitscouting', (req, res) => {
         //Calls the function to write to the google sheet
         writeToSheet(auth);
 
+        fs.appendFileSync("src/ScoutingData/PitScoutingData.json", JSON.stringify(data) + nextLine);
+
     } catch (err) {
         console.log(error);
         res.status(500).send(error.message);
@@ -130,7 +132,6 @@ app.post('/matchscouting', (req, res) => {
             timeZone: "America/Los_Angeles"
         });
 
-        fs.appendFileSync("src/ScoutingData/MatchScoutingData.json", JSON.stringify(data) + nextLine);
         console.log("Match Scouting Data Received");
 
         async function writeToSheet(auth) {
@@ -171,6 +172,7 @@ app.post('/matchscouting', (req, res) => {
 
         writeToSheet(auth);
 
+        fs.appendFileSync("src/ScoutingData/MatchScoutingData.json", JSON.stringify(data) + nextLine);
 
         res.status(200).send("Match Scouting Data Received");
     } catch (error) {
@@ -182,7 +184,9 @@ app.post('/matchscouting', (req, res) => {
 //Gets data from google sheets
 app.post("/request", (req, res) => {
     try {
-
+        let Type = JSON.stringify(req.body.ScoutingType);
+        //console.log(Type);
+        
         const auth = new google.auth.JWT(
             key.client_email,
             null,
@@ -191,7 +195,7 @@ app.post("/request", (req, res) => {
         );
 
 
-        if (req.body.request == "pit") {
+        if (Type == "Pit-Scouting") {
             async function readFromSheet(auth) {
                 const request = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
@@ -210,7 +214,7 @@ app.post("/request", (req, res) => {
             }
 
             readFromSheet(auth);
-        } else if (req.body[0].ScoutingData == "match") {
+        } else if (Type == "Match-Scouting") {
             async function readFromSheet(auth) {
                 const request = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
@@ -232,7 +236,7 @@ app.post("/request", (req, res) => {
             }
 
             readFromSheet(auth);
-        } else if (req.body[0].ScoutingData == "All-Scouting") {
+        } else if (Type == "All-Scouting") {
             async function readFromSheet(auth) {
                 const request1 = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',

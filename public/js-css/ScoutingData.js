@@ -1,7 +1,12 @@
 var ScoutingData = "";
-var ScoutingType = "All-Scouting";
 
-async function setUp() {
+
+
+async function setUp(ScoutingTypeListener) {
+
+    let ScoutingType = { "ScoutingType": ScoutingTypeListener };
+    console.log(JSON.stringify(ScoutingType));
+
     // Set up the page
     // Get the data from the server
     let sendscoutingdata = {
@@ -16,6 +21,7 @@ async function setUp() {
         .then(response => response.text())
         .then(data => {
             ScoutingData = data;
+            console.log("Scouting Data Received");
             console.log(ScoutingData);
         });
 }
