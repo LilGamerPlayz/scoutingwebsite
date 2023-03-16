@@ -137,7 +137,7 @@ app.post('/matchscouting', (req, res) => {
         async function writeToSheet(auth) {
             const request = {
                 spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
-                range: 'Match-Scouting!A1:L1',
+                range: 'Match-Scouting!B1:L10000',
                 valueInputOption: 'RAW',
                 resource: {
                     values: [
@@ -185,8 +185,8 @@ app.post('/matchscouting', (req, res) => {
 app.post("/request", (req, res) => {
     try {
         let Type = JSON.stringify(req.body.ScoutingType);
-        //console.log(Type);
-        
+        console.log(Type);
+
         const auth = new google.auth.JWT(
             key.client_email,
             null,
@@ -195,11 +195,11 @@ app.post("/request", (req, res) => {
         );
 
 
-        if (Type == "Pit-Scouting") {
+        if (Type == '"Pit-Scouting"') {
             async function readFromSheet(auth) {
                 const request = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
-                    range: 'Pit-Scouting!A1:L1',
+                    range: 'Pit-Scouting!A2:M10000',
                     auth: auth,
                 };
 
@@ -214,11 +214,11 @@ app.post("/request", (req, res) => {
             }
 
             readFromSheet(auth);
-        } else if (Type == "Match-Scouting") {
+        } else if (Type == '"Match-Scouting"') {
             async function readFromSheet(auth) {
                 const request = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
-                    range: 'Match-Scouting!A1:L1',
+                    range: 'Match-Scouting!A2:M10000',
                     auth: auth,
                 };
 
@@ -236,34 +236,39 @@ app.post("/request", (req, res) => {
             }
 
             readFromSheet(auth);
-        } else if (Type == "All-Scouting") {
+        } else if (Type == '"All-Scouting"') {
             async function readFromSheet(auth) {
+                const sheets = google.sheets({ version: 'v4', auth });
                 const request1 = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
-                    range: 'Pit-Scouting!A1:L1',
-                    auth: auth,
+                    range: 'Pit-Scouting!A2:M10000',
                 };
-
                 const request2 = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
-                    range: 'Match-Scouting!A1:L1',
-                    auth: auth,
+                    range: 'Match-Scouting!A2:M10000',
                 };
-
+                let data = [];
                 try {
-                    const response1 = (await sheets.spreadsheets.values.get(request1)).data;
-                    console.log(JSON.stringify(response1, null, 2));
+                    let response = await sheets.spreadsheets.values.get(request1);
+                    let rows = response.data.values;
+                    if (rows.length) {
+                        data.push(...rows);
+                    }
+                    response = await sheets.spreadsheets.values.get(request2);
+                    rows = response.data.values;
+                    if (rows.length) {
+                        data.push(...rows);
+                    }
 
-                    const response2 = (await sheets.spreadsheets.values.get(request2)).data;
-                    console.log(JSON.stringify(response2, null, 2));
-
-                    res.send(response1, response2);
+                    console.log(JSON.stringify(data, null, 2));
+                    res.status(200).send(data);
                 } catch (err) {
                     console.error(err);
                 }
-            }
-
-            readFromSheet(auth);
+                return data;
+            } readFromSheet(auth);
+        } else {
+            res.status(200).send("Invalid Request");
         }
     } catch (error) {
         console.log(error);
