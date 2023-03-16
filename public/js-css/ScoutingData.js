@@ -67,6 +67,13 @@ function createBoxes() {
         // Create the button
         let button = document.createElement("button");
         button.id = "button" + i;
+        button.onclick = function () {
+            if (document.getElementById("data" + i).style.display === "none") {
+                document.getElementById("data" + i).style.display = "block";
+            } else {
+                document.getElementById("data" + i).style.display = "none";
+            }
+        };
         box.appendChild(button);
 
         // Append an anchor to the box
@@ -74,6 +81,13 @@ function createBoxes() {
         a.id = "a" + i;
         a.innerHTML = "View Survey Results";
         button.appendChild(a);
+        
+        let data = document.createElement("div");
+        data.id = "data" + i;
+        data.className = "data";
+        data.innerHTML = ScoutingData[i];
+        data.style.display = "none";
+        box.appendChild(data);
     }
 }
 

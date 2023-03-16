@@ -104,8 +104,6 @@ app.post('/pitscouting', (req, res) => {
         //Calls the function to write to the google sheet
         writeToSheet(auth);
 
-        fs.appendFileSync("src/ScoutingData/PitScoutingData.json", JSON.stringify(data) + nextLine);
-
     } catch (err) {
         console.log(error);
         res.status(500).send(error.message);
@@ -173,8 +171,6 @@ app.post('/matchscouting', (req, res) => {
         }
 
         writeToSheet(auth);
-
-        fs.appendFileSync("src/ScoutingData/MatchScoutingData.json", JSON.stringify(data) + nextLine);
 
         res.status(200).send("Match Scouting Data Received");
     } catch (error) {
