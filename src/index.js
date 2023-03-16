@@ -27,7 +27,7 @@ app.use(express.json({ limit: '5mb' }));
 
 var data = "";
 
-let nextLine = "\n";
+let nextLine = "\r\n";
 
 //Sends pit scouting data to google sheets
 app.post('/pitscouting', (req, res) => {
@@ -143,8 +143,8 @@ app.post('/matchscouting', (req, res) => {
                 resource: {
                     values: [
                         [
-                            data[0].MatchNumber,
                             data[0].TeamNumber,
+                            data[0].MatchNumber,
                             data[0].AllianceColor,
                             data[0].CommunityLeave,
                             data[0].AutoCubeScoring,
@@ -207,9 +207,9 @@ app.post("/request", (req, res) => {
 
                 try {
                     const responseP = (await sheets.spreadsheets.values.get(request)).data;
-                    console.log(JSON.stringify(response, null, 2));
+                    //console.log(JSON.stringify(response, null, 2));
 
-                    res.status(200).send(responseP);
+                    res.status(200).send(responseP.values);
                 } catch (err) {
                     console.error(err);
                 }
@@ -226,15 +226,13 @@ app.post("/request", (req, res) => {
 
                 try {
                     const responseM = (await sheets.spreadsheets.values.get(request)).data;
-                    console.log(JSON.stringify(response, null, 2));
+                    //console.log(JSON.stringify(response, null, 2));
 
-                    res.status(200).send(responseM);
+                    res.status(200).send(responseM.values);
                 } catch (err) {
                     console.error(err);
 
                 }
-
-
             }
 
             readFromSheet(auth);

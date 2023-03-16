@@ -30,7 +30,7 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        
+
         #searchType,
         #searchButton {
             padding: 12px 20px;
@@ -41,7 +41,7 @@
             box-sizing: border-box;
             font-size: 20px;
         }
-        
+
         .container {
             width: 800px;
             margin: 0 auto;
@@ -49,7 +49,7 @@
             background-color: #f2f2f2;
             border: 1px solid #ccc;
         }
-        
+
         .box {
             width: 100%;
             margin: 10px 0;
@@ -69,7 +69,7 @@
             <label for="searchInput">Find Teams</label>
             <input id="searchInput" type="text" placeholder="4079" min="1" max="99999" type="number">
 
-            <button id="searchButton" onclick="search()">Search</button>
+            <button id="searchButton">Search</button>
 
             <select id="searchType" onchange="setUp(document.getElementById('searchType').value);">
                 <option value="All-Scouting">All Teams</option>
@@ -79,60 +79,56 @@
         </div>
 
         <div class="container" id="Teams">
-            <div class="box">
-                <h1>Team 4079</h1>
-                <h2>Match Scouting at 3:04 PM, Match 5, OCR</h2>
-                <button>
-                    <a>View Survey Results</a>
-                </button>
-            </div>
-            <div class="box">
-                <h1>Team Example 4414</h1>
-                <h2>Match Scouting at 11:43 AM, Match 2, AVR</h2>
-                <button>
-                    <a>View Survey Results</a>
-                </button>
-            </div>
+
         </div>
     </center>
+
+    <script>
+        let container = document.getElementsByClassName("container")[0];
+let searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", function() {
+    // Clear existing boxes
+    container.innerHTML = "";
+
+    // Filter ScoutingData based on search input
+    let filteredData = ScoutingData.filter(data => data[0].toString().includes(searchInput.value));
+
+    // Sort filtered data in descending order
+    filteredData.sort((a,b) => b[0] - a[0]);
+
+    // Create new boxes based on filtered data
+    for (let i = 0; i < filteredData.length; i++) {
+        let box = document.createElement("div");
+        box.className = "box";
+        box.id = "box" + i;
+        container.appendChild(box);
+
+        let h1TeamNumber = document.createElement("h1");
+        h1TeamNumber.innerHTML = "Team " + filteredData[i][0];
+        box.appendChild(h1TeamNumber);
+
+        let h2Summary = document.createElement("h2");
+        let Scouting;
+        if (filteredData[i].length === 13) {
+            Scouting = "Pit Scouting at " + filteredData[i][11] + " at " + filteredData[i][12]
+        } else if (filteredData[i].length === 15) {
+            Scouting = "Match Scouting at " + filteredData[i][13] + " at " + filteredData[i][14];
+        }
+        h2Summary.innerHTML = Scouting;
+        box.appendChild(h2Summary);
+
+        let button = document.createElement("button");
+        button.id = "button" + i;
+        box.appendChild(button);
+
+        let a = document.createElement("a");
+        a.id = "a" + i;
+        a.innerHTML = "View Survey Results";
+        button.appendChild(a);
+    }
+});
+    </script>
 </body>
-
-<script>
-    var searchArray = [
-        [4079, 4414, 1905, 1859],
-        [3309, 2023, 2022, 1053]
-    ];
-
-    // Get the search input element
-    const searchInput = document.getElementById("searchInput");
-
-    // Add an event listener to the search input field to listen for changes to its value
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value;
-        const results = search(query);
-        updateResultsUI(results);
-    });
-
-    // Define a function to perform the search
-    function search(query) {
-        // Filter the array by checking if each sub-array includes the search query
-        const results = searchArray.filter(arr => {
-            return arr.some(str => str.includes(query));
-        });
-        return results;
-    }
-
-    // Define a function to update the search results UI
-    function updateResultsUI(results) {
-        // Loop through each div tag in the container and check if its text content matches the search query
-        container.childNodes.forEach(node => {
-            if (node.textContent.toLowerCase().includes(searchInput.value.toLowerCase())) {
-                node.style.display = "block";
-            } else {
-                node.style.display = "none";
-            }
-        });
-    }
-</script>
 
 </html>

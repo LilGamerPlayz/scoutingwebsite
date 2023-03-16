@@ -3,6 +3,12 @@ var ScoutingData;
 async function setUp(ScoutingTypeListener) {
 
     let ScoutingType = { "ScoutingType": ScoutingTypeListener };
+
+    if (document.getElementsByClassName("box")) {
+        const remove = (sel) => document.querySelectorAll(sel).forEach(el => el.remove());
+        remove(".box");
+    }
+
     //console.log(JSON.stringify(ScoutingType));
 
     // Set up the page
@@ -19,13 +25,15 @@ async function setUp(ScoutingTypeListener) {
         .then(response => response.json())
         .then(data => {
             ScoutingData = data;
-            console.log(ScoutingData);
+            //console.log(ScoutingData);
             createBoxes();
         });
 }
 
 function createBoxes() {
     let container = document.getElementsByClassName("container")[0];
+
+    searchArray = [];
 
     for (let i = 0; i < ScoutingData.length; i++) {
 
@@ -35,26 +43,41 @@ function createBoxes() {
         box.id = "box" + i;
         container.appendChild(box);
 
-        console.log(ScoutingData[i][1])
+        //console.log(ScoutingData[i][0])
 
         // Create the team number
         let h1TeamNumber = document.createElement("h1");
-        if (ScoutingData[i].length == 12) {
-            h1TeamNumber.innerHTML = "Team " + ScoutingData[i][0];
-        } else if (ScoutingData[i].length == 14) {
-            h1TeamNumber.innerHTML = "Team " + ScoutingData[i][1];
-        };
+        h1TeamNumber.innerHTML = "Team " + ScoutingData[i][0];
         box.appendChild(h1TeamNumber);
+
+        //Pushes Team Number to searchArray
+        searchArray.push([ScoutingData[i][0]]);
 
         // Create the table
         let h2Summary = document.createElement("h2");
         let Scouting;
-        if (ScoutingData[i].length == 12) {
-            Scouting = "Pit Scouting at "+ ScoutingData[i][11] + " at " + ScoutingData[i][12];
-        } else if (ScoutingData[i].length == 14) {
-            Scouting = "Match Scouting at "+ ScoutingData[i][13] + " at " + ScoutingData[i][14]
-        };
+        if (ScoutingData[i].length === 13) {
+            Scouting = "Pit Scouting at " + ScoutingData[i][11] + " at " + ScoutingData[i][12]
+        } else if (ScoutingData[i].length === 15) {
+            Scouting = "Match Scouting at " + ScoutingData[i][13] + " at " + ScoutingData[i][14];
+        }
         h2Summary.innerHTML = Scouting;
         box.appendChild(h2Summary);
+
+        // Create the button
+        let button = document.createElement("button");
+        button.id = "button" + i;
+        box.appendChild(button);
+
+        // Append an anchor to the box
+        let a = document.createElement("a");
+        a.id = "a" + i;
+        a.innerHTML = "View Survey Results";
+        button.appendChild(a);
     }
 }
+
+
+var searchArray = [
+
+];
