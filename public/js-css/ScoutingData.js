@@ -16,17 +16,18 @@ async function setUp(ScoutingTypeListener) {
     };
 
     await fetch("/request", sendscoutingdata)
-    .then(response => response.json())
-    .then(data => {
-        ScoutingData = data;
-        console.log(ScoutingData);
-    });
+        .then(response => response.json())
+        .then(data => {
+            ScoutingData = data;
+            console.log(ScoutingData);
+            createBoxes();
+        });
 }
 
 function createBoxes() {
-    let container = document.getElementById("Teams");
+    let container = document.getElementsByClassName("container")[0];
 
-    for (let i = 0; i < ScoutingData.values.length; i++) {
+    for (let i = 0; i < ScoutingData.length; i++) {
 
         // Create the box
         let box = document.createElement("div");
@@ -34,15 +35,26 @@ function createBoxes() {
         box.id = "box" + i;
         container.appendChild(box);
 
+        console.log(ScoutingData[i][1])
+
         // Create the team number
         let h1TeamNumber = document.createElement("h1");
-        h1TeamNumber.innerHTML = "Team " + ScoutingData.values[i][0];
+        if (ScoutingData[i].length == 12) {
+            h1TeamNumber.innerHTML = "Team " + ScoutingData[i][0];
+        } else if (ScoutingData[i].length == 14) {
+            h1TeamNumber.innerHTML = "Team " + ScoutingData[i][1];
+        };
         box.appendChild(h1TeamNumber);
 
         // Create the table
         let h2Summary = document.createElement("h2");
-        if (ScoutingData.values[i].length == 12) {
-            //Work on it tomorrow
-        }
+        let Scouting;
+        if (ScoutingData[i].length == 12) {
+            Scouting = "Pit Scouting at "+ ScoutingData[i][11] + " at " + ScoutingData[i][12];
+        } else if (ScoutingData[i].length == 14) {
+            Scouting = "Match Scouting at "+ ScoutingData[i][13] + " at " + ScoutingData[i][14]
+        };
+        h2Summary.innerHTML = Scouting;
+        box.appendChild(h2Summary);
     }
 }

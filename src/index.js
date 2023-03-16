@@ -57,7 +57,7 @@ app.post('/pitscouting', (req, res) => {
         async function writeToSheet(auth) {
             const request = {
                 spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
-                range: 'Pit-Scouting!A1:L1',
+                range: 'Pit-Scouting!A1:M1',
                 valueInputOption: 'RAW',
                 resource: {
                     values: [
@@ -73,6 +73,7 @@ app.post('/pitscouting', (req, res) => {
                             data[0].DockEngage,
                             data[0].PictureRobot,
                             data[0].Comments,
+                            data[0].Competition,
                             Time
                         ]
                     ],
@@ -137,7 +138,7 @@ app.post('/matchscouting', (req, res) => {
         async function writeToSheet(auth) {
             const request = {
                 spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
-                range: 'Match-Scouting!B1:L10000',
+                range: 'Match-Scouting!A2:O10000',
                 valueInputOption: 'RAW',
                 resource: {
                     values: [
@@ -155,6 +156,7 @@ app.post('/matchscouting', (req, res) => {
                             data[0].Cargo,
                             data[0].TeleEndBalance,
                             data[0].Comments,
+                            data[0].Competition,
                             Time
                         ]
                     ]
@@ -218,7 +220,7 @@ app.post("/request", (req, res) => {
             async function readFromSheet(auth) {
                 const request = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
-                    range: 'Match-Scouting!A2:M10000',
+                    range: 'Match-Scouting!A2:O10000',
                     auth: auth,
                 };
 
@@ -245,7 +247,7 @@ app.post("/request", (req, res) => {
                 };
                 const request2 = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
-                    range: 'Match-Scouting!A2:M10000',
+                    range: 'Match-Scouting!A2:O10000',
                 };
                 let data = [];
                 try {
@@ -260,7 +262,7 @@ app.post("/request", (req, res) => {
                         data.push(...rows);
                     }
 
-                    console.log(JSON.stringify(data, null, 2));
+                    //console.log(JSON.stringify(data, null, 2));
                     res.status(200).send(data);
                 } catch (err) {
                     console.error(err);

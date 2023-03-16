@@ -84,8 +84,16 @@
         </span>
 
         <div id="Comments" class="Question">
-            <h1 id="CommentsLabel">Any additional comments about your robot (does it have good defense?) Any coll theming or subsystems? etc.)</h1>
+            <h1 id="CommentsLabel">Any additional comments about your robot (does it have good defense?) Any coo theming or subsystems? etc.</h1>
             <textarea id="CommentsInput" rows="10" cols="50" onchange="Comments()"></textarea>
+        </div>
+
+        <br>
+        <br>
+
+        <div id="Competition" class="Question">
+            <h1 id="CompetitionLabel">What competition is this?</h1>
+            <input type="text" id="CompetitionInput" placeholder="OCR, AVR, BB" onchange="Competition()" maxlength="5">
         </div>
 
         <br><br>
@@ -107,6 +115,11 @@
     </center>
 
     <script>
+        function Competition() {
+            let Competition = document.getElementById("CompetitionInput");
+            localStorage.setItem("Competition", Competition.value);
+        }
+
         function SaveMatchType() {
             localStorage.setItem("ScoutingType", "Pit-Scouting");
         }

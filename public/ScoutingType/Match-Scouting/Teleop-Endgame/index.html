@@ -35,7 +35,8 @@
                 <option value="No">No</option>
                 <option value="Yes">Yes</option>
             </select>
-            <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958" class="input" style="display: none;">
+            <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958" class="input"
+                style="display: none;">
         </div>
 
         <div id="Cubes">
@@ -64,7 +65,7 @@
 
         <div id="Cargo">
             <h1 id="CargoLabel">Where did they pick up cargo from?</h1>
-            <select id="CargoInput" class="selection">
+            <select id="CargoInput" class="selection" onchange="Cargo()">
                 <option value="Shelf">Shelf</option>
                 <option value="Floor">Loading Zone Floor</option>
                 <option value="Field">Mid-Field</option>
@@ -73,7 +74,7 @@
 
         <div id="Balanced">
             <h1 id="BalancedLabel">Did they balance?</h1>
-            <select id="BalancedInput" class="selection">
+            <select id="BalancedInput" class="selection" onchange="Balanced()">
                 <option value="Engaged">Docked and Engaged</option>
                 <option value="Docked">Docked</option>
                 <option value="Not">Not on charging station</option>
@@ -84,13 +85,20 @@
 
         <div id="Comments" class="input">
             <h1 id="CommentsLabel">Additional Comments</h1>
-            <textarea id="CommentsInput" placeholder="Comments"></textarea>
+            <textarea id="CommentsInput" placeholder="Comments" onchange="AfterComments()"></textarea>
+        </div>
+
+        <br><br>
+
+        <div id="Competition">
+            <h1 id="CompetitionLabel">What competition is this?</h1>
+            <input type="text" id="CompetitionInput" placeholder="OCR, AVR, BB" onchange="Competition()" maxlength="5">
         </div>
 
         <br><br><br>
         <br><br><br>
 
-        <button type="submit" onclick="Submit();">
+        <button type="submit" onclick="Submit(); MatchSubmit();">
             <h1 id="SubmitButton">Submit</h1>
         </button>
 
@@ -107,6 +115,27 @@
     </center>
 
     <script>
+        function AfterComments() {
+            localStorage.setItem("Comments", document.getElementById("CommentsInput").value);
+        }
+
+        function MatchSubmit() {
+            localStorage.setItem("Competition", document.getElementById("CompetitionInput").value);
+            if (localStorage.getItem("DefenseTeams") == "No") {
+                localStorage.setItem("DefenseTeams", "None");
+            }
+            if (localStorage.getItem("Comments") == "") {
+                localStorage.setItem("Comments", "None");
+            }
+            if (localStorage.getItem("Competition") == "") {
+                localStorage.setItem("Competition", "Not Specified");
+            }
+        }
+
+        function Competition() {
+            localStorage.setItem("Competition", document.getElementById("CompetitionInput").value);
+        }
+
         function PlayedDefense() {
             let DefenseInput = document.getElementById("DefenseInput").value;
 
@@ -127,8 +156,15 @@
 
         function OnLoad() {
             localStorage.setItem("ScoutingType", "Match-Scouting");
-            Balanced();
+            AfterComments();
+            Competition();
+            PlayedDefense();
+            DefenseWho();
             Cargo();
+            Balanced();
+            Cubes();
+            Cones();
+            
         }
 
         function Cargo() {

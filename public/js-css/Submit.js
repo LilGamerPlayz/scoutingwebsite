@@ -21,8 +21,8 @@ async function Submit() {
         if (Title.includes("Match")) {
             data.push({
                 ScoutingType: localStorage.getItem("ScoutingType"),
-                MatchNumber: localStorage.getItem("MatchNumber"),
                 TeamNumber: localStorage.getItem("TeamNumber"),
+                MatchNumber: localStorage.getItem("MatchNumber"),
                 AllianceColor: localStorage.getItem("AllianceColor"),
                 CommunityLeave: localStorage.getItem("CommunityLeave"),
                 AutoCubeScoring: localStorage.getItem("CubeScoring"),
@@ -31,9 +31,10 @@ async function Submit() {
                 Defense: localStorage.getItem("Defense") + "; Teams: " + localStorage.getItem("DefenseTeams"),
                 TeleCubeScoring: localStorage.getItem("TeleCubeScoring"),
                 TeleConeScoring: localStorage.getItem("TeleConeScoring"),
-                Cargo: localStorage.getItem("CargoInput"),
-                TeleEndBalance: localStorage.getItem("BalanceInput"),
-                Comments: localStorage.getItem("Comments")
+                Cargo: localStorage.getItem("Cargo"),
+                TeleEndBalance: localStorage.getItem("Balanced"),
+                Comments: localStorage.getItem("Comments"),
+                Competition: localStorage.getItem("Competition")
             });
 
             console.log("Match Scouting Data Before Sent");
@@ -71,7 +72,8 @@ async function Submit() {
                 ScoringLocation: localStorage.getItem("ScoringLocation"),
                 DockEngage: localStorage.getItem("DockEngage"),
                 PictureRobot: localStorage.getItem("PictureRobot"),
-                Comments: localStorage.getItem("Comments")
+                Comments: localStorage.getItem("Comments"),
+                Competition: localStorage.getItem("Competition")
             });
 
             let scouting = {
