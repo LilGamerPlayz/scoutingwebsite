@@ -21,43 +21,9 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js-css/ScoutingData.js"></script>
 
-    <style>
-        #search {
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="/js-css/surveyresults.css">
 
-        #searchType,
-        #searchButton {
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 20px;
-        }
-
-        .container {
-            width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f2f2f2;
-            border: 1px solid #ccc;
-        }
-
-        .box {
-            width: 100%;
-            margin: 10px 0;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            display: inline-block;
-        }
-    </style>
 </head>
 
 <body onload="setUp(document.getElementById('searchType').value)">
@@ -67,9 +33,7 @@
 
         <div id="search">
             <label for="searchInput">Find Teams</label>
-            <input id="searchInput" type="text" placeholder="4079" min="1" max="99999" type="number">
-
-            <button id="searchButton">Search</button>
+            <input id="searchInput" type="text" placeholder="4079" min="1" max="99999" inputmode="numeric" type="number">
 
             <select id="searchType" onchange="setUp(document.getElementById('searchType').value);">
                 <option value="All-Scouting">All Teams</option>

@@ -5,8 +5,10 @@ const express = require('express');
 //Accessing the library/module for usage
 const app = express();
 
-//FS File System
-const fs = require('fs');
+//The Blue Alliance API
+
+const tba = require ("tba");
+
 
 //Google Sheets API
 const { google } = require('googleapis');
@@ -183,7 +185,7 @@ app.post('/matchscouting', (req, res) => {
 app.post("/request", (req, res) => {
     try {
         let Type = JSON.stringify(req.body.ScoutingType);
-        console.log(Type);
+        //console.log(Type);
 
         const auth = new google.auth.JWT(
             key.client_email,
