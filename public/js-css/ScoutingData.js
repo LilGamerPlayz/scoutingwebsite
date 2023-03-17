@@ -85,7 +85,7 @@ function createBoxes() {
             box.id = "box" + i;
             container.appendChild(box);
 
-            console.log(TeamName)
+            //console.log(TeamName)
 
             // Create the team number
             let h1TeamNumber = document.createElement("h1");
@@ -132,34 +132,34 @@ function createBoxes() {
             data.id = "data" + i;
             data.className = "data";
             if (ScoutingData[i].length === 13) {
-                data.innerHTML = "Team Number: " + ScoutingData[i][0] + "<br>" +
-                    "Game Pieces: " + ScoutingData[i][1] + "<br>" +
-                    "Driver Experience: " + ScoutingData[i][2] + "<br>" +
-                    "Drive Train: " + ScoutingData[i][3] + "<br>" +
-                    "Auto Plan: " + ScoutingData[i][4] + "<br>" +
-                    "Game Piece Pickup: " + ScoutingData[i][5] + "<br>" +
-                    "Cycle Time (seconds): " + ScoutingData[i][6] + "<br>" +
-                    "Scoring Location: " + ScoutingData[i][7] + "<br>" +
-                    "Docking and Engaging: " + ScoutingData[i][8] + "<br>" +
-                    "Picture: " + ScoutingData[i][9] + "<br>" +
-                    "Comments: " + ScoutingData[i][10] + "<br>" +
-                    "Time: " + ScoutingData[i][12] + "<br>";
+                data.innerHTML = "Team Number: " + "<input type='text' value='" + ScoutingData[i][0] + "'><br>" +
+                    "Game Pieces: " + "<input type='text' value='" + ScoutingData[i][1] + "'><br>" +
+                    "Driver Experience: " + "<input type='text' value='" + ScoutingData[i][2] + "'><br>" +
+                    "Drive Train: " + "<input type='text' value='" + ScoutingData[i][3] + "'><br>" +
+                    "Auto Plan: " + "<input type='text' value='" + ScoutingData[i][4] + "'><br>" +
+                    "Game Piece Pickup: " + "<input type='text' value='" + ScoutingData[i][5] + "'><br>" +
+                    "Cycle Time (seconds): " + "<input type='text' value='" + ScoutingData[i][6] + "'><br>" +
+                    "Scoring Location: " + "<input type='text' value='" + ScoutingData[i][7] + "'><br>" +
+                    "Docking and Engaging: " + "<input type='text' value='" + ScoutingData[i][8] + "'><br>" +
+                    "Picture: " + "<input type='text' value='" + ScoutingData[i][9] + "'><br>" +
+                    "Comments: " + "<input type='text' value='" + ScoutingData[i][10] + "'><br>" +
+                    "Time: " + "<input type='text' value='" + ScoutingData[i][12] + "'><br>";
 
             } else if (ScoutingData[i].length === 15) {
-                data.innerHTML = "Team Number: " + ScoutingData[i][0] + "<br>" +
-                    "Match Number: " + ScoutingData[i][1] + "<br>" +
-                    "Alliance Color: " + ScoutingData[i][2] + "<br>" +
-                    "Leave Community: " + ScoutingData[i][3] + "<br>" +
-                    "Auto Cube Scoring: " + ScoutingData[i][4] + "<br>" +
-                    "Auto Cone Scoring: " + ScoutingData[i][5] + "<br>" +
-                    "Auto Balance: " + ScoutingData[i][6] + "<br>" +
-                    "Defensive Play: " + ScoutingData[i][7] + "<br>" +
-                    "Teleop Cube Scoring: " + ScoutingData[i][8] + "<br>" +
-                    "Teleop Cone Scoring: " + ScoutingData[i][9] + "<br>" +
-                    "Cargo Location: " + ScoutingData[i][10] + "<br>" +
-                    "Teleop Balance: " + ScoutingData[i][11] + "<br>" +
-                    "Comments: " + ScoutingData[i][12] + "<br>" +
-                    "Time: " + ScoutingData[i][14] + "<br>";
+                data.innerHTML = "Team Number: " + "<input type='text' value='" + ScoutingData[i][0] + "'><br>" +
+                    "Match Number: " + "<input type='text' value='" + ScoutingData[i][1] + "'><br>" +
+                    "Alliance Color: " + "<input type='text' value='" + ScoutingData[i][2] + "'><br>" +
+                    "Leave Community: " + "<input type='text' value='" + ScoutingData[i][3] + "'><br>" +
+                    "Auto Cube Scoring: " + "<input type='text' value='" + ScoutingData[i][4] + "'><br>" +
+                    "Auto Cone Scoring: " + "<input type='text' value='" + ScoutingData[i][5] + "'><br>" +
+                    "Auto Balance: " + "<input type='text' value='" + ScoutingData[i][6] + "'><br>" +
+                    "Defensive Play: " + "<input type='text' value='" + ScoutingData[i][7] + "'><br>" +
+                    "Teleop Cube Scoring: " + "<input type='text' value='" + ScoutingData[i][8] + "'><br>" +
+                    "Teleop Cone Scoring: " + "<input type='text' value='" + ScoutingData[i][9] + "'><br>" +
+                    "Cargo Location: " + "<input type='text' value='" + ScoutingData[i][10] + "'><br>" +
+                    "Teleop Balance: " + "<input type='text' value='" + ScoutingData[i][11] + "'><br>" +
+                    "Comments: " + "<input type='text' value='" + ScoutingData[i][12] + "'><br>" +
+                    "Time: " + "<input type='text' value='" + ScoutingData[i][14] + "'><br>";
             }
             data.style.display = "none";
             box.appendChild(data);
