@@ -20,6 +20,12 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
         #ScoutingButtons {
             margin-top: 15%;
 
@@ -36,6 +42,83 @@
             border-radius: 25px;
             margin-left: 25px;
             margin-right: 25px;
+        }
+
+        #leftHalf {
+            background: url("/items/MatchImage.webp");
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 50%;
+            position: absolute;
+            left: 0px;
+            height: 100%;
+        }
+
+        #rightHalf {
+            background: url("/items/PitsImage.jpg");
+            background-repeat: no-repeat;
+            margin: 0;
+            background-size: cover;
+            width: 50%;
+            position: absolute;
+            right: 0px;
+            height: 1080px;
+        }
+
+        #rightHalf::after{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        #rightHalf:hover::after {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        #leftHalf::after{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        #leftHalf:hover::after {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+
+
+        #Pit-Scouting {
+            margin-top: 30%;
+            margin-left: 20%;
+            margin-bottom: 75%;
+            margin-right: 25%;
+            font-size: 150px;
+            font-family: "Arial";
+            font-weight: bold;
+            color: white;
+        }
+
+        #Match-Scouting {
+            margin-top: 30%;
+            margin-left: 20%;
+            margin-bottom: 75%;
+            margin-right: 25%;
+            font-size: 150px;
+            font-family: "Arial";
+            font-weight: bold;
+            color: white;
         }
     </style>
 
@@ -54,21 +137,25 @@
 </head>
 
 <body>
+    <div style="height: -10%;"></div>
+    <div id="leftHalf" onclick="MatchScouting()">
+        <h1 id="Pit-Scouting">Match Scouting</h1>
+    </div>
+    <div id="rightHalf" onclick="PitScouting()">
+        <h1 id="Match-Scouting">Pit Scouting</h1>
+    </div>
     <button onclick="window.location='..'" class="btn btn-primary">Go Back</button>
 
     <center>
+
         <h1>Choose your scouting type</h1>
         <div id="ScoutingButtons">
-            <button id="Match-Scouting" onclick="MatchScouting()">
+            <button id="Match-Scouting">
                 <h1>
                     Match Scouting
                 </h1>
             </button>
-            <button id="Pit-Scouting" onclick="PitScouting()">
-                <h1>
-                    Pit Scouting
-                </h1>
-            </button>
         </div>
     </center>
+
 </body>

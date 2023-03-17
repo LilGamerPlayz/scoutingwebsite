@@ -33,7 +33,8 @@
 
         <div id="search">
             <label for="searchInput">Find Teams</label>
-            <input id="searchInput" type="text" placeholder="4079" min="1" max="99999" inputmode="numeric" type="number">
+            <input id="searchInput" type="text" placeholder="4079" min="1" max="99999" inputmode="numeric"
+                type="number">
 
             <select id="searchType" onchange="setUp(document.getElementById('searchType').value);">
                 <option value="All-Scouting">All Teams</option>
@@ -49,49 +50,143 @@
 
     <script>
         let container = document.getElementsByClassName("container")[0];
-let searchInput = document.getElementById("searchInput");
+        let searchInput = document.getElementById("searchInput");
 
-searchInput.addEventListener("input", function() {
-    // Clear existing boxes
-    container.innerHTML = "";
+        searchInput.addEventListener("input", function () {
+            // Clear existing boxes
+            container.innerHTML = '';
 
-    // Filter ScoutingData based on search input
-    let filteredData = ScoutingData.filter(data => data[0].toString().includes(searchInput.value));
+            // Filter ScoutingData based on search input
+            let filteredData = ScoutingData.filter(data => data[0].toString().includes(searchInput.value));
 
-    // Sort filtered data in descending order
-    filteredData.sort((a,b) => b[0] - a[0]);
+            // Sort filtered data in descending order
+            filteredData.sort((a, b) => b[0] - a[0]);
 
-    // Create new boxes based on filtered data
-    for (let i = 0; i < filteredData.length; i++) {
-        let box = document.createElement("div");
-        box.className = "box";
-        box.id = "box" + i;
-        container.appendChild(box);
 
-        let h1TeamNumber = document.createElement("h1");
-        h1TeamNumber.innerHTML = "Team " + filteredData[i][0];
-        box.appendChild(h1TeamNumber);
+            // Create new boxes based on filtered data
+            for (let i = 0; i < filteredData.length; i++) {
 
-        let h2Summary = document.createElement("h2");
-        let Scouting;
-        if (filteredData[i].length === 13) {
-            Scouting = "Pit Scouting at " + filteredData[i][11] + " at " + filteredData[i][12]
-        } else if (filteredData[i].length === 15) {
-            Scouting = "Match Scouting at " + filteredData[i][13] + " at " + filteredData[i][14];
-        }
-        h2Summary.innerHTML = Scouting;
-        box.appendChild(h2Summary);
+                var TeamName;
 
-        let button = document.createElement("button");
-        button.id = "button" + i;
-        box.appendChild(button);
+                if (filteredData[i].length === 13) {
+                    let Matches = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            'TeamNumber': filteredData[i][0],
+                            'Event': filteredData[i][11]
+                        })
+                    }
 
-        let a = document.createElement("a");
-        a.id = "a" + i;
-        a.innerHTML = "View Survey Results";
-        button.appendChild(a);
-    }
-});
+                    fetch('/matches', Matches)
+                        .then(response => response.json())
+                        .then(data => {
+                            TeamName = data;
+                            Create();
+                        });
+                } else if (filteredData[i].length === 15) {
+                    let Matches = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            'TeamNumber': filteredData[i][0],
+                            'Event': filteredData[i][13]
+                        })
+                    }
+
+                    fetch('/matches', Matches)
+                        .then(response => response.json())
+                        .then(data => {
+                            TeamName = data;
+                            Create();
+                        });
+                }
+
+                function Create() {
+                    let box = document.createElement("div");
+                    box.className = "box";
+                    box.id = "box" + i;
+                    container.appendChild(box);
+
+                    let h1TeamNumber = document.createElement("h1");
+                    h1TeamNumber.innerHTML = "Team " + filteredData[i][0] + " - " + TeamName.TeamNames;
+                    box.appendChild(h1TeamNumber);
+
+                    let h2Summary = document.createElement("h2");
+                    let Scouting;
+                    if (filteredData[i].length === 13) {
+                        Scouting = "Pit Scouting at " + filteredData[i][11] + " at " + filteredData[i][12]
+                    } else if (filteredData[i].length === 15) {
+                        Scouting = "Match Scouting at " + filteredData[i][13] + " at " + filteredData[i][14];
+                    }
+                    h2Summary.innerHTML = Scouting;
+                    box.appendChild(h2Summary);
+
+            // Create the button
+            let button = document.createElement("button");
+            button.id = "button" + i;
+            button.onclick = function () {
+                if (document.getElementById("data" + i).style.display === "none") {
+                    document.getElementById("data" + i).style.display = "block";
+                } else {
+                    document.getElementById("data" + i).style.display = "none";
+                }
+            };
+            box.appendChild(button);
+
+            // Append an anchor to the box
+            let a = document.createElement("a");
+            a.id = "a" + i;
+            a.innerHTML = "View Survey Results";
+            button.appendChild(a);
+
+            box.appendChild(document.createElement("br"));
+
+            let data = document.createElement("div");
+            data.id = "data" + i;
+            data.className = "data";
+            if (ScoutingData[i].length === 13) {
+                data.innerHTML = "Team Number: " + ScoutingData[i][0] + "<br>" +
+                    "Game Pieces: " + ScoutingData[i][1] + "<br>" +
+                    "Driver Experience: " + ScoutingData[i][2] + "<br>" +
+                    "Drive Train: " + ScoutingData[i][3] + "<br>" +
+                    "Auto Plan: " + ScoutingData[i][4] + "<br>" +
+                    "Game Piece Pickup: " + ScoutingData[i][5] + "<br>" +
+                    "Cycle Time (seconds): " + ScoutingData[i][6] + "<br>" +
+                    "Scoring Location: " + ScoutingData[i][7] + "<br>" +
+                    "Docking and Engaging: " + ScoutingData[i][8] + "<br>" +
+                    "Picture: " + ScoutingData[i][9] + "<br>" +
+                    "Comments: " + ScoutingData[i][10] + "<br>" +
+                    "Time: " + ScoutingData[i][12] + "<br>";
+
+            } else if (ScoutingData[i].length === 15) {
+                data.innerHTML = "Team Number: " + ScoutingData[i][0] + "<br>" +
+                    "Match Number: " + ScoutingData[i][1] + "<br>" +
+                    "Alliance Color: " + ScoutingData[i][2] + "<br>" +
+                    "Leave Community: " + ScoutingData[i][3] + "<br>" +
+                    "Auto Cube Scoring: " + ScoutingData[i][4] + "<br>" +
+                    "Auto Cone Scoring: " + ScoutingData[i][5] + "<br>" +
+                    "Auto Balance: " + ScoutingData[i][6] + "<br>" +
+                    "Defensive Play: " + ScoutingData[i][7] + "<br>" +
+                    "Teleop Cube Scoring: " + ScoutingData[i][8] + "<br>" +
+                    "Teleop Cone Scoring: " + ScoutingData[i][9] + "<br>" +
+                    "Cargo Location: " + ScoutingData[i][10] + "<br>" +
+                    "Teleop Balance: " + ScoutingData[i][11] + "<br>" +
+                    "Comments: " + ScoutingData[i][12] + "<br>" +
+                    "Time: " + ScoutingData[i][14] + "<br>";
+            }
+            data.style.display = "none";
+            box.appendChild(data);
+
+            box.appendChild(document.createElement("br"));
+
+                }
+            }
+        });
     </script>
 </body>
 

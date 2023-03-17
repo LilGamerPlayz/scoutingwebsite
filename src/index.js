@@ -8,7 +8,7 @@ const app = express();
 //The Blue Alliance API
 
 const BlueAlliance = require('bluealliance');
-const blueAlliance = new BlueAlliance("fdLcRddgjqf2JcAbNl1xMyD5aOCDxEYuECPnXgOtuy8TTq3oVDMCstqadnqfhWNb");
+const tba = new BlueAlliance("fdLcRddgjqf2JcAbNl1xMyD5aOCDxEYuECPnXgOtuy8TTq3oVDMCstqadnqfhWNb");
 
 
 //Google Sheets API
@@ -273,4 +273,29 @@ app.post("/request", (req, res) => {
         console.log(error);
         res.status(500).send(error.message);
     }
+});
+
+
+
+app.post("/matches", (req, res) => {
+    try {
+    let data = req.body;
+    console.log(data);
+
+
+    var main = async function () {
+        var team = await tba.getTeam(data.TeamNumber);
+        console.log(team.nickname);
+
+        res.status(200).send({
+            "message": "Match Data Received",
+            "TeamNames": team.nickname
+        });
+    }
+
+    main()
+
+} catch (err) {
+    res.status(500).send(err.message);
+}
 });
