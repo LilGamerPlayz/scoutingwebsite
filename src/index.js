@@ -7,7 +7,8 @@ const app = express();
 
 //The Blue Alliance API
 
-const tba = require ("tba");
+const BlueAlliance = require('bluealliance');
+const blueAlliance = new BlueAlliance("fdLcRddgjqf2JcAbNl1xMyD5aOCDxEYuECPnXgOtuy8TTq3oVDMCstqadnqfhWNb");
 
 
 //Google Sheets API
