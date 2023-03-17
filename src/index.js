@@ -299,3 +299,7 @@ app.post("/matches", (req, res) => {
     res.status(500).send(err.message);
 }
 });
+
+app.post("/updateData", (req, res) => {
+    let data = req.body;
+});
