@@ -69,3 +69,20 @@ html {
 #SubmitBox {
     display: none;
 }
+
+@media screen and (max-width: 600px) {
+    body {
+        position: center;
+    }
+
+    #Image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .submitbox {
+        font-size: 30%;
+        width: 100%;
+        height: 30%;
+    }
+}
