@@ -279,29 +279,150 @@ app.post("/request", (req, res) => {
 
 app.post("/matches", (req, res) => {
     try {
-    let data = req.body;
-    //console.log(data);
+        let data = req.body;
+        //console.log(data);
 
 
-    var main = async function () {
-        var team = await tba.getTeam(data.TeamNumber);
-        //console.log(team.nickname);
+        var main = async function () {
+            var team = await tba.getTeam(data.TeamNumber);
+            //console.log(team.nickname);
 
-        res.status(200).send({
-            "message": "Match Data Received",
-            "TeamNames": team.nickname
-        });
+            res.status(200).send({
+                "message": "Match Data Received",
+                "TeamNames": team.nickname
+            });
+        }
+
+        main()
+
+    } catch (err) {
+        res.status(500).send(err.message);
     }
-
-    main()
-
-} catch (err) {
-    res.status(500).send(err.message);
-}
 });
 
 app.post("/updateData", (req, res) => {
-    let data = req.body;
-    //console.log(data);
-    res.status(200).send({data});
+    try {
+        let data = [];
+
+        const auth = new google.auth.JWT(
+            key.client_email,
+            null,
+            key.private_key,
+            ['https://www.googleapis.com/auth/spreadsheets']
+        );
+
+        let recievedData = req.body;
+        //console.log(recievedData);
+
+        async function readFromSheet(auth) {
+            const sheets = google.sheets({ version: 'v4', auth });
+            const request1 = {
+                spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
+                range: 'Pit-Scouting!A2:M10000',
+            };
+            const request2 = {
+                spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
+                range: 'Match-Scouting!A2:O10000',
+            };
+            try {
+                let response = await sheets.spreadsheets.values.get(request1);
+                let rows = response.data.values;
+                if (rows.length) {
+                    data.push(...rows);
+                }
+                response = await sheets.spreadsheets.values.get(request2);
+                rows = response.data.values;
+                if (rows.length) {
+                    data.push(...rows);
+                }
+                wait();
+                //console.log(JSON.stringify(data, null, 2));
+            } catch (err) {
+                console.error(err);
+            }
+            return data;
+        }
+
+
+
+        // Assume PreviousScoutingData and data are two arrays of objects
+        // Convert PreviousScoutingData into a JSON string
+        async function wait() {
+
+            var previousDataString = JSON.stringify(recievedData.PreviousScoutingData);
+
+            //console.log(data)
+
+            // Loop over the data array
+            for (var i = 0; i < data.length; i++) {
+                // Get the current row
+                var row = data[i];
+
+                //console.log(data[i]);
+
+                // Convert the row into a JSON string
+                var rowString = JSON.stringify(row);
+
+                // Compare the strings
+                if (previousDataString === rowString) {
+                    // The row has equal JSON value to PreviousScoutingData
+                    console.log({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
+                    console.log(row + " - " + recievedData.PreviousScoutingData);
+                    res.status(200).send({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
+
+                    // Assume you have obtained an authorized client instance
+                    var sheets = google.sheets('v4');
+
+                    // Specify the spreadsheet ID and sheet ID
+                    var spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
+                    var sheetId = 0; // The first sheet has an ID of 0
+
+                    // Specify the row index to delete (zero-based)
+                    var rowIndex = i; // This will delete the third row
+
+                    // Create a batchUpdate request with a deleteDimension request
+                    var request = {
+                        spreadsheetId: spreadsheetId,
+                        resource: {
+                            requests: [
+                                {
+                                    deleteDimension: {
+                                        range: {
+                                            sheetId: sheetId,
+                                            dimension: 'ROWS',
+                                            startIndex: rowIndex,
+                                            endIndex: rowIndex + 1
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    };
+
+                    // Send the request
+                    sheets.spreadsheets.batchUpdate(request, function (err, response) {
+                        if (err) {
+                            // Handle error
+                            console.error(err);
+                            return;
+                        }
+
+                        // The request was successful
+                        console.log("The row was deleted");
+                    });
+                    break; // Exit the loop if you only want to find one match
+                } else {
+                    // The row does not have equal JSON value to PreviousScoutingData
+                    console.log({ response: "The row at index " + i + " does not have equal JSON value to PreviousScoutingData" });
+
+                    //console.log(row + " - " + recievedData.PreviousScoutingData);
+                }
+            }
+        }
+
+        readFromSheet(auth);
+
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 });

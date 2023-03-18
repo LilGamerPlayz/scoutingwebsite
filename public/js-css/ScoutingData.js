@@ -181,6 +181,11 @@ function runChange(element) {
 
     const pTags = parent.getElementsByTagName("input");
 
+    let id = parent.id;
+    console.log(id);
+
+    console.log(ScoutingData[id])
+
     if (pTags.length === 13) {
         sendDataToServer({
             TeamNumber: pTags[0].value,
@@ -195,7 +200,8 @@ function runChange(element) {
             Picture: pTags[9].value,
             Comments: pTags[10].value,
             Event: pTags[11].value,
-            Time: pTags[12].value
+            Time: pTags[12].value,
+            PreviousScoutingDataScoutingData: ScoutingData[id]
         });
         //console.log(pTags);
     } else if (pTags.length === 15) {
@@ -214,7 +220,8 @@ function runChange(element) {
             TeleopBalance: pTags[11].value,
             Comments: pTags[12].value,
             Event: pTags[13].value,
-            Time: pTags[14].value
+            Time: pTags[14].value,
+            PreviousScoutingData: ScoutingData[id]
         });
     }
 }
@@ -225,11 +232,11 @@ function sendDataToServer(data) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    });
-    
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        });
+
 }
