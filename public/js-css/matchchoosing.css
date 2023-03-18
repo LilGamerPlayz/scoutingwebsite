@@ -1,0 +1,139 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#ScoutingButtons {
+    margin-top: 15%;
+
+}
+
+#Match-Scouting,
+#Pit-Scouting {
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+#leftHalf {
+    background: url("/items/MatchImage.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#rightHalf {
+    background: url("/items/PitsImage.jpg");
+    background-repeat: no-repeat;
+    margin: 0;
+    background-size: cover;
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#rightHalf::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.2s ease-in-out;
+}
+
+#rightHalf:hover::after {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#leftHalf::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.2s ease-in-out;
+}
+
+#leftHalf:hover::after {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#Pit-Scouting {
+    font-size: 150px;
+    font-family: "Arial";
+    font-weight: bold;
+    color: white;
+}
+
+#Match-Scouting {
+    font-size: 150px;
+    font-family: "Arial";
+    font-weight: bold;
+    color: white
+}
+
+#goBackButton {
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    z-index: 1000;
+}
+
+@media screen and (min-width :1400px) {
+    #leftHalf {
+        width: 50%;
+        height: 100%;
+        top: 0px
+    }
+
+    #rightHalf {
+        width: 50%;
+        height: 100%;
+        bottom: auto
+    }
+
+    #goBackButton {
+        bottom: -10px
+    }
+}
+
+/* Mobile Support */
+
+@media screen and (max-width :1400px) {
+    #Pit-Scouting {
+        font-size: 50px
+    }
+
+    #Match-Scouting {
+        font-size: 50px
+    }
+
+    #goBackButton {
+        bottom: -10px
+    }
+}

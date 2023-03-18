@@ -51,12 +51,14 @@ function createBoxes() {
                 body: JSON.stringify({
                     "TeamNumber": ScoutingData[i][0],
                     "Event": ScoutingData[i][11]
+                    //"Year": ScoutingData[i][12].split("/")[2].split(",")[0]
                 })
             }
 
             fetch("/matches", Matches)
                 .then(response => response.json())
                 .then(data => {
+                    //console.log(data)
                     TeamName = data;
                     Create();
 
@@ -70,12 +72,15 @@ function createBoxes() {
                 body: JSON.stringify({
                     "TeamNumber": ScoutingData[i][0],
                     "Event": ScoutingData[i][13]
+                    //"Year": ScoutingData[i][14].split("/")[2].split(",")[0]
+                    
                 })
             }
 
             fetch("/matches", Matches)
                 .then(response => response.json())
                 .then(data => {
+                    //console.log(data)
                     TeamName = data;
                     Create();
                 });

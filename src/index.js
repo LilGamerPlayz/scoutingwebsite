@@ -10,6 +10,7 @@ const app = express();
 const BlueAlliance = require('bluealliance');
 const tba = new BlueAlliance("fdLcRddgjqf2JcAbNl1xMyD5aOCDxEYuECPnXgOtuy8TTq3oVDMCstqadnqfhWNb");
 
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 //Google Sheets API
 const { google } = require('googleapis');
@@ -31,6 +32,22 @@ app.use(express.json({ limit: '5mb' }));
 var data = "";
 
 let nextLine = "\r\n";
+
+async function callTBA(request) {
+    var authkey = this.authkey;
+    
+    if (request !== "/status") { this.status = await this.callTBA("/status") }
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() { if (this.readyState === 4) resolve(JSON.parse(this.responseText)) }
+
+        xhr.open("GET", "https://www.thebluealliance.com/api/v3" + request);
+        xhr.setRequestHeader("X-TBA-Auth-Key", authkey);
+        xhr.send();
+    });
+}
+
 
 //Sends pit scouting data to google sheets
 app.post('/pitscouting', (req, res) => {
@@ -282,19 +299,41 @@ app.post("/matches", (req, res) => {
         let data = req.body;
         //console.log(data);
 
+        var main = async function (eventCode, year, fullEventKey) {
 
-        var main = async function () {
+           // var event = await tba.getEvent(eventCode, year);
+
+            //console.log(event);
+            //console.log(key, fullEventKey);
+
             var team = await tba.getTeam(data.TeamNumber)
-            //console.log(team.nickname);
+            //var teams = await tba.getMatchesAtEvent(fullEventKey);
+            //var matches = await tba.getEventsForTeam(data.TeamNumber)
+            //console.log(teams);
 
             res.status(200).send({
                 "message": "Match Data Received",
-                "TeamNames": team.nickname
+                "TeamNames": team.nickname,
+                //"Matches": matches
             })
         }
 
-        main()
+        /*
+        let key;
+        async function transformKey(competition, year) {
+            let shortCode = competition.split(' ').map(word => word[0]).join('').toLowerCase();
+            let dayMatch = competition.match(/Day (\d+)/);
+            if (dayMatch) {
+                shortCode += dayMatch[1];
+            }
+            key = `${shortCode}`;
+            console.log(key);
+            console.log(`${year}ca${shortCode}`)
+        }
 
+        let eventKey1 = transformKey(data.Event, parseInt(data.Year));
+        */
+        main(/*key, parseInt(data.Year), eventKey1*/);
     } catch (err) {
         res.status(500).send(err.message);
     }
