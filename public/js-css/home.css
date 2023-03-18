@@ -2,6 +2,12 @@ body {
     background-size: 100px;
 }
 
+#Image {
+    width: 25%;
+    height: 25%;
+    border-radius: 20px;
+}
+
 #Scouting1 {
     margin-top: 5%;
     font-size: 500%;

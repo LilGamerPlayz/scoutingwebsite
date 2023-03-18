@@ -58,10 +58,7 @@ function createBoxes() {
                 .then(response => response.json())
                 .then(data => {
                     TeamName = data;
-                    async function Run() {
-                        await Create();
-                    }
-                    Run();
+                    Create();
                 });
         } else if (ScoutingData[i].length === 15) {
             let Matches = {
@@ -79,14 +76,11 @@ function createBoxes() {
                 .then(response => response.json())
                 .then(data => {
                     TeamName = data;
-                    async function Run() {
-                        await Create();
-                    }
-                    Run();
+                    Create();
                 });
         }
 
-        function Create() {
+        async function Create() {
 
             // Create the box
             let box = document.createElement("div");
@@ -121,10 +115,10 @@ function createBoxes() {
             let button = document.createElement("button");
             button.id = "button" + i;
             button.onclick = function () {
-                if (document.getElementById("data" + i).style.display === "none") {
-                    document.getElementById("data" + i).style.display = "block";
+                if (document.getElementById(i).style.display === "none") {
+                    document.getElementById(i).style.display = "block";
                 } else {
-                    document.getElementById("data" + i).style.display = "none";
+                    document.getElementById(i).style.display = "none";
                 }
             };
             box.appendChild(button);
@@ -138,7 +132,7 @@ function createBoxes() {
             box.appendChild(document.createElement("br"));
 
             let data = document.createElement("div");
-            data.id = "data" + i;
+            data.id = i;
             data.className = "data";
             if (ScoutingData[i].length === 13) {
                 data.innerHTML = "Team Number: " + "<input class='datainput' type='text' value='" + ScoutingData[i][0] + "'><br>" +
@@ -180,9 +174,13 @@ const inputs = document.querySelectorAll('.datainput');
 
 inputs.forEach(input => {
     input.addEventListener('input', () => {
-      sendDataToServer(input.value);
+        console.log(input.value);
     });
   });
+
+function getAllValues() {
+
+}
 
 function sendDataToServer(data) {
     fetch('/updateData', {
