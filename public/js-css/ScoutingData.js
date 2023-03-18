@@ -182,9 +182,7 @@ function runChange(element) {
     const pTags = parent.getElementsByTagName("input");
 
     let id = parent.id;
-    console.log(id);
-
-    console.log(ScoutingData[id])
+    //console.log(id);
 
     if (pTags.length === 13) {
         sendDataToServer({
@@ -201,7 +199,7 @@ function runChange(element) {
             Comments: pTags[10].value,
             Event: pTags[11].value,
             Time: pTags[12].value,
-            PreviousScoutingDataScoutingData: ScoutingData[id]
+            PreviousScoutingData: ScoutingData[id]
         });
         //console.log(pTags);
     } else if (pTags.length === 15) {
@@ -236,7 +234,7 @@ function sendDataToServer(data) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
+            //console.log('Success:', data);
         });
 
 }

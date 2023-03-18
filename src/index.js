@@ -358,8 +358,7 @@ app.post("/updateData", (req, res) => {
         async function wait() {
 
             var previousDataString = JSON.stringify(recievedData.PreviousScoutingData);
-
-            //console.log(data)
+            //console.log(recievedData)
 
             // Loop over the data array
             for (var i = 0; i < data.length; i++) {
@@ -371,161 +370,131 @@ app.post("/updateData", (req, res) => {
                 // Convert the row into a JSON string
                 var rowString = JSON.stringify(row);
 
-
                 // Compare the strings
                 if (previousDataString === rowString) {
                     // The row has equal JSON value to PreviousScoutingData
-                    console.log({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
-                    console.log(row + " - " + recievedData.PreviousScoutingData);
+                    //console.log({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
+                    //console.log(row + " - " + recievedData.PreviousScoutingData);
 
+                    console.log(recievedData.PreviousScoutingData.length)
 
-                    // Assume you have obtained an authorized client instance
+                    if (recievedData.PreviousScoutingData.length == 13) {
+                        // Assume you have obtained an authorized client instance
+                        const sheets = google.sheets({ version: 'v4', auth });
 
-                    const sheets = google.sheets({ version: 'v4', auth });
+                        // Specify the spreadsheet ID and sheet ID
+                        var spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
+                        var sheetId = 0; // The first sheet has an ID of 0
 
-                    // Specify the spreadsheet ID and sheet ID
-                    var spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
-                    if (recievedData.PreviousScoutingData.length == 12) {
-                        sheetId = 0;
+                        // Specify the range to clear (A1 notation)
+                        var range = 'Pit-Scouting!A2:M10000';
+
+                        // Create an update request with empty values
+                        var request = {
+                            spreadsheetId: spreadsheetId,
+                            range: range,
+                            valueInputOption: 'RAW',
+                            resource: {
+                                values: [[
+                                    recievedData.TeamNumber,
+                                    recievedData.GamePieces,
+                                    recievedData.DriverExperience,
+                                    recievedData.DriveTrain,
+                                    recievedData.AutoPlan,
+                                    recievedData.GamePiecePickup,
+                                    recievedData.CycleTime,
+                                    recievedData.ScoringLocation,
+                                    recievedData.DockingEngaging,
+                                    recievedData.Picture,
+                                    recievedData.Comments,
+                                    recievedData.Event,
+                                    recievedData.Time,
+                                ]] // An empty array of arrays represents an empty row
+                            }
+                        };
+
+                        // Send the request
+                        sheets.spreadsheets.values.update(request, function (err, response) {
+                            if (err) {
+                                // Handle error
+                                //console.error(err);
+                                return;
+                            } else if (response) {
+                                // Handle response
+                                //console.log(response);
+                            }
+
+                            // The request was successful
+                            //console.log("The row was cleared");
+                        });
                     } else if (recievedData.PreviousScoutingData.length == 15) {
-                        sheetId = 1991114456;
+                        // Assume you have obtained an authorized client instance
+                        const sheets = google.sheets({ version: 'v4', auth });
+
+                        // Specify the spreadsheet ID and sheet ID
+                        var spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
+                        var sheetId = 1991114456; // The first sheet has an ID of 0
+
+                        // Specify the range to clear (A1 notation)
+                        var range = 'Match-Scouting!A2:O10000';
+
+                        // Create an update request with empty values
+                        var request = {
+                            spreadsheetId: spreadsheetId,
+                            range: range,
+                            valueInputOption: 'RAW',
+                            resource: {
+                                values: [[
+                                    recievedData.TeamNumber,
+                                    recievedData.MatchNumber,
+                                    recievedData.AllianceColor,
+                                    recievedData.LeaveCommunity,
+                                    recievedData.AutoCubeScoring,
+                                    recievedData.AutoConeScoring,
+                                    recievedData.AutoBalance,
+                                    recievedData.DefensivePlay,
+                                    recievedData.TeleopCubeScoring,
+                                    recievedData.TeleopConeScoring,
+                                    recievedData.CargoLocation,
+                                    recievedData.TeleopBalance,
+                                    recievedData.Comments,
+                                    recievedData.Event,
+                                    recievedData.Time
+                                ]] // An empty array of arrays represents an empty row
+                            }
+                        };
+
+                        // Send the request
+                        sheets.spreadsheets.values.update(request, function (err, response) {
+                            if (err) {
+                                // Handle error
+                                //console.error(err);
+                                return;
+                            } else if (response) {
+                                // Handle response
+                                //console.log(response);
+                            }
+
+                            // The request was successful
+                            //console.log("The row was cleared");
+                        });
+                    } else if (err) {
+                        // Handle error
+                        //console.log(err);
                     }
 
-                    // Specify the row index to delete (zero-based)
-                    var rowIndex = i; // This will delete the third row
+                    // The request was successful
+                    res.status(200).send({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
+                    //console.log({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
 
-                    // Create a batchUpdate request with a deleteDimension request
-                    var request = {
-                        spreadsheetId: spreadsheetId,
-                        resource: {
-                            requests: [
-                                {
-                                    deleteDimension: {
-                                        range: {
-                                            sheetId: sheetId,
-                                            dimension: 'ROWS',
-                                            startIndex: rowIndex,
-                                            endIndex: rowIndex + 1
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    };
-
-
-                    // Send the request
-                    sheets.spreadsheets.batchUpdate(request, function (err, response) {
-                        if (response) {
-                            if (recievedData.PreviousScoutingData.length == 12) {
-                                // Assume you have obtained an authorized client instance
-                                const sheets = google.sheets({ version: 'v4', auth });
-
-                                // Specify the spreadsheet ID and sheet ID
-                                var spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
-                                var sheetName = 'Pit-Scouting!A2:M10000';
-
-                                // Specify the values to append
-                                var values = [
-                                    {
-                                        Team: recievedData.TeamNumber,
-
-                                    }
-                                ];
-
-                                // Create an append request
-                                var request = {
-                                    spreadsheetId: spreadsheetId,
-                                    range: sheetName,
-                                    valueInputOption: 'RAW',
-                                    insertDataOption: 'INSERT_ROWS',
-                                    resource: {
-                                        values: values
-                                    }
-                                };
-
-                                // Send the request
-                                sheets.spreadsheets.values.append(request, function (err, response) {
-                                    if (err) {
-                                        // Handle error
-                                        console.error(err);
-                                        return;
-                                    }
-
-                                    // The request was successful
-                                    console.log("The row was appended");
-                                });
-                            } else if (recievedData.PreviousScoutingData.length == 15) {
-                                // Assume you have obtained an authorized client instance
-                                const sheets = google.sheets({ version: 'v4', auth });
-
-                                // Specify the spreadsheet ID and sheet ID
-                                var spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
-                                var sheetName = 'Match-Scouting!A2:O10000';
-
-                                // Specify the values to append
-                                var values = [
-                                    {
-                                        TeamNumber: recievedData[0],
-                                        MatchNumber: recievedData[1],
-                                        AllianceColor: recievedData[2],
-                                        LeaveCommunity: recievedData[3],
-                                        AutoCubeScoring: recievedData[4],
-                                        AutoConeScoring: recievedData[5],
-                                        AutoBalance: recievedData[6],
-                                        DefensivePlay: recievedData[7],
-                                        TeleopCubeScoring: recievedData[8],
-                                        TeleopConeScoring: recievedData[9],
-                                        CargoLocation: recievedData[10],
-                                        TeleopBalance: recievedData[11],
-                                        Comments: recievedData[12],
-                                        Event: recievedData[13],
-                                        Time: recievedData[14]
-                                    }
-                                ];
-
-                                // Create an append request
-                                var request = {
-                                    spreadsheetId: spreadsheetId,
-                                    range: sheetName,
-                                    valueInputOption: 'RAW',
-                                    insertDataOption: 'INSERT_ROWS',
-                                    resource: {
-                                        values: values
-                                    }
-                                };
-
-                                // Send the request
-                                sheets.spreadsheets.values.append(request, function (err, response) {
-                                    if (err) {
-                                        // Handle error
-                                        console.error(err);
-                                        return;
-                                    }
-
-                                    // The request was successful
-                                    console.log("The row was appended");
-                                });
-                            }
-                        } else if (err) {
-                            // Handle error
-                            console.log(err);
-                        }
-
-                        // The request was successful
-                        res.status(200).send({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
-                        console.log("The row was deleted");
-
-                    });
                     break;
                 } else {
                     // The row does not have equal JSON value to PreviousScoutingData
-                    console.log({ response: "The row at index " + i + " does not have equal JSON value to PreviousScoutingData" });
-
-                    //console.log(row + " - " + recievedData.PreviousScoutingData);
+                    //console.log({ response: "The row at index " + i + " does not have equal JSON value to PreviousScoutingData" });
                 }
             }
         }
+
 
         readFromSheet(auth);
 
