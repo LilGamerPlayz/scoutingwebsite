@@ -1,0 +1,64 @@
+body {
+    background: url("/items/MatchImage.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: center;
+}
+
+#center h1 {
+    color: white;
+}
+
+#center input[type="text"] {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 10px;
+    color: black
+}
+
+#center {
+    background: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px;
+    width: 40%;
+    margin: 0 auto;
+}
+
+#NewScreen, #Back {
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.selection {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+.input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    #center {
+        width: 100%;
+    }
+}

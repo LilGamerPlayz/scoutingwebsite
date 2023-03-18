@@ -20,7 +20,33 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <style>
-        #AllianceColorInput {
+        body {
+            background: url("/items/MatchImage.webp");
+            background-size: cover;
+            background-repeat: no-repeat;
+            align-self: center;
+        }
+
+        #center {
+            background: rgba(0, 0, 0, 0.75);
+            border-radius: 10px;
+            padding: 20px;
+            width: 40%;
+        }
+
+        #center div {
+            color: white;
+        }
+
+        #center input[type="text"] {
+            border: none;
+            border-bottom: 2px solid #ccc;
+            padding: 10px;
+            color: black
+        }
+
+        #AllianceColorInput,
+        #center input[type="text"] {
             padding: 12px 20px;
             margin: 8px 0;
             display: inline-block;
@@ -28,8 +54,16 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        
-        #StartMatch {
+
+        #Match {
+            color: white;
+        }
+
+        .options {
+            color: black
+        }
+ 
+        #StartMatch, #Back {
             color: black;
             padding: 15px 32px;
             text-align: center;
@@ -39,6 +73,12 @@
             margin: 4px 2px;
             cursor: pointer;
             border-radius: 5px;
+        }
+
+        @media screen and (max-width: 600px) {
+            #center {
+                width: 100%;
+            }
         }
     </style>
 
@@ -66,34 +106,40 @@
             localStorage.setItem("MatchNum", MatchInput);
             localStorage.setItem("TeamNum", TeamInput);
             localStorage.setItem("TeamColor", TeamColorInput);
-            
+
             location.href = "/ScoutingType/Match-Scouting/Autonomous";
         }
     </script>
 </head>
 
 <body>
-    <button onclick="window.location='..'" class="btn btn-primary">Go Back</button>
+    <br><br><br><br><br><br>
     <center>
-        <h1 id="Match">Match Scouting Form</h1>
-        <div id="MatchNum">
-            <h1 id="MatchNumTitle">What is the match number?</h1>
-            <input type="number" id="MatchNumInput" pattern="[0-9]*" placeholder="1" onchange="Match()" min="0" max="999">
-        </div>
-        <div id="TeamNum">
-            <h1 id="TeamNumTitle">What is the team number?</h1>
-            <input type="number" id="TeamNumInput" pattern="[0-9]*" placeholder="4079" onchange="TeamNumber()" min="1" max="99999">
-        </div>
-        <div id="AllianceColor">
-            <h1 id="AllianceColorTitle">What is their alliance color?</h1>
-            <select id="AllianceColorInput" onchange="AllianceColor()">
-                <option value="None">Choose One</option>
-                <option value="Red">Red</option>
-                <option value="Blue">Blue</option>
-            </select>
-        </div>
+        <div id="center">
 
-        <br><br><br>
-        <button id="StartMatch" onclick="StartMatch()">Start Match</button>
+            <h1 id="Match">Match Scouting Form</h1>
+            <div id="MatchNum">
+                <h1 id="MatchNumTitle">What is the match number?</h1>
+                <input class="options" type="number" id="MatchNumInput" pattern="[0-9]*" placeholder="1"
+                    onchange="Match()" min="0" max="999">
+            </div>
+            <div id="TeamNum">
+                <h1 id="TeamNumTitle">What is the team number?</h1>
+                <input class="options" type="number" id="TeamNumInput" pattern="[0-9]*" placeholder="4079"
+                    onchange="TeamNumber()" min="1" max="99999">
+            </div>
+            <div id="AllianceColor">
+                <h1 id="AllianceColorTitle">What is their alliance color?</h1>
+                <select id="AllianceColorInput" onchange="AllianceColor()" class="options">
+                    <option value="None" class="options">Choose One</option>
+                    <option value="Red" class="options">Red</option>
+                    <option value="Blue" class="options">Blue</option>
+                </select>
+            </div>
+
+            <br><br><br>
+            <button id="StartMatch" onclick="StartMatch()">Start Match</button>
+            <button id="Back" onclick="window.location='..'">Go Back</button>
+        </div>
     </center>
 </body>

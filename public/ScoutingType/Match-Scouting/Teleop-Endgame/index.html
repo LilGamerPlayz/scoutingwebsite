@@ -25,93 +25,92 @@
 </head>
 
 <body onload="OnLoad()">
-    <button onclick="window.location='../Autonomous'" class="btn btn-primary">Go Back</button>
-    <center>
-        <h1 id="TeleOpTitle">Tele-Op/End Game</h1>
+    <center id="center">
+        <div>
+            <h1 id="TeleOpTitle">Tele-Op/End Game</h1>
 
-        <div id="Defense">
-            <h1 id="DefenseLabel">Did they play defense? On who?</h1>
-            <select id="DefenseInput" class="selection" onchange="PlayedDefense()">
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-            </select>
-            <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958" class="input"
-                style="display: none;">
-        </div>
-
-        <div id="Cubes">
-            <h1 id="CubesLabel">How many cubes did they score?</h1>
-            <input type="number" id="CubesInput" placeholder="0" class="input" value="0" min="0" max="999"
-                onchange="Cubes()" readonly>
-            <button type="button" id="CubesAddOne" class="input"
-                onclick="if(document.getElementById('CubesInput').value < 999) {document.getElementById('CubesInput').value = parseInt(document.getElementById('CubesInput').value) + 1}">Add
-                1 </button>
-            <button type="button" id="CubesRemoveOne" class="input"
-                onclick="if(document.getElementById('CubesInput').value > 0) {document.getElementById('CubesInput').value = parseInt(document.getElementById('CubesInput').value) - 1}">Remove
-                1</button>
-        </div>
-
-        <div id="Cones">
-            <h1 id="ConesLabel">How many cones did they score?</h1>
-            <input type="number" id="ConesInput" placeholder="0" class="input" value="0" min="0" max="999"
-                onchange="Cones()" readonly>
-            <button type="button" id="ConesAddOne" class="input"
-                onclick="if(document.getElementById('ConesInput').value < 999) {document.getElementById('ConesInput').value = parseInt(document.getElementById('ConesInput').value) + 1}">Add
-                1 </button>
-            <button type="button" id="ConesRemoveOne" class="input"
-                onclick="if(document.getElementById('ConesInput').value > 0) {document.getElementById('ConesInput').value = parseInt(document.getElementById('ConesInput').value) - 1}">Remove
-                1</button>
-        </div>
-
-        <div id="Cargo">
-            <h1 id="CargoLabel">Where did they pick up cargo from?</h1>
-            <select id="CargoInput" class="selection" onchange="Cargo()">
-                <option value="Shelf">Shelf</option>
-                <option value="Floor">Loading Zone Floor</option>
-                <option value="Field">Mid-Field</option>
-            </select>
-        </div>
-
-        <div id="Balanced">
-            <h1 id="BalancedLabel">Did they balance?</h1>
-            <select id="BalancedInput" class="selection" onchange="Balanced()">
-                <option value="Engaged">Docked and Engaged</option>
-                <option value="Docked">Docked</option>
-                <option value="Not">Not on charging station</option>
-            </select>
-        </div>
-
-        <br><br>
-
-        <div id="Comments" class="input">
-            <h1 id="CommentsLabel">Additional Comments</h1>
-            <textarea id="CommentsInput" placeholder="Comments" onchange="AfterComments()"></textarea>
-        </div>
-
-        <br><br>
-
-        <div id="Competition">
-            <h1 id="CompetitionLabel">What competition is this?</h1>
-            <input type="text" id="CompetitionInput" placeholder="OCR, AVR, BB" onchange="Competition()" maxlength="5">
-        </div>
-
-        <br><br><br>
-        <br><br><br>
-
-        <button type="submit" onclick="Submit(); MatchSubmit();">
-            <h1 id="SubmitButton">Submit</h1>
-        </button>
-
-        <div class="submitbox" id="SubmitBox">
-            <h1>Are you sure you want to submit?</h1>
-            <br>
-            <div id="SubmitCheck">
-                <button id="SubmitYes">Yes</button>
-                <button id="SubmitNo">No</button>
+            <div id="Defense">
+                <h1 id="DefenseLabel">Did they play defense? On who?</h1>
+                <select id="DefenseInput" class="selection" onchange="PlayedDefense()">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+                <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958" class="input"
+                    style="display: none;">
             </div>
-        </div>
 
-        <br><br><br><br><br>
+            <div id="Cubes">
+                <h1 id="CubesLabel">How many cubes did they score?</h1>
+                <input type="number" id="CubesInput" placeholder="0" class="input" value="0" min="0" max="999"
+                    onchange="Cubes()" readonly>
+                <button type="button" id="CubesAddOne" class="input"
+                    onclick="if(document.getElementById('CubesInput').value < 999) {document.getElementById('CubesInput').value = parseInt(document.getElementById('CubesInput').value) + 1}">Add
+                    1 </button>
+                <button type="button" id="CubesRemoveOne" class="input"
+                    onclick="if(document.getElementById('CubesInput').value > 0) {document.getElementById('CubesInput').value = parseInt(document.getElementById('CubesInput').value) - 1}">Remove
+                    1</button>
+            </div>
+
+            <div id="Cones">
+                <h1 id="ConesLabel">How many cones did they score?</h1>
+                <input type="number" id="ConesInput" placeholder="0" class="input" value="0" min="0" max="999"
+                    onchange="Cones()" readonly>
+                <button type="button" id="ConesAddOne" class="input"
+                    onclick="if(document.getElementById('ConesInput').value < 999) {document.getElementById('ConesInput').value = parseInt(document.getElementById('ConesInput').value) + 1}">Add
+                    1 </button>
+                <button type="button" id="ConesRemoveOne" class="input"
+                    onclick="if(document.getElementById('ConesInput').value > 0) {document.getElementById('ConesInput').value = parseInt(document.getElementById('ConesInput').value) - 1}">Remove
+                    1</button>
+            </div>
+
+            <div id="Cargo">
+                <h1 id="CargoLabel">Where did they pick up cargo from?</h1>
+                <select id="CargoInput" class="selection" onchange="Cargo()">
+                    <option value="Shelf">Shelf</option>
+                    <option value="Floor">Loading Zone Floor</option>
+                    <option value="Field">Mid-Field</option>
+                </select>
+            </div>
+
+            <div id="Balanced">
+                <h1 id="BalancedLabel">Did they balance?</h1>
+                <select id="BalancedInput" class="selection" onchange="Balanced()">
+                    <option value="Engaged">Docked and Engaged</option>
+                    <option value="Docked">Docked</option>
+                    <option value="Not">Not on charging station</option>
+                </select>
+            </div>
+
+            <br><br>
+
+            <div id="Comments" class="input">
+                <h1 id="CommentsLabel">Additional Comments</h1>
+                <textarea id="CommentsInput" placeholder="Comments" onchange="AfterComments()"></textarea>
+            </div>
+
+            <br><br>
+
+            <div id="Competition">
+                <h1 id="CompetitionLabel">What competition is this?</h1>
+                <input type="text" id="CompetitionInput" placeholder="OCR, AVR, BB" onchange="Competition()"
+                    maxlength="5">
+            </div>
+
+            <br><br><br>
+            <br><br><br>
+
+            <button type="submit" onclick="Submit(); MatchSubmit();" id="SubmitButton">Submit</button>
+            <button onclick="window.location='../Autonomous'" id="Back">Go Back</button>
+
+            <div class="submitbox" id="SubmitBox">Are you sure you want to submit?<br>
+                <div id="SubmitCheck">
+                    <button id="SubmitYes">Yes</button>
+                    <button id="SubmitNo">No</button>
+                </div>
+            </div>
+
+            <br><br><br><br><br>
+        </div>
     </center>
 
     <script>
@@ -164,7 +163,7 @@
             Balanced();
             Cubes();
             Cones();
-            
+
         }
 
         function Cargo() {

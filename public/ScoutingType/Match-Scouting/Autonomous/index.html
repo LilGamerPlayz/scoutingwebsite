@@ -19,85 +19,62 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="/js-css/matchauto.css">
 </head>
 
 <body onload="OnLoad()">
-    <button onclick="window.location='..'" class="btn btn-primary">Go Back</button>
-    <center>
-        <h1 id="AutonomousTitle">Autonomous</h1>
-        <br><br><br>
-        <div id="CommunityLeave">
-            <h1 id="CommuniyLeaveLabel">Did they leave the community?</h1>
-            <select id="CommunityLeaveInput" class="selection" onchange="CommunityLeave()">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+    <br><br>
+    <center id="center">
+        <div id="main">
+            <h1 id="AutonomousTitle">Autonomous</h1>
+            <br><br><br>
+            <div id="CommunityLeave">
+                <h1 id="CommuniyLeaveLabel">Did they leave the community?</h1>
+                <select id="CommunityLeaveInput" class="selection" onchange="CommunityLeave()">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div id="CubeScoring" onchange="CubeScoring()">
+                <h1 id="CubeScoringLabel">How many cubes did they score?</h1>
+                <input type="number" id="CubeScoringInput" placeholder="0" class="input" value="0" min="0" max="999"
+                    readonly>
+                <button type="button" id="CubeScoringButton" class="input"
+                    onclick="if(document.getElementById('CubeScoringInput').value < 999) {document.getElementById('CubeScoringInput').value = parseInt(document.getElementById('CubeScoringInput').value) + 1}">Add
+                    1 </button>
+                <button type="button" id="CubeScoringButton" class="input"
+                    onclick="if(document.getElementById('CubeScoringInput').value > 0) {document.getElementById('CubeScoringInput').value = parseInt(document.getElementById('CubeScoringInput').value) - 1}">Remove
+                    1</button>
+            </div>
+
+            <div id="ConeScoring">
+                <h1 id="ConeScoringLabel" onchange="ConeScoring()">How many cones did they score?</h1>
+                <input type="number" id="ConeScoringInput" placeholder="0" class="input" value="0" min="0" max="999"
+                    readonly>
+                <button type="button" id="ConeScoringButton" class="input"
+                    onclick="if(document.getElementById('ConeScoringInput').value < 999) {document.getElementById('ConeScoringInput').value = parseInt(document.getElementById('ConeScoringInput').value) + 1}">Add
+                    1 </button>
+                <button type="button" id="ConeScoringButton" class="input"
+                    onclick="if(document.getElementById('ConeScoringInput').value > 0) {document.getElementById('ConeScoringInput').value = parseInt(document.getElementById('ConeScoringInput').value) - 1}">Remove
+                    1</button>
+
+            </div>
+
+            <div id="BalanceOption">
+                <h1 id="BalanceOptionLabel" onchange="BalanceOption()">Did they balance?</h1>
+                <select id="BalanceOptionInput" class="selection">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <br><br><br>
+
+            <button type="button"onclick="TeleOp()" id="NewScreen">Tele-Op/EndGame</button>
+            <button onclick="window.location='..'" id="Back">Go Back</button>
         </div>
-
-        <div id="CubeScoring" onchange="CubeScoring()" >
-            <h1 id="CubeScoringLabel">How many cubes did they score?</h1>
-            <input type="number" id="CubeScoringInput" placeholder="0" class="input" value="0" min="0" max="999" readonly>
-            <button type="button" id="CubeScoringButton" class="input" onclick="if(document.getElementById('CubeScoringInput').value < 999) {document.getElementById('CubeScoringInput').value = parseInt(document.getElementById('CubeScoringInput').value) + 1}">Add 1 </button>
-            <button type="button" id="CubeScoringButton" class="input" onclick="if(document.getElementById('CubeScoringInput').value > 0) {document.getElementById('CubeScoringInput').value = parseInt(document.getElementById('CubeScoringInput').value) - 1}">Remove 1</button>
-        </div>
-
-        <div id="ConeScoring">
-            <h1 id="ConeScoringLabel" onchange="ConeScoring()">How many cones did they score?</h1>
-            <input type="number" id="ConeScoringInput" placeholder="0" class="input" value="0" min="0" max="999" readonly>
-            <button type="button" id="ConeScoringButton" class="input" onclick="if(document.getElementById('ConeScoringInput').value < 999) {document.getElementById('ConeScoringInput').value = parseInt(document.getElementById('ConeScoringInput').value) + 1}">Add 1 </button>
-            <button type="button" id="ConeScoringButton" class="input" onclick="if(document.getElementById('ConeScoringInput').value > 0) {document.getElementById('ConeScoringInput').value = parseInt(document.getElementById('ConeScoringInput').value) - 1}">Remove 1</button>
-
-        </div>
-
-        <div id="BalanceOption">
-            <h1 id="BalanceOptionLabel" onchange="BalanceOption()">Did they balance?</h1>
-            <select id="BalanceOptionInput" class="selection">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
-        </div>
-
-        <br><br><br>
-
-        <button type="button">
-            <h1 id="NewScreen" onclick="TeleOp()">Tele-Op/EndGame</h1>
-        </button>
     </center>
-
-    <style>
-
-        #NewScreen {
-            color: black;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 25px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .selection {
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 20px;
-        }
-
-        .input {
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 20px;
-        }
-    </style>
 
     <script>
 
