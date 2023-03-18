@@ -280,12 +280,12 @@ app.post("/request", (req, res) => {
 app.post("/matches", (req, res) => {
     try {
     let data = req.body;
-    console.log(data);
+    //console.log(data);
 
 
     var main = async function () {
         var team = await tba.getTeam(data.TeamNumber);
-        console.log(team.nickname);
+        //console.log(team.nickname);
 
         res.status(200).send({
             "message": "Match Data Received",
@@ -302,4 +302,6 @@ app.post("/matches", (req, res) => {
 
 app.post("/updateData", (req, res) => {
     let data = req.body;
+    //console.log(data);
+    res.status(200).send({data});
 });
