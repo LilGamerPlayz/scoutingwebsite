@@ -376,7 +376,7 @@ app.post("/updateData", (req, res) => {
                     //console.log({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
                     //console.log(row + " - " + recievedData.PreviousScoutingData);
 
-                    console.log(recievedData.PreviousScoutingData.length)
+                    //console.log(recievedData.PreviousScoutingData.length)
 
                     if (recievedData.PreviousScoutingData.length == 13) {
                         // Assume you have obtained an authorized client instance
