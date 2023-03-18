@@ -284,13 +284,13 @@ app.post("/matches", (req, res) => {
 
 
         var main = async function () {
-            var team = await tba.getTeam(data.TeamNumber);
+            var team = await tba.getTeam(data.TeamNumber)
             //console.log(team.nickname);
 
             res.status(200).send({
                 "message": "Match Data Received",
                 "TeamNames": team.nickname
-            });
+            })
         }
 
         main()
@@ -298,7 +298,10 @@ app.post("/matches", (req, res) => {
     } catch (err) {
         res.status(500).send(err.message);
     }
-});
+})
+
+
+
 
 app.post("/updateData", (req, res) => {
     try {
@@ -313,6 +316,9 @@ app.post("/updateData", (req, res) => {
 
         let recievedData = req.body;
         //console.log(recievedData);
+
+
+
 
         async function readFromSheet(auth) {
             const sheets = google.sheets({ version: 'v4', auth });
@@ -345,6 +351,8 @@ app.post("/updateData", (req, res) => {
 
 
 
+
+
         // Assume PreviousScoutingData and data are two arrays of objects
         // Convert PreviousScoutingData into a JSON string
         async function wait() {
@@ -363,19 +371,25 @@ app.post("/updateData", (req, res) => {
                 // Convert the row into a JSON string
                 var rowString = JSON.stringify(row);
 
+
                 // Compare the strings
                 if (previousDataString === rowString) {
                     // The row has equal JSON value to PreviousScoutingData
                     console.log({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
                     console.log(row + " - " + recievedData.PreviousScoutingData);
-                    res.status(200).send({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
+
 
                     // Assume you have obtained an authorized client instance
-                    var sheets = google.sheets('v4');
+
+                    const sheets = google.sheets({ version: 'v4', auth });
 
                     // Specify the spreadsheet ID and sheet ID
                     var spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
-                    var sheetId = 0; // The first sheet has an ID of 0
+                    if (recievedData.PreviousScoutingData.length == 12) {
+                        sheetId = 0;
+                    } else if (recievedData.PreviousScoutingData.length == 15) {
+                        sheetId = 1991114456;
+                    }
 
                     // Specify the row index to delete (zero-based)
                     var rowIndex = i; // This will delete the third row
@@ -399,18 +413,111 @@ app.post("/updateData", (req, res) => {
                         }
                     };
 
+
                     // Send the request
                     sheets.spreadsheets.batchUpdate(request, function (err, response) {
-                        if (err) {
+                        if (response) {
+                            if (recievedData.PreviousScoutingData.length == 12) {
+                                // Assume you have obtained an authorized client instance
+                                const sheets = google.sheets({ version: 'v4', auth });
+
+                                // Specify the spreadsheet ID and sheet ID
+                                var spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
+                                var sheetName = 'Pit-Scouting!A2:M10000';
+
+                                // Specify the values to append
+                                var values = [
+                                    {
+                                        Team: recievedData.TeamNumber,
+
+                                    }
+                                ];
+
+                                // Create an append request
+                                var request = {
+                                    spreadsheetId: spreadsheetId,
+                                    range: sheetName,
+                                    valueInputOption: 'RAW',
+                                    insertDataOption: 'INSERT_ROWS',
+                                    resource: {
+                                        values: values
+                                    }
+                                };
+
+                                // Send the request
+                                sheets.spreadsheets.values.append(request, function (err, response) {
+                                    if (err) {
+                                        // Handle error
+                                        console.error(err);
+                                        return;
+                                    }
+
+                                    // The request was successful
+                                    console.log("The row was appended");
+                                });
+                            } else if (recievedData.PreviousScoutingData.length == 15) {
+                                // Assume you have obtained an authorized client instance
+                                const sheets = google.sheets({ version: 'v4', auth });
+
+                                // Specify the spreadsheet ID and sheet ID
+                                var spreadsheetId = '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso';
+                                var sheetName = 'Match-Scouting!A2:O10000';
+
+                                // Specify the values to append
+                                var values = [
+                                    {
+                                        TeamNumber: recievedData[0],
+                                        MatchNumber: recievedData[1],
+                                        AllianceColor: recievedData[2],
+                                        LeaveCommunity: recievedData[3],
+                                        AutoCubeScoring: recievedData[4],
+                                        AutoConeScoring: recievedData[5],
+                                        AutoBalance: recievedData[6],
+                                        DefensivePlay: recievedData[7],
+                                        TeleopCubeScoring: recievedData[8],
+                                        TeleopConeScoring: recievedData[9],
+                                        CargoLocation: recievedData[10],
+                                        TeleopBalance: recievedData[11],
+                                        Comments: recievedData[12],
+                                        Event: recievedData[13],
+                                        Time: recievedData[14]
+                                    }
+                                ];
+
+                                // Create an append request
+                                var request = {
+                                    spreadsheetId: spreadsheetId,
+                                    range: sheetName,
+                                    valueInputOption: 'RAW',
+                                    insertDataOption: 'INSERT_ROWS',
+                                    resource: {
+                                        values: values
+                                    }
+                                };
+
+                                // Send the request
+                                sheets.spreadsheets.values.append(request, function (err, response) {
+                                    if (err) {
+                                        // Handle error
+                                        console.error(err);
+                                        return;
+                                    }
+
+                                    // The request was successful
+                                    console.log("The row was appended");
+                                });
+                            }
+                        } else if (err) {
                             // Handle error
-                            console.error(err);
-                            return;
+                            console.log(err);
                         }
 
                         // The request was successful
+                        res.status(200).send({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
                         console.log("The row was deleted");
+
                     });
-                    break; // Exit the loop if you only want to find one match
+                    break;
                 } else {
                     // The row does not have equal JSON value to PreviousScoutingData
                     console.log({ response: "The row at index " + i + " does not have equal JSON value to PreviousScoutingData" });
