@@ -1,3 +1,23 @@
+body {
+    background: url("/items/PitsImage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: center;
+}
+
+#center {
+    background: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px;
+    width: 40%;
+    margin: 0 auto;
+}
+
+#center h1 {
+    color: white;
+}
+
 #PictureRobotInput {
     padding: 12px 20px;
     margin: 8px 0;
@@ -8,9 +28,13 @@
 }
 
 #Image {
-    width: 50%;
-    height: 50%;
+    width: 15%;
+    height: 15%;
     border-radius: 10px;
+}
+
+#Pit-Scouting {
+    font-size: 500%;
 }
 
 #SubmitYes,
@@ -34,6 +58,18 @@
     border: 2px solid #ccc;
     border-radius: 5px;
     display: none;
+}
+
+#SubmitButton, #Back {
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 #SubmitCheck {

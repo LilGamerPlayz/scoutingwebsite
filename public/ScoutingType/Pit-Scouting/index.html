@@ -24,10 +24,11 @@
 </head>
 
 <body onload="PictureRobot()">
-    <button onclick="window.location='..'" class="btn btn-primary">Go Back</button>
 
-    <center>
+    <center id="center">
         <br><br><br><br>
+
+        <h1 id="Pit-Scouting">Pit Scouting Form</h1>
 
         <img id="Image" src="/items/4079.png">
 
@@ -42,7 +43,7 @@
         </div>
 
         <div id="DriverExperience" class="Question">
-            <h1 id="DriverExperienceLabel">How experienced are your driver(s)? (# competitions)</h1>
+            <h1 id="DriverExperienceLabel">How experienced are your driver(s)?<br>(# of years)</h1>
             <input type="number" id="DriverExperienceInput" placeholder="3" onchange="DriverExperience()" min="0" max="100">
         </div>
         <div id="DriveTrain" class="Question">
@@ -84,7 +85,7 @@
         </span>
 
         <div id="Comments" class="Question">
-            <h1 id="CommentsLabel">Any additional comments about your robot (does it have good defense?) Any coo theming or subsystems? etc.</h1>
+            <h1 id="CommentsLabel">Any additional comments about your robot (does it have good defense?)<br>Any cool theming or subsystems? etc.</h1>
             <textarea id="CommentsInput" rows="10" cols="50" onchange="Comments()"></textarea>
         </div>
 
@@ -107,9 +108,8 @@
             </div>
         </div>
 
-        <button type="submit">
-            <h1 id="SubmitButton" onclick="Submit();">Submit</h1>
-        </button>
+        <button onclick="window.location='..'" id="Back">Go Back</button>
+        <button type="submit" onclick="Submit();" id="SubmitButton">Submit</button>
 
         <br><br><br><br>
     </center>
