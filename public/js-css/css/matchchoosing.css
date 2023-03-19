@@ -29,32 +29,35 @@ body input {
 }
 
 #leftHalf {
-    background: url("/items/MatchImage.webp");
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/MatchImage.webp");
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100%;
-    height: 50%;
+    width: 50%;
+    height: 100%;
     position: absolute;
     left: 0px;
     top: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: -1;
+
 }
 
 #rightHalf {
-    background: url("/items/PitsImage.jpg");
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/PitsImage.jpg");
     background-repeat: no-repeat;
     margin: 0;
     background-size: cover;
-    width: 100%;
-    height: 50%;
+    width: 50%;
+    height: 100%;
     position: absolute;
     bottom: 0px;
     right: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: -1;
 }
 
 #rightHalf::after {
@@ -139,6 +142,39 @@ body input {
 /* Mobile Support */
 
 @media screen and (max-width :1400px) {
+    
+    #leftHalf {
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/MatchImage.webp");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 50%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+    
+    }
+    
+    #rightHalf {
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/PitsImage.jpg");
+        background-repeat: no-repeat;
+        margin: 0;
+        background-size: cover;
+        width: 100%;
+        height: 50%;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+    }
+
     #Pit-Scouting {
         font-size: 50px
     }

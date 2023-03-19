@@ -73,7 +73,7 @@ function createBoxes() {
                     "TeamNumber": ScoutingData[i][0],
                     "Event": ScoutingData[i][13]
                     //"Year": ScoutingData[i][14].split("/")[2].split(",")[0]
-                    
+
                 })
             }
 
@@ -180,14 +180,17 @@ function createBoxes() {
         }
     }
 }
+let id;
 
 function runChange(element) {
     let parent = element.parentElement;
 
     const pTags = parent.getElementsByTagName("input");
 
-    let id = parent.id;
+    id = parent.id;
     //console.log(id);
+
+    console.log(ScoutingData[id]);
 
     if (pTags.length === 13) {
         sendDataToServer({
@@ -227,19 +230,31 @@ function runChange(element) {
             PreviousScoutingData: ScoutingData[id]
         });
     }
-}
 
-function sendDataToServer(data) {
-    fetch('/updateData', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-    })
-        .then(response => response.json())
-        .then(data => {
-            //console.log('Success:', data);
-        });
 
+    function sendDataToServer(data) {
+        fetch('/updateData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data1 => {
+                console.log('Success:', data1);
+    
+                //console.log(pTags.length);
+                
+                //console.log((ScoutingData[id]));
+                ScoutingData[id] = [];
+                for (let i = 0; i < pTags.length; i++) {
+                    ScoutingData[id].push(pTags[i].value);
+                    //console.log(data[i])
+                    //console.log(ScoutingData[id]);
+                }
+    
+            });
+    
+    }
 }

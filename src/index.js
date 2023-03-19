@@ -506,24 +506,20 @@ app.post("/updateData", (req, res) => {
                         // Send the request
                         sheets.spreadsheets.values.update(request, function (err, response) {
                             if (err) {
-                                // Handle error
-                                //console.error(err);
+                                console.error(err);
                                 return;
                             } else if (response) {
-                                // Handle response
                                 //console.log(response);
                             }
 
-                            // The request was successful
                             //console.log("The row was cleared");
                         });
                     } else if (err) {
-                        // Handle error
-                        //console.log(err);
+                        console.log(err);
                     }
 
                     // The request was successful
-                    res.status(200).send({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
+                    res.status(200).send({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" })
                     //console.log({ response: "The row at index " + i + " has equal JSON value to PreviousScoutingData" });
 
                     break;
