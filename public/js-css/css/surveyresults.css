@@ -34,6 +34,11 @@
     display: inline-block;
 }
 
+.box input {
+    width: 50%;
+    padding: 2px;
+    box-sizing: border-box;
+}
 .data {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     width:50%;
@@ -44,6 +49,9 @@
 @media screen and (max-width: 600px)
 {
     .container {
+        width: 100%;
+    }
+    .box input {
         width: 100%;
     }
 }

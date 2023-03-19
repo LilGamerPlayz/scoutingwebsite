@@ -9,6 +9,12 @@ body {
     align-items: center;
 }
 
+body input {
+    width: 50%;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
 #center h1 {
     color: white;
 }

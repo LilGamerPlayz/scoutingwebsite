@@ -4,6 +4,12 @@ body {
     overflow: hidden;
 }
 
+body input {
+    width: 50%;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
 #ScoutingButtons {
     margin-top: 15%;
 
@@ -97,12 +103,6 @@ body {
     color: white
 }
 
-#goBackButton {
-    position: absolute;
-    bottom: -10px;
-    left: -10px;
-    z-index: 1000;
-}
 
 @media screen and (min-width :1400px) {
     #leftHalf {
@@ -118,7 +118,21 @@ body {
     }
 
     #goBackButton {
-        bottom: -10px
+        z-index: 1000;
+        display: inline-block;
+        align-self: center;
+        position: absolute;
+        top: 90%;
+        bottom: 3%;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 25%;
+        height: 10%;
+        background-color: rgba(76, 175, 80);
+        color: white;
+        font-size: 300%;
+        border-radius: 20px;
     }
 }
 
@@ -134,6 +148,20 @@ body {
     }
 
     #goBackButton {
-        bottom: -10px
+        z-index: 1000;
+        display: inline-block;
+        align-self: center;
+        position: absolute;
+        top: 50%;
+        bottom: 50%;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 50%;
+        height: 10%;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 300%;
+        border-radius: 20px;
     }
 }
