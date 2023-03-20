@@ -73,7 +73,7 @@ body input {
 }
 
 #rightHalf:hover::after {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 #leftHalf::after {
@@ -89,7 +89,7 @@ body input {
 }
 
 #leftHalf:hover::after {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 #Pit-Scouting {

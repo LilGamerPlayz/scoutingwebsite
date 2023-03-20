@@ -151,6 +151,7 @@ function createBoxes() {
             } else if (ScoutingData[i][0] == "4414") {
                 box.style.color = "black";
             }
+            data.style.display = "none";
             if (ScoutingData[i].length === 13) {
                 data.innerHTML =
                     "Team Number: " + "<input id='TeamNumber' class='datainput' oninput='runChange(this)' type='text' value='" + ScoutingData[i][0] + "'><br>" +
