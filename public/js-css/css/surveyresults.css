@@ -5,6 +5,43 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 20px;
+}
+
+#search label {
+    color: white;
+}
+
+#leftHalf {
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/MatchImage.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+
+}
+
+#rightHalf {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/PitsImage.jpg");
+    background-repeat: no-repeat;
+    margin: 0;
+    background-size: cover;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
 }
 
 #searchType,
@@ -22,15 +59,35 @@
     width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
+    background-color: darkgrey;
+    border: 0;
+    overflow: auto;
+    max-height: 80vh;
+    border-radius: 20px;
+}
+
+.container::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    background: darkgray;
 }
 
 .box {
     width: 100%;
     margin: 10px 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 20px;
     display: inline-block;
 }
 
@@ -39,9 +96,25 @@
     padding: 2px;
     box-sizing: border-box;
 }
+
+.box a {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 .data {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    width:50%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, 
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+    rgba(0, 0, 0, 0.12) 0px 4px 6px, 
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    width: 50%;
     height: 50%;
     border-radius: 20px;
 }
@@ -58,11 +131,11 @@
     border-radius: 5px;
 }
 
-@media screen and (max-width: 600px)
-{
+@media screen and (max-width: 600px) {
     .container {
         width: 100%;
     }
+
     .box input {
         width: 100%;
     }

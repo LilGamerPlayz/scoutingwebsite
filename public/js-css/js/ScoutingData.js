@@ -92,6 +92,12 @@ function createBoxes() {
             let box = document.createElement("div");
             box.className = "box";
             box.id = "box" + i;
+            if (ScoutingData[i][0] == "4079") {
+                box.style = "background: linear-gradient(to right, red, orange);";
+            } else if (ScoutingData[i][0] == "4414") {
+                box.style = "background: linear-gradient(to right, #00b6ae , rgb(9,74,88))";
+                box.style.color = "white";
+            }
             container.appendChild(box);
 
             //console.log(TeamName)
@@ -140,6 +146,11 @@ function createBoxes() {
             let data = document.createElement("div");
             data.id = i;
             data.className = "data";
+            if (ScoutingData[i][0] == "4079") {
+                box.style.color = "black";
+            } else if (ScoutingData[i][0] == "4414") {
+                box.style.color = "black";
+            }
             if (ScoutingData[i].length === 13) {
                 data.innerHTML =
                     "Team Number: " + "<input id='TeamNumber' class='datainput' oninput='runChange(this)' type='text' value='" + ScoutingData[i][0] + "'><br>" +
@@ -173,7 +184,8 @@ function createBoxes() {
                     "Event: " + "<input id='Event' class='datainput' oninput='runChange(this)' type='text' value='" + ScoutingData[i][13] + "'><br>" +
                     "Time: " + "<input id='Time' class='datainput' oninput='runChange(this)' type='text' value='" + ScoutingData[i][14] + "'><br>";
             }
-            data.style.display = "none";
+
+
             box.appendChild(data);
 
             box.appendChild(document.createElement("br"));
