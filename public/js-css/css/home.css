@@ -25,7 +25,7 @@ body input {
 }
 
 #leftHalf {
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/MatchImage.webp");
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/MatchImage.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     width: 50%;
@@ -41,7 +41,7 @@ body input {
 }
 
 #rightHalf {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/PitsImage.jpg");
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/PitImage.jpg");
     background-repeat: no-repeat;
     margin: 0;
     background-size: cover;
