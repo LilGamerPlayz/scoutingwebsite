@@ -130,7 +130,7 @@ body input {
     }
 
     #leftHalf {
-        background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/MatchImage.webp");
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("/items/MatchImage.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         width: 100%;
@@ -145,7 +145,7 @@ body input {
     }
 
     #rightHalf {
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(255, 255, 255)), url("/items/PitsImage.jpg");
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(255, 255, 255)), url("/items/PitImage.jpg");
         background-repeat: no-repeat;
         margin: 0;
         background-size: cover;
