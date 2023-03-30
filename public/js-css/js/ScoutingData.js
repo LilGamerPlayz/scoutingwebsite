@@ -138,7 +138,7 @@ function createBoxes() {
             // Append an anchor to the box
             let a = document.createElement("a");
             a.id = "a" + i;
-            a.innerHTML = "View Pit Scouting Results" + "<br>" + "!! UPDATING SUPER UNSTABLE !!";
+            a.innerHTML = "View Pit Scouting Results";
             button.appendChild(a);
 
             box.appendChild(document.createElement("br"));

@@ -212,8 +212,8 @@ app.post("/request", (req, res) => {
             ['https://www.googleapis.com/auth/spreadsheets']
         );
 
-
-        if (Type == '"Pit-Scouting"') {
+/*
+        if (Type == 'Pit-Scouting') {
             async function readFromSheet(auth) {
                 const request = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
@@ -232,7 +232,7 @@ app.post("/request", (req, res) => {
             }
 
             readFromSheet(auth);
-        } else if (Type == '"Match-Scouting"') {
+        } else if (Type == 'Match-Scouting') {
             async function readFromSheet(auth) {
                 const request = {
                     spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
@@ -252,7 +252,7 @@ app.post("/request", (req, res) => {
             }
 
             readFromSheet(auth);
-        } else if (Type == '"All-Scouting"') {
+        } else if (Type == 'All-Scouting') {
             async function readFromSheet(auth) {
                 const sheets = google.sheets({ version: 'v4', auth });
                 const request1 = {
@@ -286,6 +286,46 @@ app.post("/request", (req, res) => {
         } else {
             res.status(200).send("Invalid Request");
         }
+        */
+
+        async function getData(auth, Type) {
+            async function getDataFromRange(range) {
+                const sheets = google.sheets({ version: 'v4', auth });
+                const request = {
+                    spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
+                    range: range,
+                };
+                let data = [];
+                try {
+                    let response = await sheets.spreadsheets.values.get(request);
+                    let rows = response.data.values;
+                    if (rows.length) {
+                        data.push(...rows);
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+                return data;
+            }
+        
+            if (Type == 'All-Scouting') {
+                let data = [];
+                data.push(...await getDataFromRange('Pit-Scouting!A2:M10000'));
+                data.push(...await getDataFromRange('Match-Scouting!A2:O10000'));
+                res.status(200).send(data);
+            } else if (Type == 'Pit-Scouting') {
+                let data = await getDataFromRange('Pit-Scouting!A2:M10000');
+                res.status(200).send(data);
+            } else if (Type == 'Match-Scouting') {
+                let data = await getDataFromRange('Match-Scouting!A2:O10000');
+                res.status(200).send(data);
+            } else {
+                res.status(200).send("Invalid Request");
+            }
+        }
+        
+        getData(auth, Type);
+
     } catch (error) {
         console.log(error);
         res.status(500).send(error.message);
