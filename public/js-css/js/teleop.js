@@ -95,9 +95,10 @@ function OnLoad() {
 }
 
 function Cargo() {
-    localStorage.setItem("Cargo", document.getElementById("CargoInput").value);
     if (!document.getElementById("CargoInput")) {
         localStorage.setItem("Cargo", "None");
+    } else if (document.getElementById("CargoInput")) {
+        localStorage.setItem("Cargo", document.getElementById("CargoInput").value);
     }
 }
 
@@ -106,15 +107,15 @@ function Balanced() {
 }
 
 function Cubes() {
-    localStorage.setItem("TeleLowCubeScoring", document.getElementById("LowCubeInput").value);
-    localStorage.setItem("TeleMiddleCubeScoring", document.getElementById("MiddleCubeInput").value);
-    localStorage.setItem("TeleHighCubeScoring", document.getElementById("HighCubeInput").value);
+    localStorage.setItem("TeleLowCubeScoring", document.getElementById("CubesLowInput").value);
+    localStorage.setItem("TeleMiddleCubeScoring", document.getElementById("CubesMiddleInput").value);
+    localStorage.setItem("TeleHighCubeScoring", document.getElementById("CubesHighInput").value);
 }
 
 function Cones() {
-    localStorage.setItem("TeleLowConeScoring", document.getElementById("LowConeInput").value);
-    localStorage.setItem("TeleMiddleConeScoring", document.getElementById("MiddleConeInput").value);
-    localStorage.setItem("TeleHighConeScoring", document.getElementById("HighConeInput").value);
+    localStorage.setItem("TeleLowConeScoring", document.getElementById("ConesLowInput").value);
+    localStorage.setItem("TeleMiddleConeScoring", document.getElementById("ConesMiddleInput").value);
+    localStorage.setItem("TeleHighConeScoring", document.getElementById("ConesHighInput").value);
 }
 
 function DefenseWho(id) {
@@ -127,4 +128,14 @@ function Unblacked() {
     overlay.addEventListener("animationend", () => {
         overlay.remove();
     });
+}
+
+function Blacked() {
+    let overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    document.body.appendChild(overlay);
+    overlay.classList.add("fade-in");
+    setTimeout(() => {
+        window.location = '../Autonomous'
+    }, 500); // adjust the timeout to match the duration of the fade-in animation
 }

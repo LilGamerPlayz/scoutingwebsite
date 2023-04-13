@@ -87,15 +87,19 @@ function createBoxes() {
         }
 
         async function Create() {
-
             // Create the box
             let box = document.createElement("div");
             box.className = "box";
             box.id = "box" + i;
+            box.setAttribute("data-animate", "");
+            box.style.animationDelay = "0.1s";
+            box.style.backgroundColor = "transparent";
+            box.style.color = "black";
+
             if (ScoutingData[i][0] == "4079") {
-                box.style = "background: linear-gradient(to right, red, orange);";
+                box.style = "background: linear-gradient(to top right, red, yellow);";
             } else if (ScoutingData[i][0] == "4414") {
-                box.style = "background: linear-gradient(to right, #00b6ae , rgb(9,74,88))";
+                box.style = "background: linear-gradient(to top right, #00b6ae , rgb(9,74,88))";
                 box.style.color = "white";
             }
             container.appendChild(box);
@@ -126,6 +130,7 @@ function createBoxes() {
             // Create the button
             let button = document.createElement("button");
             button.id = "button" + i;
+            button.style.borderRadius = "10px";
             button.onclick = function () {
                 if (document.getElementById(i).style.display === "none") {
                     document.getElementById(i).style.display = "block";
@@ -256,9 +261,9 @@ function runChange(element) {
             .then(response => response.json())
             .then(data1 => {
                 console.log('Success:', data1);
-    
+
                 //console.log(pTags.length);
-                
+
                 //console.log((ScoutingData[id]));
                 ScoutingData[id] = [];
                 for (let i = 0; i < pTags.length; i++) {
@@ -266,9 +271,9 @@ function runChange(element) {
                     //console.log(data[i])
                     //console.log(ScoutingData[id]);
                 }
-    
+
             });
-    
+
     }
 }
 

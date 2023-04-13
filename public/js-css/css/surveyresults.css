@@ -59,7 +59,7 @@
     width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: darkgrey;
+    background-image: linear-gradient(to right top, #575858, #535554, #949c9a, rgb(255, 255, 255));
     border: 0;
     overflow: auto;
     max-height: 80vh;
@@ -120,17 +120,34 @@
 }
 
 #Back {
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 25px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    /*display: inline-block;*/
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 20px;
+    width: 50%;
+    padding: 2px;
+    box-sizing: border-box;
 }
 
+[data-animate] {
+    animation-name: slide-up;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
 .overlay {
     position: fixed;

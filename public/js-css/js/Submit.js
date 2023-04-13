@@ -19,18 +19,30 @@ async function Submit() {
         console.log("Submit Button Clicked");
 
         if (Title.includes("Match")) {
+            localStorage.setItem("ScoutingType", "Match-Scouting");
+            AfterComments();
+            Competition();
+            PlayedDefense();
+            DefenseWho('DefenseInputNumber');
+            Cargo();
+            Balanced();
+            Cubes();
+            Cones();
+
             data.push({
                 ScoutingType: localStorage.getItem("ScoutingType"),
                 TeamNumber: localStorage.getItem("TeamNumber"),
                 MatchNumber: localStorage.getItem("MatchNumber"),
                 AllianceColor: localStorage.getItem("AllianceColor"),
                 CommunityLeave: localStorage.getItem("CommunityLeave"),
-                AutoCubeScoring: localStorage.getItem("CubeScoring"),
-                AutoConeScoring: localStorage.getItem("ConeScoring"),
+                AutoLowCubeScoring: localStorage.getItem("AutoLowCubeScoring"),
+                AutoMiddleCubeScoring: localStorage.getItem("AutoMiddleCubeScoring"),
+                AutoHighCubeScoring: localStorage.getItem("AutoHighCubeScoring"),
+                AutoLowConeScoring: localStorage.getItem("AutoLowConeScoring"),
+                AutoMiddleConeScoring: localStorage.getItem("AutoMiddleConeScoring"),
+                AutoHighConeScoring: localStorage.getItem("AutoHighConeScoring"),
                 AutoBalanceOption: localStorage.getItem("BalanceOption"),
                 Defense: localStorage.getItem("Defense") + "; Teams: " + localStorage.getItem("DefenseTeams"),
-                TeleCubeScoring: localStorage.getItem("TeleCubeScoring"),
-                TeleConeScoring: localStorage.getItem("TeleConeScoring"),
                 Cargo: localStorage.getItem("Cargo"),
                 TeleEndBalance: localStorage.getItem("Balanced"),
                 Comments: localStorage.getItem("Comments"),

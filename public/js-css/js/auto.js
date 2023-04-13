@@ -41,7 +41,15 @@ function TeleOp() {
     localStorage.setItem("BalanceOption", document.getElementById("BalanceOptionInput").value);
     localStorage.setItem("ScoutingType", "Match-Scouting");
 
-    window.location = "/ScoutingType/Match-Scouting/Teleop-Endgame";
+    let overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    document.body.appendChild(overlay);
+    overlay.classList.add("fade-in");
+    setTimeout(() => {
+        window.location = "../Teleop-Endgame";
+    }, 500); // adjust the timeout to match the duration of the fade-in animation
+
+    //window.location = "/ScoutingType/Match-Scouting/Teleop-Endgame";
 }
 
 function Appear() {

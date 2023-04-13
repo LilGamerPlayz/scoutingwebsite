@@ -13,23 +13,25 @@ body input {
 
 #center h1 {
     color: white;
-}
 
+}
+/*
 #center input[type="text"] {
     border: none;
     border-bottom: 2px solid #ccc;
     padding: 10px;
     color: black
 }
-
+*/
 #center {
     background: rgba(0, 0, 0, 0.75);
-    align-items: center;
     border-radius: 10px;
     padding: 20px;
+    width: 40%;
     width: fit-content;
     margin: 0 auto;
     margin-bottom: 10%;
+    margin-top: 5%;
 }
 
 #NewScreen, #Back {
@@ -58,20 +60,22 @@ body input {
 .input {
     padding: 12px 20px;
     margin: 8px 0;
-    width: 25;
-    display: inline-block;
+    /*display: inline-block;*/
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 20px;
 }
 
+
 #CubesLow, #CubesMiddle, #CubesHigh, #ConesLow, #ConesMiddle, #ConesHigh {
     display: inline-block;
+    
 }
 
 #Cubes div, #Cones div {
-    width: 30%
+    width: 30%;
+    display: inline-block;
 }
 
 [data-animate] {
@@ -142,9 +146,30 @@ body input {
     }
 }
 
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 1000px) {
+    body {
+        position: center;
+    }
+
     #center {
         width: 100%;
     }
-    
+
+    .input {
+        /* padding: 12px 20px; */
+        /* margin: 8px 0; */
+        width: fit-content;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 15px;
+    }
+
+    .label {
+        font-size:150%;
+        font-weight: bolder;
+    }
+
 }
