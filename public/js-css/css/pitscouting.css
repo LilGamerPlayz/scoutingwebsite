@@ -48,21 +48,23 @@ body input {
 
 #SubmitYes,
 #SubmitNo {
+    color: white;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    border-color: black;
-    border-width: 10px;
+    border-radius: 10px;
+    border-color: white;
+    border-width: 1px;
     box-sizing: border-box;
     font-size: 750%;
+    background-color: transparent;
 }
 
 .submitbox {
     text-align: center;
     height: 50%;
-    background-color: #f1f1f1;
+    background-color: transparent;
     border: 2px solid #ccc;
     border-radius: 5px;
     display: none;
@@ -92,9 +94,12 @@ body input {
 }
 
 #SubmitCheck {
-    color: black;
+    color: white;
 }
 
+#SubmitLabel {
+    color: white;
+}
 
 .selection {
     padding: 12px 20px;

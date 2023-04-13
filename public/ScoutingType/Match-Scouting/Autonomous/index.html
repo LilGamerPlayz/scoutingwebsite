@@ -26,7 +26,8 @@
     <script type="text/javascript" src="/js-css/js/auto.js"></script>
 </head>
 
-<body onload="OnLoad()">
+<body onload="OnLoad(); Unblacked();">
+    <div class="overlay"></div>
     <br><br>
     <center id="center">
         <div id="main">
@@ -137,7 +138,7 @@
 
             <br><br><br>
 
-            <button onclick="window.location='..'" id="Back" data-animate style="animation-delay:0.5s">Go Back</button>
+            <button onclick="Blacked();" id="Back" data-animate style="animation-delay:0.5s">Go Back</button>
             <button type="button"onclick="TeleOp()" id="NewScreen" data-animate style="animation-delay:0.5s">Tele-Op/EndGame</button>
         </div>
     </center>

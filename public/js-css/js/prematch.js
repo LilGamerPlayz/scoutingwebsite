@@ -42,3 +42,13 @@ function Blacked() {
         window.location.href = "..";
     }, 500); // adjust the timeout to match the duration of the fade-in animation
 }
+
+function startBlacked() {
+    let overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    document.body.appendChild(overlay);
+    overlay.classList.add("fade-in");
+    setTimeout(() => {
+        StartMatch();
+    }, 500); // adjust the timeout to match the duration of the fade-in animation
+}

@@ -1,8 +1,3 @@
-window.onload = function() {
-    let scrollHeight = document.body.scrollHeight;
-    window.scrollTo({ top: scrollHeight, behavior: 'smooth' });
-};
-
 function AfterComments() {
     localStorage.setItem("Comments", document.getElementById("CommentsInput").value);
 }
@@ -124,4 +119,12 @@ function Cones() {
 
 function DefenseWho(id) {
     localStorage.setItem("Defense", "Yes; Teams: " + document.getElementById(id).value);
+}
+
+function Unblacked() {
+    let overlay = document.querySelector(".overlay");
+    overlay.classList.add("fade-out");
+    overlay.addEventListener("animationend", () => {
+        overlay.remove();
+    });
 }

@@ -53,7 +53,13 @@ async function Submit() {
                 .then(response => response.text())
                 .then(data => {
                     console.log(data);
-                    window.location = "../Submitted";
+                    let overlay = document.createElement("div");
+                    overlay.classList.add("overlay");
+                    document.body.appendChild(overlay);
+                    overlay.classList.add("fade-in");
+                    setTimeout(() => {
+                        window.location='../Submitted';
+                    }, 500);
                 });
 
         }
@@ -88,7 +94,13 @@ async function Submit() {
                 .then(response => response.text())
                 .then(data => {
                     console.log(data);
-                    window.location = "Submitted";
+                    let overlay = document.createElement("div");
+                    overlay.classList.add("overlay");
+                    document.body.appendChild(overlay);
+                    overlay.classList.add("fade-in");
+                    setTimeout(() => {
+                        window.location='Submitted';
+                    }, 500);
                 });
         }
     });
