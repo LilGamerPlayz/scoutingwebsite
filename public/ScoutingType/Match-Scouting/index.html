@@ -26,22 +26,23 @@
     <script type="text/javascript" src="/js-css/js/prematch.js"></script>
 </head>
 
-<body>
+<body onload="Unblacked()">
+    <div class="overlay"></div>
     <br><br><br><br><br><br>
     <center>
         <div id="center">
-            <h1 id="Match">Match Scouting Form</h1>
-            <div id="MatchNum">
+            <h1 id="Match" data-animate style="animation-delay:0.1s">Match Scouting Form</h1>
+            <div id="MatchNum" data-animate style="animation-delay:0.2s">
                 <h1 id="MatchNumTitle">What is the match number?</h1>
                 <input class="options" type="number" id="MatchNumInput" pattern="[0-9]*" placeholder="1"
-                    onchange="Match()" min="0" max="999">
+                    onchange="Match()" min="0" max="999" class="input">
             </div>
-            <div id="TeamNum">
+            <div id="TeamNum" data-animate style="animation-delay:0.3s">
                 <h1 id="TeamNumTitle">What is the team number?</h1>
                 <input class="options" type="number" id="TeamNumInput" pattern="[0-9]*" placeholder="4079"
-                    onchange="TeamNumber()" min="1" max="99999">
+                    onchange="TeamNumber()" min="1" max="99999" class="input">
             </div>
-            <div id="AllianceColor">
+            <div id="AllianceColor" data-animate style="animation-delay:0.4s">
                 <h1 id="AllianceColorTitle">What is their alliance color?</h1>
                 <select id="AllianceColorInput" onchange="AllianceColor()" class="options">
                     <option value="None" class="options">Choose One</option>
@@ -51,8 +52,9 @@
             </div>
 
             <br><br><br>
-            <button id="StartMatch" onclick="StartMatch()">Start Match</button>
-            <button id="Back" onclick="window.location='..'">Go Back</button>
+            <button id="Back" onclick="Blacked();" data-animate style="animation-delay:0.5s">Go Back</button>
+            <button id="StartMatch" onclick="StartMatch()" data-animate style="animation-delay:0.5s">Start Match</button>
+            
         </div>
     </center>
 </body>

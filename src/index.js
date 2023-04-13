@@ -308,19 +308,22 @@ app.post("/request", (req, res) => {
                 return data;
             }
         
-            if (Type == 'All-Scouting') {
+            if (Type == '"All-Scouting"') {
                 let data = [];
                 data.push(...await getDataFromRange('Pit-Scouting!A2:M10000'));
                 data.push(...await getDataFromRange('Match-Scouting!A2:O10000'));
+                //console.log(data);
                 res.status(200).send(data);
-            } else if (Type == 'Pit-Scouting') {
+            } else if (Type == '"Pit-Scouting"') {
                 let data = await getDataFromRange('Pit-Scouting!A2:M10000');
+                //console.log(data);
                 res.status(200).send(data);
-            } else if (Type == 'Match-Scouting') {
+            } else if (Type == '"Match-Scouting"') {
                 let data = await getDataFromRange('Match-Scouting!A2:O10000');
+                //console.log(data);
                 res.status(200).send(data);
             } else {
-                res.status(200).send("Invalid Request");
+                res.status(200).send({"Request": "Invalid"});
             }
         }
         

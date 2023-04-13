@@ -12,7 +12,7 @@ function Blacked() {
     document.body.appendChild(overlay);
     overlay.classList.add("fade-in");
     setTimeout(() => {
-        window.location.href = "..";
+        window.location.href = "/";
     }, 500); // adjust the timeout to match the duration of the fade-in animation
 }
 
@@ -22,7 +22,7 @@ function BlackedMatchScouting() {
     document.body.appendChild(overlay);
     overlay.classList.add("fade-in");
     setTimeout(() => {
-        window.location.href = "Match-Scouting";
+        location.href = "/ScoutingType/Match-Scouting/";
     }, 500); // adjust the timeout to match the duration of the fade-in animation
 }
 
@@ -32,6 +32,7 @@ function BlackedPitScouting() {
     document.body.appendChild(overlay);
     overlay.classList.add("fade-in");
     setTimeout(() => {
-        window.location.href = "Pit-Scouting";
+        localStorage.setItem("ScoutingType", "Pit");
+        location.href = "/ScoutingType/Pit-Scouting/";
     }, 500); // adjust the timeout to match the duration of the fade-in animation
 }

@@ -30,52 +30,105 @@
 <body onload="OnLoad()">
     <center id="center">
         <div>
-            <h1 id="TeleOpTitle">Tele-Op/End Game</h1>
+            <h1 id="TeleOpTitle" data-animate style="animation-delay:0.1s">Tele-Op/End Game</h1>
 
-            <div id="Defense">
+            <div id="Defense" data-animate style="animation-delay:0.2s">
                 <h1 id="DefenseLabel">Did they play defense? On who?</h1>
                 <select id="DefenseInput" class="selection" onchange="PlayedDefense()">
                     <option value="No">No</option>
                     <option value="Yes">Yes</option>
                 </select>
                 <input type="text" id="DefenseInputNumber" placeholder="5235, 4079, 1958" class="input"
-                    style="display: none;">
+                    style="display: none;" onchange="DefenseWho('DefenseInputNumber')">
             </div>
 
-            <div id="Cubes">
+            <div id="Cubes" data-animate style="animation-delay:0.3s">
                 <h1 id="CubesLabel">How many cubes did they score?</h1>
-                <input type="number" id="CubesInput" placeholder="0" class="input" value="0" min="0" max="999"
-                    onchange="Cubes()" readonly>
-                <button type="button" id="CubesAddOne" class="input"
-                    onclick="if(document.getElementById('CubesInput').value < 999) {document.getElementById('CubesInput').value = parseInt(document.getElementById('CubesInput').value) + 1}">Add
-                    1 </button>
-                <button type="button" id="CubesRemoveOne" class="input"
-                    onclick="if(document.getElementById('CubesInput').value > 0) {document.getElementById('CubesInput').value = parseInt(document.getElementById('CubesInput').value) - 1}">Remove
-                    1</button>
+                <div id="CubesLow">
+                    <h1 id="CubesLowLabel">Low</h1>
+                    <input type="number" id="CubesLowInput" placeholder="0" class="input" value="0" min="0" max="50"
+                        onchange="Cubes(); Appear();" readonly>
+                        <br>
+                    <button type="button" id="CubesLowAddOne" class="input"
+                        onclick="if(document.getElementById('CubesLowInput').value < 50) {document.getElementById('CubesLowInput').value = parseInt(document.getElementById('CubesLowInput').value) + 1}">+1
+                    </button>
+                    <button type="button" id="CubesLowRemoveOne" class="input"
+                        onclick="if(document.getElementById('CubesLowInput').value > 0) {document.getElementById('CubesLowInput').value = parseInt(document.getElementById('CubesLowInput').value) - 1}">-1
+                    </button>
+                </div>
+
+                <div id="CubesMiddle">
+                    <h1 id="CubesMiddleLabel">Middle</h1>
+                    <input type="number" id="CubesMiddleInput" placeholder="0" class="input" value="0" min="0" max="50"
+                        onchange="Cubes(); Appear();" readonly>
+                        <br>
+                    <button type="button" id="CubesMiddleAddOne" class="input"
+                        onclick="if(document.getElementById('CubesMiddleInput').value < 50) {document.getElementById('CubesMiddleInput').value = parseInt(document.getElementById('CubesMiddleInput').value) + 1}">+1
+                    </button>
+                    <button type="button" id="CubesMiddleRemoveOne" class="input"
+                        onclick="if(document.getElementById('CubesMiddleInput').value > 0) {document.getElementById('CubesMiddleInput').value = parseInt(document.getElementById('CubesMiddleInput').value) - 1}">-1
+                    </button>
+                </div>
+
+                <div id="CubesHigh">
+                    <h1 id="CubesHighLabel">High</h1>
+                    <input type="number" id="CubesHighInput" placeholder="0" class="input" value="0" min="0" max="50"
+                        onchange="Cubes(); Appear();" readonly>
+                        <br>
+                    <button type="button" id="CubesHighAddOne" class="input"
+                        onclick="if(document.getElementById('CubesHighInput').value < 50) {document.getElementById('CubesHighInput').value = parseInt(document.getElementById('CubesHighInput').value) + 1; Appear()}">+1
+                    </button>
+                    <button type="button" id="CubesHighRemoveOne" class="input"
+                        onclick="if(document.getElementById('CubesHighInput').value > 0) {document.getElementById('CubesHighInput').value = parseInt(document.getElementById('CubesHighInput').value) - 1; Appear()}">-1
+                    </button>
+                </div>
             </div>
 
-            <div id="Cones">
+            <div id="Cones" data-animate style="animation-delay:0.4s">
                 <h1 id="ConesLabel">How many cones did they score?</h1>
-                <input type="number" id="ConesInput" placeholder="0" class="input" value="0" min="0" max="999"
-                    onchange="Cones()" readonly>
-                <button type="button" id="ConesAddOne" class="input"
-                    onclick="if(document.getElementById('ConesInput').value < 999) {document.getElementById('ConesInput').value = parseInt(document.getElementById('ConesInput').value) + 1}">Add
-                    1 </button>
-                <button type="button" id="ConesRemoveOne" class="input"
-                    onclick="if(document.getElementById('ConesInput').value > 0) {document.getElementById('ConesInput').value = parseInt(document.getElementById('ConesInput').value) - 1}">Remove
-                    1</button>
+                <div id="ConesLow">
+                    <h1 id="ConesLowLabel">Low</h1>
+                    <input type="number" id="ConesLowInput" placeholder="0" class="input" value="0" min="0" max="50"
+                        onchange="Cones();" readonly>
+                        <br>
+                    <button type="button" id="ConesLowAddOne" class="input"
+                        onclick="if(document.getElementById('ConesLowInput').value < 50) {document.getElementById('ConesLowInput').value = parseInt(document.getElementById('ConesLowInput').value) + 1; Appear()}">+1
+                    </button>
+                    <button type="button" id="ConesLowRemoveOne" class="input"
+                        onclick="if(document.getElementById('ConesLowInput').value > 0) {document.getElementById('ConesLowInput').value = parseInt(document.getElementById('ConesLowInput').value) - 1; Appear()}">-1
+                    </button>
+                </div>
+
+                <div id="ConesMiddle">
+                    <h1 id="ConesMiddleLabel">Middle</h1>
+                    <input type="number" id="ConesMiddleInput" placeholder="0" class="input" value="0" min="0" max="50"
+                        onchange="Cones()" readonly>
+                        <br>
+                    <button type="button" id="ConesAddOne" class="input"
+                        onclick="if(document.getElementById('ConesMiddleInput').value < 50) {document.getElementById('ConesMiddleInput').value = parseInt(document.getElementById('ConesMiddleInput').value) + 1; Appear()};">+1
+                    </button>
+                    <button type="button" id="ConesRemoveOne" class="input"
+                        onclick="if(document.getElementById('ConesMiddleInput').value > 0) {document.getElementById('ConesMiddleInput').value = parseInt(document.getElementById('ConesMiddleInput').value) - 1; Appear()}">-1
+                    </button>
+                </div>
+
+                <div id="ConesHigh">
+                    <h1 id="ConesHighLabel">High</h1>
+                    <input type="number" id="ConesHighInput" placeholder="0" class="input" value="0" min="0" max="50"
+                        onchange="Cones();" readonly>
+                        <br>
+                    <button type="button" id="ConesAddOne" class="input"
+                        onclick="if(document.getElementById('ConesHighInput').value < 50) {document.getElementById('ConesHighInput').value = parseInt(document.getElementById('ConesHighInput').value) + 1; Appear();} ">+1
+                    </button>
+                    <button type="button" id="ConesRemoveOne" class="input"
+                        onclick="if(document.getElementById('ConesHighInput').value > 0) {document.getElementById('ConesHighInput').value = parseInt(document.getElementById('ConesHighInput').value) - 1; Appear()}">-1
+                    </button>
+                </div>
             </div>
 
-            <div id="Cargo">
-                <h1 id="CargoLabel">Where did they pick up cargo from?</h1>
-                <select id="CargoInput" class="selection" onchange="Cargo()">
-                    <option value="Feeder">Feeder Station</option>
-                    <option value="Floor">Loading Zone Floor</option>
-                    <option value="Field">Mid-Field</option>
-                </select>
-            </div>
+            <div id="Cargo"></div>
 
-            <div id="Balanced">
+            <div id="Balanced" data-animate style="animation-delay:0.5s">
                 <h1 id="BalancedLabel">Did they balance?</h1>
                 <select id="BalancedInput" class="selection" onchange="Balanced()">
                     <option value="Engaged">Docked and Engaged</option>
@@ -86,25 +139,27 @@
 
             <br><br>
 
-            <div id="Comments" class="input">
+            <div id="Comments" class="input" data-animate style="animation-delay:0.6s">
                 <h1 id="CommentsLabel">Additional Comments</h1>
-                <textarea id="CommentsInput" placeholder="Comments" onchange="AfterComments()"></textarea>
+                <textarea id="CommentsInput" class="input" placeholder="Comments" onchange="AfterComments()"></textarea>
             </div>
 
             <br><br>
 
-            <div id="Competition">
+            <div id="Competition" data-animate style="animation-delay:0.7s">
                 <h1 id="CompetitionLabel">What competition is this?</h1>
-                <input type="text" id="CompetitionInput" placeholder="OCR, AVR, BB" onchange="Competition()"
-                    maxlength="5">
+                <input type="text" class="input" id="CompetitionInput" placeholder="OCR, AVR, BB"
+                    onchange="Competition()" maxlength="5" style="text-transform:uppercase;">
             </div>
 
             <br><br><br>
             <br><br><br>
 
-            <button type="submit" onclick="Submit(); MatchSubmit();" id="SubmitButton">Submit</button>
             <button onclick="window.location='../Autonomous'" id="Back">Go Back</button>
+            <button type="submit" onclick="Submit(); MatchSubmit();" id="SubmitButton">Submit</button>
 
+            <br><br>
+            
             <div class="submitbox" id="SubmitBox">
                 <h2 id="SubmitLabel">Are you sure you want to submit?</h2>
                 <br>
@@ -117,8 +172,4 @@
             <br><br><br><br><br>
         </div>
     </center>
-
-    <script>
-
-    </script>
 </body>

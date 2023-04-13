@@ -26,7 +26,7 @@
     <script type="text/javascript" src="/js-css/js/home.js"></script>
 </head>
 
-<body>
+<body onload="Unblacked()">
     <div id="leftHalf"></div>
     <div id="rightHalf"></div>
     <br><br><br>
@@ -35,7 +35,7 @@
         <br>
         <h1 id="Scouting1">OA Robotics Scouting Website</h1>
         <br>
-        <img id="Image" src="items/4079.png">
+        <img id="Image" src="items/4079-transparent.png">
         <br><br><br>
         <div class="submitbox" id="SubmitBox">
             <h2>Input your name here</h2>
@@ -49,11 +49,12 @@
                     Scouting
                 </h1>
             </button>
-            <button class="buttonchoose" id="Survey" onclick="Survey()">
+            <button class="buttonchoose" id="Survey" onclick="Survey(); Blacked();">
                 <h1>
                     Scouting Survey Results
                 </h1>
             </button>
         </div>
     </center>
+    <div class="overlay"></div>
 </body>

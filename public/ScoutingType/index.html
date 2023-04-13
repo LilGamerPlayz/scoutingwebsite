@@ -25,13 +25,13 @@
     <script type="text/javascript" src="/js-css/js/scoutingselection.js"></script>
 </head>
 
-<body>
-    
-    <div id="leftHalf" onclick="MatchScouting()">
-        <h1 id="Pit-Scouting">Match Scouting</h1>
+<body onload="Unblacked();">
+    <div class="overlay"></div>
+    <div id="leftHalf" onclick="BlackedMatchScouting()">
+        <h1 id="Match-Scouting">Match Scouting</h1>
     </div>
-    <div id="rightHalf" onclick="PitScouting()">
-        <h1 id="Match-Scouting">Pit Scouting</h1>
+    <div id="rightHalf" onclick="BlackedPitScouting()">
+        <h1 id="Pit-Scouting">Pit Scouting</h1>
     </div>
-    <button id="goBackButton" onclick="window.location='..'">Go Back</button>
+    <button id="goBackButton" onclick="Blacked()">Go Back</button>
 </body>

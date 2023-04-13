@@ -27,78 +27,72 @@
     <script type="text/javascript" src="/js-css/js/pitscouting.js"></script>
 </head>
 
-<body onload="PictureRobot()">
+<body onload="Unblacked()">
+
+    <div class="overlay"></div>
 
     <center id="center">
         <br><br><br><br>
 
-        <h1 id="Pit-Scouting">Pit Scouting Form</h1>
+        <h1 id="Pit-Scouting" data-animate style="animation-delay:0.1s">Pit Scouting Form</h1>
 
-        <img id="Image" src="/items/4079.png">
+        <img id="Image" src="/items/4079.png" data-animate style="animation-delay:0.2s">
 
-        <div id="TeamNumber" class="Question">
+        <div id="TeamNumber" class="Question" data-animate style="animation-delay:0.3s">
             <h1 id="TeamNumberLabel">What is the team number?</h1>
-            <input type="number" id="TeamNumberInput" placeholder="4079" onchange="TeamNumber()" min="1" max="99999">
+            <input type="number" id="TeamNumberInput" placeholder="4079" onchange="TeamNumber()" min="1" max="99999" class="input">
         </div>
 
-        <div id="GamePieces" class="Question">
+        <div id="GamePieces" class="Question" data-animate style="animation-delay:0.4s">
             <h1 id="GamePiecesLabel">What game pieces can your robot pick up?</h1>
-            <input type="text" id="GamePiecesInput" placeholder="Cone, Cube" onchange="GamePieces()">
+            <input type="text" id="GamePiecesInput" placeholder="Cone, Cube" onchange="GamePieces()" class="input">
         </div>
 
-        <div id="DriverExperience" class="Question">
+        <div id="DriverExperience" class="Question" data-animate style="animation-delay:0.5s">
             <h1 id="DriverExperienceLabel">How experienced are your driver(s)?<br>(# of years)</h1>
-            <input type="number" id="DriverExperienceInput" placeholder="3" onchange="DriverExperience()" min="0" max="100">
+            <input type="number" id="DriverExperienceInput" placeholder="3" onchange="DriverExperience()" min="0" max="100" class="input">
         </div>
-        <div id="DriveTrain" class="Question">
+        <div id="DriveTrain" class="Question" data-animate style="animation-delay:0.6s">
             <h1 id="DriveTrainLabel">What type of drivetrain do you have?</h1>
-            <input type="text" id="DriveTrainInput" placeholder="WCD/Tank, Swerve" onchange="DriveTrain()">
+            <input type="text" id="DriveTrainInput" placeholder="WCD/Tank, Swerve" onchange="DriveTrain()" class="input">
         </div>
 
-        <div id="AutoPlan" class="Question">
+        <div id="AutoPlan" class="Question" data-animate style="animation-delay:0.7s">
             <h1 id="AutoPlanLabel">What is your typical plan for auto?</h1>
-            <input type="text" id="AutoPlanInput" onchange="AutoPlan()">
+            <input type="text" id="AutoPlanInput" onchange="AutoPlan()" class="input">
         </div>
 
-        <div id="GamePieceLocation" class="Question">
+        <div id="GamePieceLocation" class="Question" data-animate style="animation-delay:0.8s">
             <h1 id="GamePieceLocationLabel">Where can you pick game pieces up from?</h1>
-            <input type="text" id="GamePieceLocationInput" placeholder="Ground, Feeder" onchange="GamePieceLocation()">
+            <input type="text" id="GamePieceLocationInput" placeholder="Ground, Feeder" onchange="GamePieceLocation()" class="input">
         </div>
 
-        <div id="AverageTime" class="Question">
+        <div id="AverageTime" class="Question" data-animate style="animation-delay:0.9s">
             <h1 id="AverageTimeLabel">What is your average cycle time and score?</h1>
-            <input type="text" id="AverageTimeInput" placeholder="10s,3s" onchange="AverageTime()">
+            <input type="text" id="AverageTimeInput" placeholder="10s,3s" onchange="AverageTime()" class="input">
         </div>
 
-        <div id="ScoringLocation" class="Question">
+        <div id="ScoringLocation" class="Question" data-animate style="animation-delay:1s">
             <h1 id="ScoringLocationLabel">Where can you score (low, medium, high)?</h1>
-            <input type="text" id="ScoringLocationInput" placeholder="medium, high" onchange="ScoringLocation()">
+            <input type="text" id="ScoringLocationInput" placeholder="medium, high" onchange="ScoringLocation()" class="input">
         </div>
 
-        <div id="DockEngage" class="Question">
+        <div id="DockEngage" class="Question" data-animate style="animation-delay:1.1s">
             <h1 id="DockEngageLabel">How quickly can you dock and engage?</h1>
-            <input type="text" id="DockEngageInput" placeholder="10s, 5s, N/A" onchange="DockEngage()">
+            <input type="text" id="DockEngageInput" placeholder="10s, 5s, N/A" onchange="DockEngage()" class="input">
         </div>
 
-        <span id="PictureRobot" class="Question">
-            <h1 id="PictureRobotLabel">Can we take a picture of the robot?</h1>
-            <select id="PictureRobotInput" onchange="PictureRobot()">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
-        </span>
-
-        <div id="Comments" class="Question">
+        <div id="Comments" class="Question" data-animate style="animation-delay:1.2s">
             <h1 id="CommentsLabel">Any additional comments about your robot (does it have good defense?)<br>Any cool theming or subsystems? etc.</h1>
-            <textarea id="CommentsInput" rows="10" cols="50" onchange="Comments()"></textarea>
+            <textarea id="CommentsInput" rows="10" cols="50" onchange="Comments()" class="input"></textarea>
         </div>
 
         <br>
         <br>
 
-        <div id="Competition" class="Question">
+        <div id="Competition" class="Question" data-animate style="animation-delay:1.3s">
             <h1 id="CompetitionLabel">What competition is this?</h1>
-            <input type="text" id="CompetitionInput" placeholder="OCR, AVR, BB" onchange="Competition()" maxlength="5">
+            <input type="text" id="CompetitionInput" placeholder="OCR, AVR, BB" onchange="Competition()" maxlength="5" style="text-transform:uppercase;" class="input">
         </div>
 
         <br><br>
@@ -112,8 +106,8 @@
             </div>
         </div>
 
-        <button onclick="window.location='..'" id="Back">Go Back</button>
-        <button type="submit" onclick="Submit();" id="SubmitButton">Submit</button>
+        <button onclick="Blacked()" id="Back" data-animate style="animation-delay:1.4s">Go Back</button>
+        <button type="submit" onclick="Submit();" id="SubmitButton" data-animate style="animation-delay:1.4s">Submit</button>
 
         <br><br><br><br>
     </center>

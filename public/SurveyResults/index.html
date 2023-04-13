@@ -26,7 +26,8 @@
 
 </head>
 
-<body onload="setUp(document.getElementById('searchType').value)">
+<body onload="setUp(document.getElementById('searchType').value); Unblacked();">
+    <div class="overlay"></div>
     <div id="leftHalf"></div>
     <div id="rightHalf"></div>
 
@@ -37,13 +38,13 @@
             <input id="searchInput" type="text" placeholder="4079" min="1" max="99999" inputmode="numeric"
                 type="number">
 
-            <select id="searchType" onchange="setUp(document.getElementById('searchType').value);">
+            <select id="searchType">
                 <option value="All-Scouting">All Teams</option>
                 <option value="Pit-Scouting">Pit Scouting</option>
                 <option value="Match-Scouting">Match Scouting</option>
             </select>
 
-            <button onclick="window.location='/'" id="Back">Go Back</button>
+            <button onclick="Blacked();" id="Back">Go Back</button>
 
         </div>
 
@@ -53,6 +54,7 @@
     </center>
 
     <script>
+        /*
         let container = document.getElementsByClassName("container")[0];
         let searchInput = document.getElementById("searchInput");
 
@@ -191,7 +193,7 @@
 
                 }
             }
-        });
+        });*/
     </script>
 </body>
 

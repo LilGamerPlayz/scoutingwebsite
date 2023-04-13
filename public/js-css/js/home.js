@@ -14,11 +14,31 @@ function ScoutingType() {
         }
 
     } else if (localStorage.getItem("Name") != "null" && localStorage.getItem("Name") != "") {
-        window.location = "ScoutingType";
+            Blacked();
+            setTimeout(() => {
+                window.location.href = "ScoutingType";
+            }, 500); // adjust the timeout to match the duration of the fade-in animation
+        };
     }
 
+function Survey() {
+    Blacked();
+    setTimeout(() => {
+        window.location = "SurveyResults";
+    }, 500);
 }
 
-function Survey() {
-    window.location = "SurveyResults";
+function Unblacked() {
+    let overlay = document.querySelector(".overlay");
+    overlay.classList.add("fade-out");
+    overlay.addEventListener("animationend", () => {
+        overlay.remove();
+    });
+}
+
+function Blacked() {
+    let overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    document.body.appendChild(overlay);
+    overlay.classList.add("fade-in");
 }

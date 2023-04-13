@@ -27,12 +27,13 @@ body input {
     align-items: center;
     border-radius: 10px;
     padding: 20px;
-    width: 40%;
+    width: fit-content;
     margin: 0 auto;
+    margin-bottom: 10%;
 }
 
 #NewScreen, #Back {
-    color: black;
+    color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -41,6 +42,7 @@ body input {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
+    background-color: transparent;
 }
 
 .selection {
@@ -56,6 +58,7 @@ body input {
 .input {
     padding: 12px 20px;
     margin: 8px 0;
+    width: 25;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -63,8 +66,34 @@ body input {
     font-size: 20px;
 }
 
+#CubesLow, #CubesMiddle, #CubesHigh, #ConesLow, #ConesMiddle, #ConesHigh {
+    display: inline-block;
+}
+
+#Cubes div, #Cones div {
+    width: 30%
+}
+
+[data-animate] {
+    animation-name: slide-up;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 @media screen and (max-width: 600px) {
     #center {
         width: 100%;
     }
+    
 }

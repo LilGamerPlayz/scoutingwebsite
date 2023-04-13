@@ -19,46 +19,23 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-    <style>
-        #Yes, #No, #PitScouting {
-            padding: 15px 32px;
-            text-align: center;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 25px;
-            margin-left: 25px;
-            margin-right: 25px;
-        }
-    </style>
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="/js-css/css/matchsubmit.css">
+
+    <!-- Internal JS -->
+    <script type="text/javascript" src="/js-css/js/matchsubmit.js"></script>
 </head>
 
-<body>
-    <center>
-        <h1 id="SubmittedLabel">You have submitted your questions!</h1>
-        <h1 id="RescoutLabel">Would you like to scout again?</h1>
-        <button id="Yes" type="button">
-            <h1>Yes</h1>
-        </button>
-        <button id="No" type="button">
-            <h1>No</h1>
-        </button>
-        <button id="PitScouting">
-            <h1>Pit Scouting Form</h1>
-        </button>
-    </center>
+<body onload="Unblacked()">
+    <div class="overlay"></div>
+    <div id="TopText">
+        <h1>You have completed the Match Scouting Form!</h1>
+    </div>
+    <div id="leftHalf" onclick="BlackedMatchScouting()">
+        <h1 id="Match-Scouting">Match Scouting Form</h1>
+    </div>
+    <div id="rightHalf" onclick="BlackedPitScouting()">
+        <h1 id="Pit-Scouting">Pit Scouting Form</h1>
+    </div>
+    <button id="goBackButton" onclick="Blacked()">Home</button>
 </body>
-
-<script>
-    document.getElementById("Yes").onclick = function() {
-        location.href = "/ScoutingType/Match-Scouting/";
-    };
-    document.getElementById("No").onclick = function() {
-        location.href = "/";
-    };
-    document.getElementById("PitScouting").onclick = function() {
-        location.href = "/ScoutingType/Pit-Scouting/";
-        localStorage.setItem("ScoutingType", "Pit");
-    };
-</script>

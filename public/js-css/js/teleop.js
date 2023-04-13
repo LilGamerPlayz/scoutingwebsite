@@ -1,3 +1,8 @@
+window.onload = function() {
+    let scrollHeight = document.body.scrollHeight;
+    window.scrollTo({ top: scrollHeight, behavior: 'smooth' });
+};
+
 function AfterComments() {
     localStorage.setItem("Comments", document.getElementById("CommentsInput").value);
 }
@@ -33,6 +38,51 @@ function PlayedDefense() {
     }
 }
 
+function Appear() {
+
+    if (document.getElementById("CargoLabel")) {
+        document.getElementById("CargoLabel").remove();
+    }
+    if (document.getElementById("CargoInput")) {
+        document.getElementById("CargoInput").remove();
+    }
+    if (!document.getElementById("CubesLowInput").value == 0 ||
+        !document.getElementById("CubesMiddleInput").value == 0 ||
+        !document.getElementById("CubesHighInput").value == 0 ||
+        !document.getElementById("ConesLowInput").value == 0 ||
+        !document.getElementById("ConesMiddleInput").value == 0 ||
+        !document.getElementById("ConesHighInput").value == 0) {
+
+        const Cargo = document.getElementById("Cargo");
+
+        let CargoLabel = document.createElement("h1");
+        CargoLabel.id = "CargoLabel";
+        CargoLabel.innerHTML = "Where did they pick up most of their cargo from?"
+        Cargo.appendChild(CargoLabel);
+
+        let CargoSelection = document.createElement("select");
+        CargoSelection.className = "selection";
+        CargoSelection.onchange = "Cargo()";
+        CargoSelection.id = "CargoInput";
+        Cargo.appendChild(CargoSelection);
+
+        let option1 = document.createElement("option");
+        option1.value = "Shelf";
+        option1.innerHTML = "Feeder Shelf";
+        CargoSelection.appendChild(option1);
+
+        let option2 = document.createElement("option");
+        option2.value = "Floor";
+        option2.innerHTML = "Loading Zone Floor";
+        CargoSelection.appendChild(option2);
+
+        let option3 = document.createElement("option");
+        option3.value = "Field";
+        option3.innerHTML = "Mid-Field";
+        CargoSelection.appendChild(option3);
+    }
+}
+
 function DefenseWho() {
     localStorage.setItem("DefenseTeams", document.getElementById("DefenseInputNumber").value);
 }
@@ -47,11 +97,13 @@ function OnLoad() {
     Balanced();
     Cubes();
     Cones();
-
 }
 
 function Cargo() {
     localStorage.setItem("Cargo", document.getElementById("CargoInput").value);
+    if (!document.getElementById("CargoInput")) {
+        localStorage.setItem("Cargo", "None");
+    }
 }
 
 function Balanced() {
@@ -59,9 +111,17 @@ function Balanced() {
 }
 
 function Cubes() {
-    localStorage.setItem("TeleCubeScoring", document.getElementById("CubesInput").value);
+    localStorage.setItem("TeleLowCubeScoring", document.getElementById("LowCubeInput").value);
+    localStorage.setItem("TeleMiddleCubeScoring", document.getElementById("MiddleCubeInput").value);
+    localStorage.setItem("TeleHighCubeScoring", document.getElementById("HighCubeInput").value);
 }
 
 function Cones() {
-    localStorage.setItem("TeleConeScoring", document.getElementById("ConesInput").value);
+    localStorage.setItem("TeleLowConeScoring", document.getElementById("LowConeInput").value);
+    localStorage.setItem("TeleMiddleConeScoring", document.getElementById("MiddleConeInput").value);
+    localStorage.setItem("TeleHighConeScoring", document.getElementById("HighConeInput").value);
+}
+
+function DefenseWho(id) {
+    localStorage.setItem("Defense", "Yes; Teams: " + document.getElementById(id).value);
 }

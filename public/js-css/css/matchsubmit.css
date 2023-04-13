@@ -175,6 +175,25 @@ body input {
         font-size: 300%;
         border-radius: 20px;
     }
+    #TopText {
+        z-index: 5000;
+        display: inline-block;
+        align-self: center;
+        position: absolute;
+        bottom: 90%;
+        top: 3%;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 25%;
+        height: 10%;
+        background-color: transparent;
+        border-color: white;
+        color: white;
+        font-size: 300%;
+        border-radius: 20px;
+        align-items: center;
+    }
 }
 
 /* Mobile Support */
