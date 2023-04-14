@@ -163,6 +163,23 @@ body input {
     }
 }
 
+[data-animate] {
+    animation-name: slide-up;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 @media screen and (min-width :1400px) {
     #leftHalf {
         width: 50%;

@@ -33,22 +33,22 @@
 
     <center>
 
-        <div id="search">
-            <label for="searchInput">Find Teams</label>
+        <div id="search" data-animate style="animation-delay:0.1s">
+            <label for="searchInput" data-animate style="animation-delay:0.2s">Find Teams</label>
             <input id="searchInput" type="text" placeholder="4079" min="1" max="99999" inputmode="numeric"
-                type="number">
+                type="number" data-animate style="animation-delay:0.2s">
 
-            <select id="searchType">
+            <select id="searchType" data-animate style="animation-delay:0.2s">
                 <option value="All-Scouting">All Teams</option>
                 <option value="Pit-Scouting">Pit Scouting</option>
                 <option value="Match-Scouting">Match Scouting</option>
             </select>
 
-            <button onclick="Blacked();" id="Back">Go Back</button>
+            <button onclick="Blacked();" id="Back" data-animate style="animation-delay:0.3s">Go Back</button>
 
         </div>
 
-        <div class="container" id="Teams">
+        <div class="container" id="Teams" data-animate style="animation-delay:0.5s">
 
         </div>
     </center>
