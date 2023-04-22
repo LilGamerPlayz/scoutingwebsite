@@ -24,7 +24,7 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => console.log('Server started on port ' + port));
 console.log("Listening on port " + port);
 
-app.use(express.static('public'));
+app.use(express.static('public/Temperary'));
 
 //Limiting the size of json data (1mb) and parsing JSON data
 app.use(express.json({ limit: '5mb' }));
@@ -156,7 +156,7 @@ app.post('/matchscouting', (req, res) => {
         async function writeToSheet(auth) {
             const request = {
                 spreadsheetId: '1C3KSzZVnCiCPlD3zcVN4TqZpOClYCuCvgi4jnHXqFso',
-                range: 'Match-Scouting!A2:O10000',
+                range: 'Match-Scouting!A2:Z10000',
                 valueInputOption: 'RAW',
                 resource: {
                     values: [
@@ -165,11 +165,20 @@ app.post('/matchscouting', (req, res) => {
                             data[0].MatchNumber,
                             data[0].AllianceColor,
                             data[0].CommunityLeave,
-                            data[0].AutoCubeScoring,
-                            data[0].AutoConeScoring,
+                            data[0].AutoLowCubeScoring,
+                            data[0].AutoMiddleCubeScoring,
+                            data[0].AutoHighCubeScoring,
+                            data[0].AutoLowConeScoring,
+                            data[0].AutoMiddleConeScoring,
+                            data[0].AutoHighConeScoring,
                             data[0].AutoBalanceOption,
                             data[0].Defense,
-                            data[0].TeleCubeScoring,
+                            data[0].TeleLowCubeScoring,
+                            data[0].TeleMiddleCubeScoring,
+                            data[0].TeleHighCubeScoring,
+                            data[0].TeleLowConeScoring,
+                            data[0].TeleMiddleConeScoring,
+                            data[0].TeleHighConeScoring,
                             data[0].TeleConeScoring,
                             data[0].Cargo,
                             data[0].TeleEndBalance,
