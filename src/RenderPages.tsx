@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-
-// SCSS
-import "./components/scss/main.scss";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 // Components
 
@@ -17,6 +15,11 @@ import Submitted from "./pages/submitted";
 const RenderPages: React.FC = () => {
     return (
         <BrowserRouter>
+            <HelmetProvider>
+                <Helmet>
+                    <link rel="icon" href="/components/elements/4079-transparent.png" />
+                </Helmet>
+            </HelmetProvider>
             <Routes>
                 {/* Pages */}
                 <Route path="/" element={<HomePage />} />
@@ -35,7 +38,7 @@ const RenderPages: React.FC = () => {
                 <Route path="/matchscoutingauto/*" element={<Navigate to="/matchscoutingauto" />} />
                 <Route path="/match-submitted/*" element={<Navigate to="/match-submitted" />} />
                 <Route path="/pit-submitted/*" element={<Navigate to="/pit-submitted" />} />
-                
+
             </Routes>
         </BrowserRouter>
     );

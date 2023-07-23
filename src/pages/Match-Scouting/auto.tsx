@@ -18,7 +18,7 @@ const MatchScoutingAuto: React.FC = () => {
                 <br/><br/><br/><br/>
 
                 <h1 id="Match-Scouting" data-animate>Match Scouting Form</h1>
-                <img id="Image" src="/components/4079.png" data-animate />
+                <img id="Image" src="/components/elements/4079.png" data-animate />
                 {questions}
                 <button onClick={Blacked} id="Back" data-animate>Go Back</button>
             </center>
