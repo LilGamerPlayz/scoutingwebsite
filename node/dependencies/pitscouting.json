@@ -1,0 +1,56 @@
+[
+    {
+        "question": "What is the team number?",
+        "type": "number",
+        "id": "TeamNumber",
+        "placeholder": "4079"
+    },
+    {
+        "question": "What game pieces can your robot pick up?",
+        "type": "text",
+        "id": "GamePieces",
+        "placeholder": "Cones, Cubes, etc."
+    },
+    {
+        "question": "How experienced is your driver(s)<br>(# of years)",
+        "type": "number",
+        "id": "DriverExperience",
+        "placeholder": "3"
+    },
+    {
+        "question": "What type of drive train do you have?",
+        "type": "text",
+        "id": "DriveTrain",
+        "placeholder": "Mecanum, Omni, etc."
+    },
+    {
+        "question": "What is your typical plan for auto?",
+        "type": "text",
+        "id": "AutoPlan",
+        "placeholder": "Score in low goal, etc."
+    },
+    {
+        "question": "What are the locations in which you can pick up game pieces?",
+        "type": "text",
+        "id": "GamePieceLocation",
+        "placeholder": "Loading Zone, etc."
+    },
+    {
+        "question": "What is your average cycle time?",
+        "type": "text",
+        "id": "AverageTime",
+        "placeholder": "10s"
+    },
+    {
+        "question": "Where can you score? (Low, Middle, or High)",
+        "type": "text",
+        "id": "ScoringLocation",
+        "placeholder": "Low, Middle, High"
+    },
+    {
+        "question": "How quickly can you dock and engage?",
+        "type": "text",
+        "id": "DockEngage",
+        "placeholder": "5s, 10s, etc. or N/A"
+    }
+]

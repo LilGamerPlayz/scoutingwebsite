@@ -26,3 +26,5 @@ const ChooseType: React.FC = () => {
         </HelmetProvider>
     )
 }
+
+export default ChooseType;

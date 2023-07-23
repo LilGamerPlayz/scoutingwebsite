@@ -25,7 +25,7 @@ const HomePage: React.FC = () => {
                 <br /><br />
                 <h1 id="Scouting1" data-animate>OA Robotics Scouting Website</h1>
                 <br />
-                <img id="Image" data-animate src="components/4079-transparent.png" />
+                <img id="Image" data-animate src="/components/4079-transparent.png" />
                 <br /><br /><br />
                 <div className="submitbox" id="SubmitBox">
                     <h2>Input your name here</h2>
@@ -49,3 +49,5 @@ const HomePage: React.FC = () => {
         </HelmetProvider>
     );
 }
+
+export default HomePage;
