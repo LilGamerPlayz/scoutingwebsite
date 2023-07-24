@@ -22,6 +22,14 @@
         "duplicate-id-active": "off"
       }
     ],
-    "apple-touch-icons": "off"
+    "apple-touch-icons": "off",
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "width: fit-content + 2% left + 2% right"
+        ]
+      }
+    ]
   }
 }

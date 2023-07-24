@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../scss/home.scss';
 
 const HomePageElements: React.FC = () => {
-    function Survey() {
-        throw new Error("Function not implemented.");
+    const [name, setName] = useState<string>("");
+
+    useEffect(() => {
+        const storedName = getCookie("name");
+        if (storedName) {
+            setName(storedName);
+        }
+    }, []);
+
+    const ScoutingType: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+        e.preventDefault();
+        if (name === "") {
+            const nameInput = document.createElement("input");
+            nameInput.type = "text";
+            nameInput.id = "Name";
+            nameInput.placeholder = "Name";
+            const submitButton = document.getElementById("Submit");
+            const submitBox = document.getElementById("SubmitBox");
+            if (submitButton && submitBox) {
+                submitBox.insertBefore(nameInput, submitButton);
+                submitBox.insertBefore(document.createElement("br"), submitButton);
+                setName(nameInput.value);
+            }
+        }
+        setCookie("name", name);
+        window.location.href = "/choosetype";
     }
 
-    function Blacked() {
-        throw new Error("Function not implemented.");
+    function setCookie(name: string, value: string, days: number = 7) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
     }
 
-    function ScoutingType(event: React.MouseEvent<HTMLButtonElement>): void {
-        throw new Error("Function not implemented.");
+    function getCookie(name: string) {
+        return document.cookie.split("; ").reduce((r, v) => {
+            const parts = v.split("=");
+            return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+        }, "");
     }
 
     return (
@@ -38,8 +66,8 @@ const HomePageElements: React.FC = () => {
                 <div className="submitbox" id="SubmitBox">
                     <h2>Input your name here</h2>
                     <br />
-                    <input type="text" id="Name" placeholder="Name" />
-                    <button id="Submit">Submit</button>
+                    {name === "" && <input type="text" id="Name" placeholder="Name" />}
+                    <button id="Submit" onClick={() => setName((document.getElementById("Name") as HTMLInputElement).value)}>Submit</button>
                 </div>
                 <div id="buttons">
                     <button
@@ -54,14 +82,14 @@ const HomePageElements: React.FC = () => {
                         className="buttonchoose"
                         id="Survey"
                         onClick={() => {
-                            Survey();
-                            Blacked();
+                            throw new Error("Function not implemented.");
                         }}
                         data-animate=""
                     >
                         <h1>Scouting Survey Results</h1>
                     </button>
                 </div>
+                
             </center>
             <div className="overlay"></div>
         </>

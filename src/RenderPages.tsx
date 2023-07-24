@@ -25,8 +25,8 @@ const RenderPages: React.FC = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/surveyresults" element={<SurveyResults />} />
                 <Route path="/choosetype" element={<ChooseType />} />
-                <Route path="/pitscouting" element={<PitScouting />} />
-                <Route path="/matchscoutingauto" element={<MatchScoutingAuto />} />
+                <Route path="/pit-scouting" element={<PitScouting />} />
+                <Route path="/match-scouting-auto" element={<MatchScoutingAuto />} />
                 <Route path="/match-submitted" element={<Submitted submittedType={"match"}/>} />
                 <Route path="/pit-submitted" element={<Submitted submittedType={"pit"}/>} />
 
@@ -34,8 +34,8 @@ const RenderPages: React.FC = () => {
                 <Route path="*" element={<Navigate to="/" />} />
                 <Route path="/surveyresults/*" element={<Navigate to="/surveyresults" />} />
                 <Route path="/choosetype/*" element={<Navigate to="/choosetype" />} />
-                <Route path="/pitscouting/*" element={<Navigate to="/pitscouting" />} />
-                <Route path="/matchscoutingauto/*" element={<Navigate to="/matchscoutingauto" />} />
+                <Route path="/pit-scouting/*" element={<Navigate to="/pit-scouting" />} />
+                <Route path="/match-scouting-auto/*" element={<Navigate to="/match-scouting-auto" />} />
                 <Route path="/match-submitted/*" element={<Navigate to="/match-submitted" />} />
                 <Route path="/pit-submitted/*" element={<Navigate to="/pit-submitted" />} />
 
