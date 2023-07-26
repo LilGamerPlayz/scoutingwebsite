@@ -38,7 +38,6 @@ const RenderPages: React.FC = () => {
                 <Route path="/match-scouting-auto/*" element={<Navigate to="/match-scouting-auto" />} />
                 <Route path="/match-submitted/*" element={<Navigate to="/match-submitted" />} />
                 <Route path="/pit-submitted/*" element={<Navigate to="/pit-submitted" />} />
-
             </Routes>
         </BrowserRouter>
     );

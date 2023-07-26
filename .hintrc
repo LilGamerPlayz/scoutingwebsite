@@ -27,7 +27,9 @@
       "default",
       {
         "ignore": [
-          "width: fit-content + 2% left + 2% right"
+          "width: fit-content + 2% left + 2% right",
+          "width: fit-content",
+          "scroll-behavior"
         ]
       }
     ]

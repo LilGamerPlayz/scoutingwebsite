@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import '../../components/scss/matchauto.scss';
 
 const MatchScoutingTele: React.FC = () => {
     const [questions, setQuestions] = useState([

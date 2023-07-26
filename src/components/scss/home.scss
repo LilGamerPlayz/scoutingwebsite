@@ -1,21 +1,21 @@
-body input {
-  width: 50%;
+body {
+  input {
+  width: 50vw;
   padding: 2px;
   box-sizing: border-box;
+  }
 }
 
-#center h1 {
-  color: white;
-}
 
 #center {
   background: rgb(0, 0, 0);
   border-radius: 25px;
-  width: 40%;
-  height: 100%;
+  width: 45vw;
+  height: 85vh;
   margin: 0 auto;
-  top: 0;
-  bottom: 0;
+  h1 {
+    color: white;
+  }
 }
 
 #Image {
@@ -28,11 +28,9 @@ body input {
   background-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("../elements/MatchImage.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  width: 50%;
-  height: 100%;
+  width: 50vw;
+  height: 100vh;
   position: absolute;
-  left: 0px;
-  top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,13 +41,10 @@ body input {
 #rightHalf {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url("../elements/PitImage.jpg");
   background-repeat: no-repeat;
-  margin: 0;
   background-size: cover;
-  width: 50%;
-  height: 100%;
+  width: 50vw;
+  height: 100vh;
   position: absolute;
-  bottom: 0px;
-  right: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,14 +161,13 @@ body input {
       align-items: center;
       border-radius: 10px;
       width: 90%;
-      margin: 0 auto;
       background-color: black;
       box-sizing: border-box;
   }
 
   #Image {
-      width: 50%;
-      height: 50%;
+      width: 200px;
+      height: 200px;
       border-radius: 20px;
   }
 
@@ -189,8 +183,8 @@ body input {
       width: 100vw;
       height: 50vh;
       position: absolute;
-      left: 0px;
-      top: 0px;
+      left: 0;
+      top: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -205,8 +199,8 @@ body input {
       width: 50vw;
       height: 100vh;
       position: absolute;
-      bottom: 0px;
-      right: 0px;
+      bottom: 0;
+      right: 0;
       display: flex;
       justify-content: center;
       align-items: center;
