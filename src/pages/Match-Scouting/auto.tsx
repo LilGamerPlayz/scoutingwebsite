@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import CreateQuestions from "../../components/ts-tsx/matchauto";
 
-interface QuestionsProps {
-  questionsVal: any[];
-}
-
 const MatchScoutingAuto: React.FC = () => {
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState<any>([]);
 
     useEffect(() => {
         const GetQuestions = async () => {
@@ -34,7 +30,7 @@ const MatchScoutingAuto: React.FC = () => {
                 <br /><br /><br /><br />
 
                 <h1 id="Match-Scouting" data-animate>Match Scouting Form</h1>
-                <CreateQuestions questionsVal={questions} />
+                <CreateQuestions {...questions} />
                 <button onClick={Blacked} id="Back" data-animate>Go Back</button>
             </center>
         </HelmetProvider>

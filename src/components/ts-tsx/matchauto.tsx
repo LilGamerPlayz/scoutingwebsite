@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * 
+ * @param questionsVal question
+ * @returns 
+ */
 const CreateQuestions: React.FC = (questionsVal: any) => {
     const data = questionsVal;
 
@@ -36,7 +41,7 @@ const CreateQuestions: React.FC = (questionsVal: any) => {
                                         );
                                     })}
                                 </div>
-                            : question.type == "text" ?
+                            : question.type === "text" ?
                                 <input type={question.type} id={`${question.id}Input`} className="input" placeholder={question.placeholder} />
                             : null
                         }
