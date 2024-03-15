@@ -82,7 +82,7 @@ const HomePageElements: React.FC = () => {
                         className="buttonchoose"
                         id="Survey"
                         onClick={() => {
-                            throw new Error("Function not implemented.");
+                            window.location.href = "/surveyresults";
                         }}
                         data-animate=""
                     >

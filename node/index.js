@@ -1,7 +1,7 @@
 // Libraries
-import express, { Express } from "express";
+import express from "express";
 import fs from "fs";
-const app: Express = express();
+const app = express();
 
 app.get("/api/match-scouting-auto", async (req, res) => {
     const data = fs.readFileSync("/dependencies/match-scouting-auto.json");

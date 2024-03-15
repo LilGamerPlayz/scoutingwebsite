@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import RenderPages from './RenderPages';
+import RenderPages from './RenderPages.tsx';
 
 // @ts-ignore
 const root = ReactDOM.createRoot(document.getElementById('root'));

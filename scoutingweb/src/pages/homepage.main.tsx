@@ -15,7 +15,16 @@ const HomePage: React.FC = (): React.JSX.Element => {
             const parts = v.split("=");
             return parts[0] === name ? decodeURIComponent(parts[1]) : r;
         }, "");
-    }
+    };
+
+    const setCookie: (name: string, value: string, days: number) => void = (name: string, value: string, days: number = 7): void => {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
+    };
+
+    const scoutingType = (): void => {
+
+    };
 
     return (
         <div>
