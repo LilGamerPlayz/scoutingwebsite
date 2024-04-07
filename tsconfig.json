@@ -10,7 +10,7 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "incremental": true,
     "forceConsistentCasingInFileNames": true,
     "plugins": [
