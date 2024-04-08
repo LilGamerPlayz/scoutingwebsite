@@ -1,10 +1,10 @@
 import React from 'react'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/electron-vite.animate.svg'
-import '../App.scss'
+import 'Styles/App.scss'
 
 function App() {
-  const [count, setCount] = React.useState(69420)
+  const [count, setCount] = React.useState<number>(69420)
 
   return (
     <>
